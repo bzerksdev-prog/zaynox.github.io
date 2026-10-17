@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaynox</title>
+<meta name="description" content="Zaynox: community staff, QA tester, and builder.">
+<link rel="icon" href="pfp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070918; --panel:rgba(16,20,52,.72); --text:#f4f5ff; --muted:#9ea6d6; --line:rgba(140,155,255,.22);
+  --display:'Outfit','Trebuchet MS',system-ui,sans-serif; --body:'Manrope',system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg) radial-gradient(900px 500px at 85% -5%,rgba(60,90,255,.28),transparent 60%),radial-gradient(700px 500px at -10% 40%,rgba(40,60,200,.16),transparent 60%);
+  color:var(--text);font-family:var(--body);line-height:1.55;padding:clamp(24px,6vw,64px) 16px 48px;min-height:100vh}
+.page{max-width:720px;margin:0 auto;display:grid;gap:40px}
+a{color:inherit}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Hero */
+.hero{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.hero h1{font-family:var(--display);font-weight:800;line-height:.9;font-size:clamp(3.6rem,13vw,6.2rem);letter-spacing:-.03em}
+.hero h1 span{display:block;background:linear-gradient(100deg,#c6d2ff,#6f8cff 45%,#3f5cf0);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 28px rgba(80,110,255,.55))}
+.tagline{margin-top:16px;color:var(--muted);font-size:1.1rem;max-width:26ch}
+.links{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.links a{font:600 .95rem var(--display);text-decoration:none;padding:8px 18px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);transition:border-color .15s,background .15s}
+.links a:hover{border-color:#8fa4ff;background:rgba(111,140,255,.14)}
+.pfp-wrap{position:relative;flex:none}
+.pfp{display:block;width:clamp(150px,34vw,220px);aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:50% 30%;background:#2b2c30;border:3px solid #6f8cff;box-shadow:0 0 0 9px rgba(111,140,255,.12),0 0 70px rgba(79,107,255,.55)}
+.pfp-wrap::before,.pfp-wrap::after{content:"✦";position:absolute;color:#fff;text-shadow:0 0 12px #fff}
+.pfp-wrap::before{top:2px;left:-8px;font-size:1.6rem}
+.pfp-wrap::after{bottom:14px;right:-14px;font-size:1.1rem}
+
+/* Community cards */
+.card{--a:#6f8cff;border-radius:22px;border:1px solid color-mix(in srgb,var(--a) 55%,transparent);background:var(--panel);overflow:hidden;
+  box-shadow:0 30px 70px -35px color-mix(in srgb,var(--a) 70%,transparent),inset 0 0 0 1px rgba(255,255,255,.03)}
+.card.egg{--a:#3fd0e6}
+.banner{position:relative;min-height:240px;padding:24px 26px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+  background:linear-gradient(135deg,#0c1352,#2742d6 60%,#5b7bff)}
+.egg .banner{background:linear-gradient(135deg,#06323f,#0f7c93 60%,#46d0e4)}
+.bimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,7,24,.92),rgba(5,7,24,.15) 70%)}
+.banner>*:not(.bimg){position:relative;z-index:1}
+.banner h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,8vw,3rem);line-height:1;letter-spacing:-.02em}
+.banner p{color:#dfe4ff;margin-top:6px;max-width:38ch}
+.view{position:absolute!important;top:16px;right:16px;font:600 .85rem var(--display);text-decoration:none;padding:6px 14px;border-radius:999px;background:rgba(7,9,24,.55);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px)}
+.view:hover{background:rgba(255,255,255,.18)}
+.stats{display:flex;align-items:center;gap:22px;padding:16px 26px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:12px}
+.stat svg{width:38px;height:38px;padding:8px;border-radius:12px;background:color-mix(in srgb,var(--a) 16%,transparent);color:var(--a);flex:none}
+.stat b{display:block;font:700 1.35rem/1.1 var(--display)}
+.stat span{color:var(--muted);font-size:.9rem}
+.sep{width:1px;align-self:stretch;background:var(--line)}
+
+/* Roles */
+.roles{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 26px;border-top:1px solid var(--line);background:rgba(4,6,22,.5)}
+.roles-label{font:600 .95rem var(--display);color:var(--muted);padding-right:14px;border-right:1px solid var(--line)}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font:600 .95rem var(--display);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--a) 70%,transparent);background:color-mix(in srgb,var(--a) 12%,transparent);transition:background .15s}
+.chip:hover{background:color-mix(in srgb,var(--a) 26%,transparent)}
+.chip i{font-style:normal;font-size:1.15rem;line-height:1;transition:transform .2s}
+.chip[aria-expanded="true"] i{transform:rotate(45deg)}
+.chip.trial{border-style:dashed}
+.tag{font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;background:#f0c070;color:#352500}
+.note{flex-basis:100%;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.05);color:#d3d8ff;font-size:.95rem}
+.note[hidden]{display:none}
+
+/* Section headings */
+.sec h2{font:700 2rem/1.1 var(--display);letter-spacing:-.02em}
+.sub{color:var(--muted);margin:4px 0 18px}
+
+/* QA */
+.tickets{list-style:none;padding:0;border:1px solid rgba(169,155,255,.4);border-radius:18px;background:var(--panel);overflow:hidden;box-shadow:0 30px 70px -40px rgba(140,120,255,.8)}
+.ticket{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:15px 20px}
+.ticket+.ticket{border-top:1px dashed rgba(169,155,255,.3)}
+.tid{font:600 .85rem ui-monospace,Menlo,Consolas,monospace;color:#a99bff;padding:4px 10px;border-radius:8px;background:rgba(169,155,255,.14)}
+.ticket b{display:block;font:600 1.15rem/1.2 var(--display)}
+.ticket small{color:var(--muted);font-size:.92rem}
+.badge{font-weight:700;font-size:.8rem;padding:3px 12px 3px 10px;border-radius:999px;color:#c9ffe6;background:rgba(40,160,110,.2);border:1px solid rgba(95,227,168,.45)}
+.badge::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#5fe3a8;margin-right:7px;box-shadow:0 0 8px #5fe3a8}
+
+/* Timeline */
+.timeline ol{list-style:none;padding:0;position:relative}
+.timeline ol::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(#6f8cff,rgba(111,140,255,.1))}
+.timeline li{position:relative;padding:0 0 24px 44px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:0;top:5px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--c);box-shadow:0 0 14px var(--c)}
+.timeline li::after{content:"";position:absolute;left:6px;top:11px;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.timeline time{font:700 1.1rem var(--display);color:var(--c)}
+.timeline h3{font:600 1.2rem/1.2 var(--display)}
+.timeline p{color:var(--muted)}
+
+/* Roblox viewport */
+.win{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#16171a;box-shadow:0 30px 70px -35px rgba(79,107,255,.6)}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#0f1013;border-bottom:1px solid #26272c}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#3a3b42}
+.url{flex:1;min-width:0;font:500 .82rem ui-monospace,Menlo,Consolas,monospace;color:#a9acb8;background:#1d1e23;border-radius:8px;padding:5px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.profile{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:24px;padding:24px;align-items:center}
+.stage{position:relative;aspect-ratio:3/4;border-radius:12px;background:radial-gradient(circle at 50% 35%,#2d3a8f,#14172e 70%);display:grid;place-items:center;overflow:hidden}
+.stage img{width:100%;height:100%;object-fit:contain}
+.stage .ph{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:16px;color:var(--muted);font-size:.9rem}
+.stage.empty .ph{display:grid}
+.who h3{font:700 1.7rem/1.1 var(--display)}
+.who .handle{color:var(--muted);margin:2px 0 14px}
+.who a{display:inline-block;font:600 .95rem var(--display);text-decoration:none;padding:8px 18px;border-radius:10px;background:#335fff;color:#fff}
+.who a:hover{background:#4a72ff}
+footer{text-align:center;color:var(--muted);font-size:.92rem}
+
+@media (max-width:520px){
+  .roles-label{border:0;padding:0;flex-basis:100%}
+  .sep{display:none}
+  .ticket{grid-template-columns:auto 1fr}.badge{grid-column:1/-1;justify-self:start}
+  .profile{grid-template-columns:1fr}.stage{max-width:260px;margin:0 auto;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div>
+      <h1>I’m <span>Zaynox</span></h1>
+      <p class="tagline">Helping communities grow, one player at a time.</p>
+      <nav class="links" aria-label="My profiles">
+        <a href="#" data-link="roblox">Roblox</a>
+        <a href="#">Discord</a>
+        <a href="#">GitHub</a>
+      </nav>
+    </div>
+    <div class="pfp-wrap">
+      <img class="pfp" src="pfp.png" alt="Zaynox’s avatar: a blue and white Roblox character with a red button on its hat">
+    </div>
+  </header>
+
+  <!-- Gakuran -->
+  <section class="card" id="gakuran" aria-labelledby="gakuran-title">
+    <div class="banner">
+      <!-- Add banner-gakuran.jpg next to this file. Until it exists, the gradient shows. -->
+      <img class="bimg" src="banner-gakuran.jpg" alt="" onerror="this.remove()">
+      <a class="view" href="#" aria-label="View Gakuran on Roblox">View game ↗</a>
+      <h2 id="gakuran-title">Gakuran</h2>
+      <p>A thriving Roblox community focused on anime, roleplay, and more.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-4 3-6 6.500-6s6 2 6.500 6M16 5a3.500 3.500 0 0 1 0 6.500M18 14c2 .6 3.200 2.600 3.500 6"/></svg>
+        <div><b>900K+</b><span>Discord members</span></div>
+      </div>
+      <div class="sep"></div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9L12 3zM12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>
+        <div><b>271.2M+</b><span>Roblox visits</span></div>
+      </div>
+    </div>
+    <div class="roles">
+      <div class="roles-label">My roles</div>
+      <div class="chips">
+        <button class="chip" aria-expanded="false" aria-controls="g1">Helper Management <i aria-hidden="true">+</i></button>
+        <button class="chip" aria-expanded="false" aria-controls="g2">Staff <i aria-hidden="true">+</i></button>
+      </div>
+      <p class="note" id="g1" hidden>Placeholder: describe what you do as Helper Management.</p>
+      <p class="note" id="g2" hidden>Placeholder: describe what you do as Staff.</p>
+    </div>
+  </section>
+
+  <!-- Steal an Egg -->
+  <section class="card egg" aria-labelledby="egg-title">
+    <div class="banner">
+      <img class="bimg" src="banner-steal-an-egg.jpg" alt="" onerror="this.remove()">
+      <a class="view" href="#" aria-label="View Steal an Egg on Roblox">View game ↗</a>
+      <h2 id="egg-title">Steal an Egg</h2>
+      <p>A fun and chaotic Roblox experience where you steal eggs, upgrade, and dominate.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-4 3-6 6.500-6s6 2 6.500 6M16 5a3.500 3.500 0 0 1 0 6.500M18 14c2 .6 3.200 2.600 3.500 6"/></svg>
+        <div><b>560K+</b><span>Discord members</span></div>
+      </div>
+      <div class="sep"></div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9L12 3zM12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>
+        <div><b>8.3B+</b><span>Roblox visits</span></div>
+      </div>
+    </div>
+    <div class="roles">
+      <div class="roles-label">My roles</div>
+      <div class="chips">
+        <button class="chip trial" aria-expanded="false" aria-controls="e1">Trial Moderator <span class="tag">Trial</span> <i aria-hidden="true">+</i></button>
+      </div>
+      <p class="note" id="e1" hidden>Placeholder: describe what you do as a Trial Moderator.</p>
+    </div>
+  </section>
+
+  <!-- QA -->
+  <section class="sec" aria-labelledby="qa-title">
+    <h2 id="qa-title">QA and testing</h2>
+    <p class="sub">I help keep communities stable, fair, and fun by testing before things go live.</p>
+    <ul class="tickets">
+      <li class="ticket"><span class="tid">QA-01</span><div><b>Gakuran</b><small>Game QA support</small></div><span class="badge">Active</span></li>
+      <li class="ticket"><span class="tid">QA-02</span><div><b>Forge</b><small>Development QA</small></div><span class="badge">Active</span></li>
+      <li class="ticket"><span class="tid">QA-03</span><div><b>QA-Central</b><small>Testing platform</small></div><span class="badge">Active</span></li>
+    </ul>
+  </section>
+
+  <!-- Timeline -->
+  <section class="sec timeline" aria-labelledby="tl-title">
+    <h2 id="tl-title">Timeline</h2>
+    <p class="sub">My journey so far.</p>
+    <ol>
+      <li style="--c:#cfd6ff"><time>2021</time><h3>Joined Roblox</h3><p>Started out as a player.</p></li>
+      <li style="--c:#6f8cff"><time>2022</time><h3>Community involvement</h3><p>Began helping in Gakuran’s community.</p></li>
+      <li style="--c:#6f8cff"><time>2023</time><h3>Helper, then Staff</h3><p>Promoted to Helper and later Staff.</p></li>
+      <li style="--c:#a99bff"><time>2024</time><h3>QA and testing</h3><p>Joined QA-Central and expanded QA work.</p></li>
+      <li style="--c:#f0c070"><time>2025</time><h3>Still growing</h3><p>Building, learning, and making an impact.</p></li>
+    </ol>
+  </section>
+
+  <!-- Roblox profile viewport -->
+  <section class="sec" aria-labelledby="rb-title">
+    <h2 id="rb-title">My Roblox avatar</h2>
+    <p class="sub">This is how I look on Roblox.</p>
+    <div class="win">
+      <div class="bar">
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="url" id="rb-url">roblox.com/users/YOUR_ID/profile</div>
+      </div>
+      <div class="profile">
+        <div class="stage" id="stage">
+          <!-- Add avatar.png next to this file (a screenshot of your avatar). -->
+          <img src="avatar.png" alt="Zaynox’s Roblox avatar" onerror="this.remove();document.getElementById('stage').classList.add('empty')">
+          <div class="ph">Add avatar.png to show your avatar here</div>
+        </div>
+        <div class="who">
+          <h3 id="rb-name">Zaynox</h3>
+          <p class="handle" id="rb-handle">@YOUR_USERNAME</p>
+          <a href="#" id="rb-link" data-link="roblox">View on Roblox ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Built by Zaynox</footer>
+</main>
+
+<script>
+// EDIT THESE: your Roblox details fill in the viewport and Roblox links.
+var ROBLOX = { id: "YOUR_ID", username: "YOUR_USERNAME", display: "Zaynox" };
+if (ROBLOX.id !== "YOUR_ID") {
+  var profile = "https://www.roblox.com/users/" + ROBLOX.id + "/profile";
+  document.getElementById("rb-url").textContent = "roblox.com/users/" + ROBLOX.id + "/profile";
+  document.getElementById("rb-name").textContent = ROBLOX.display;
+  document.getElementById("rb-handle").textContent = "@" + ROBLOX.username;
+  document.querySelectorAll('[data-link="roblox"]').forEach(function (a) { a.href = profile; a.target = "_blank"; a.rel = "noopener"; });
+}
+
+// Role chips: click to show or hide a short description. One open per card.
+document.querySelectorAll('.chip').forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    var card = chip.closest('.card');
+    var note = document.getElementById(chip.getAttribute('aria-controls'));
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    card.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-expanded', 'false'); });
+    card.querySelectorAll('.note').forEach(function (n) { n.hidden = true; });
+    if (!open) { chip.setAttribute('aria-expanded', 'true'); note.hidden = false; }
+  });
+});
+</script>
+</body>
+</html>
