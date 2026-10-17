@@ -19,7 +19,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scrollbar-color:#3f6bff #05070f;scrollbar-width:thin;background:var(--bg)}
+html{scroll-behavior:smooth;scrollbar-color:#3f6bff #05070f;scrollbar-width:thin;background:var(--bg);scroll-padding-top:90px}
 ::-webkit-scrollbar{width:12px;height:10px}
 ::-webkit-scrollbar-track{background:#05070f}
 ::-webkit-scrollbar-thumb{background:linear-gradient(#6c93ff,#2d4fe0);border-radius:10px;border:3px solid #05070f}
@@ -40,20 +40,25 @@ a{color:inherit}
 
 /* Motion */
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes heroArrive{from{opacity:0;transform:translate3d(0,20px,0) scale(.94);filter:blur(5px)}to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
 @keyframes float{50%{transform:translateY(-8px)}}
 @keyframes hdrin{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
 @keyframes twinkle{50%{opacity:.25;transform:scale(.7)}}
 @keyframes shine{to{background-position:200% 0}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
-.js .reveal{opacity:0;translate:0 28px;transition-property:opacity,translate,transform,border-color,box-shadow,background-color;transition-duration:1.5s,1.5s,.55s,.55s,.55s,.55s;transition-timing-function:cubic-bezier(.4,0,.2,1),var(--ease),var(--ease),var(--ease),var(--ease),var(--ease);transition-delay:calc((var(--r,0) + var(--b,0)*.5)*.14s),calc((var(--r,0) + var(--b,0)*.5)*.14s),0s,0s,0s,0s}
-.js .reveal.in{opacity:1;translate:0 0}
+.js .reveal{opacity:0;translate:0 38px;filter:blur(3px);transition:opacity 1.25s cubic-bezier(.2,.7,.2,1),translate 1.25s cubic-bezier(.2,.7,.2,1),filter 1s cubic-bezier(.2,.7,.2,1),transform .55s var(--ease),border-color .55s var(--ease),box-shadow .55s var(--ease),background-color .55s var(--ease);transition-delay:calc((var(--r,0)*.1 + var(--b,0)*.08)*1s),calc((var(--r,0)*.1 + var(--b,0)*.08)*1s),calc((var(--r,0)*.1 + var(--b,0)*.08)*1s),0s,0s,0s,0s;will-change:opacity,translate,filter}
+.js .reveal.in{opacity:1;translate:0 0;filter:blur(0);will-change:auto}
 
 /* Hero */
 .hero{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.hero>div:first-child>*{animation:rise 1.4s var(--ease) both}
-.hero h1{animation-delay:.1s}.tagline{animation-delay:.3s}.links{animation-delay:.5s}
+.hero h1 .hero-line{display:block;opacity:0;animation:heroArrive 1.05s cubic-bezier(.18,.72,.2,1) both}
+.hero h1 .hero-line:first-child{animation-delay:.12s}
+.hero h1 .hero-line.name{animation-delay:.32s}
+.hero .tagline,.hero .links,.hero .pfp-wrap{opacity:0;animation:heroArrive 1.15s cubic-bezier(.18,.72,.2,1) both}
+.hero .tagline{animation-delay:.7s}.hero .links{animation-delay:.88s}.hero .pfp-wrap{animation-delay:.78s}
 .hero h1{font-family:var(--display);font-weight:800;line-height:.9;font-size:clamp(3.6rem,13vw,6.2rem);letter-spacing:-.03em}
-.hero h1 span{display:block;background:linear-gradient(100deg,#bcd0ff,#5b86ff,#2d4fe0,#bcd0ff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.hero h1 .hero-line:first-child{font-size:.72em;color:#f2f5ff}
+.hero h1 .name{background:linear-gradient(100deg,#bcd0ff,#5b86ff,#2d4fe0,#bcd0ff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:heroArrive 1.05s cubic-bezier(.18,.72,.2,1) .32s both,shine 6s linear 1.4s infinite}
 .tagline{margin-top:16px;color:var(--muted);font-size:1.1rem;max-width:26ch}
 .links{display:flex;gap:12px;margin-top:20px}
 .links a{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;color:#8b93ad;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:color .2s,border-color .2s,background .2s,transform .2s var(--ease)}
@@ -234,7 +239,7 @@ a.rerun[hidden]{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .js .reveal{opacity:1;translate:none}.js .track li::after{transform:none}
+  .js .reveal{opacity:1;translate:none;filter:none;will-change:auto}.hero h1 .hero-line,.hero .tagline,.hero .links,.hero .pfp-wrap{opacity:1;animation:none!important}.js .track li::after{transform:none}
 }
 </style>
 </head>
@@ -261,7 +266,7 @@ a.rerun[hidden]{display:none}
 
   <header class="hero" id="top">
     <div>
-      <h1>I’m <span>Zaynox</span></h1>
+      <h1><span class="hero-line">I’m</span><span class="hero-line name">Zaynox</span></h1>
       <p class="tagline">Helping communities grow, one player at a time.</p>
       <nav class="links" aria-label="My profiles">
         <a href="#" data-link="roblox" aria-label="Roblox profile" title="Roblox">
@@ -394,7 +399,7 @@ a.rerun[hidden]{display:none}
         <img src="pfp.png" alt="" style="object-position:50% 30%">
         <span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></span>
       </div>
-      <div class="dsc-info"><small>Discord</small><b id="dsc-name">YOUR_DISCORD_USERNAME</b></div>
+      <div class="dsc-info"><small>Discord</small><b id="dsc-name">justcalculatewastaken</b></div>
       <div class="dsc-btns">
         <button class="rerun" id="dsc-copy" type="button">Copy username</button>
         <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile ↗</a>
@@ -413,7 +418,7 @@ a.rerun[hidden]{display:none}
 
 <script>
 // EDIT THIS: your Roblox profile link, e.g. "https://www.roblox.com/users/123456/profile"
-var ROBLOX_URL = "#";
+var ROBLOX_URL = "https://www.roblox.com/users/1098092708/profile";
 if (ROBLOX_URL !== "#") document.querySelectorAll('[data-link="roblox"]').forEach(function (a) { a.href = ROBLOX_URL; a.target = "_blank"; a.rel = "noopener"; });
 
 var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -470,20 +475,46 @@ function runSuite() {
 }
 document.getElementById("rerun").addEventListener("click", runSuite);
 
-// Everything fades up as it scrolls into view.
+// Reveal every marked section/card as it enters the viewport, with a stable stagger.
+var revealSequence = 0;
 var io = new IntersectionObserver(function (entries) {
-  var k = 0;
   entries.forEach(function (en) {
     if (!en.isIntersecting) return;
     var el = en.target;
-    if (!still) el.style.setProperty("--b", k++);
+    if (!still) el.style.setProperty("--b", Math.min(revealSequence++, 5));
     el.classList.add("in");
     if (!still) el.querySelectorAll("[data-to]").forEach(countUp);
     if (el.id === "suite") runSuite();
     io.unobserve(el);
   });
-}, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
-document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+}, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
+document.querySelectorAll(".reveal").forEach(function (el) {
+  if (still) el.classList.add("in");
+  else io.observe(el);
+});
+
+// Give in-page navigation a slower, eased glide; wheel/touch input can interrupt it.
+var anchorScrollFrame = 0;
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!a || a.getAttribute("href") === "#") return;
+  var target = document.querySelector(a.getAttribute("href"));
+  if (!target || still) return;
+  e.preventDefault();
+  cancelAnimationFrame(anchorScrollFrame);
+  var from = window.scrollY, to = target.getBoundingClientRect().top + from - 18, start = performance.now(), duration = 1050;
+  function glide(now) {
+    var p = Math.min((now - start) / duration, 1);
+    var eased = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3)/2;
+    window.scrollTo(0, from + (to - from) * eased);
+    if (p < 1) anchorScrollFrame = requestAnimationFrame(glide);
+  }
+  anchorScrollFrame = requestAnimationFrame(glide);
+  history.replaceState(null, "", a.getAttribute("href"));
+});
+function interruptAnchorScroll() { cancelAnimationFrame(anchorScrollFrame); }
+window.addEventListener("wheel", interruptAnchorScroll, { passive: true });
+window.addEventListener("touchstart", interruptAnchorScroll, { passive: true });
 
 // Header: turns darker and blue-tinted after you scroll; a soft pill follows the current section.
 var hdr = document.getElementById("hdr");
@@ -513,8 +544,8 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(function (
 onScroll();
 
 // Discord: click the icon to copy your username.
-var DISCORD = "YOUR_DISCORD_USERNAME"; // EDIT THIS: your Discord username
-var DISCORD_ID = "YOUR_DISCORD_ID";     // EDIT THIS: your numeric Discord user ID (for the profile link)
+var DISCORD = "justcalculatewastaken";
+var DISCORD_ID = "649787182348894261";
 var dcBtn = document.getElementById("dc-btn"), dcHint = document.getElementById("dc-hint"), toast = document.getElementById("toast"), dcTimer, toastTimer;
 function copyText(t) {
   if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
@@ -565,8 +596,9 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
       if (!still) { s.y -= s.v * dt; s.x += 2.5 * dt; }
       if (s.y < -10 || s.x > W + 10) stars[i] = mk(false);
       var a = 0.25 + 0.45 * (0.5 + 0.5 * Math.sin(t * 0.001 * s.sp + s.ph));
+      var edgeFade = Math.max(0, Math.min(1, (H - s.y) / 110, (s.y + 10) / 110));
       var x = s.x + Math.sin(t * 0.0004 * s.sp + s.ph) * s.sway;
-      cx.fillStyle = "rgba(196,212,255," + a.toFixed(3) + ")";
+      cx.fillStyle = "rgba(196,212,255," + (a * edgeFade).toFixed(3) + ")";
       cx.beginPath(); cx.arc(x, s.y, s.r, 0, 6.283); cx.fill();
       if (s.big) { cx.fillRect(x - 5, s.y - 0.4, 10, 0.8); cx.fillRect(x - 0.4, s.y - 5, 0.8, 10); }
     });
