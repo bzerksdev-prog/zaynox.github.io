@@ -31,7 +31,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;
   background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 25%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 50% 25%,#000 20%,transparent 75%)}
 body::after{content:"";position:fixed;inset:-8%;z-index:-1;pointer-events:none;animation:drift 26s ease-in-out infinite alternate;
   background:radial-gradient(800px 480px at 82% -6%,rgba(45,79,224,.38),transparent 62%),radial-gradient(600px 420px at 5% 55%,rgba(30,60,200,.16),transparent 62%)}
-.page{max-width:720px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:44px;padding-bottom:90px}
+.page{position:relative;z-index:1;max-width:720px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:44px;padding-bottom:90px}
 .page>*{min-width:0}
 a{color:inherit}
 :focus-visible{outline:2px solid #fff;outline-offset:3px}
@@ -210,10 +210,10 @@ a.rerun[hidden]{display:none}
 .dc-btn.copied{color:#fff;border-color:rgba(91,134,255,.7)}
 .toast{position:fixed;left:50%;top:80px;z-index:40;transform:translate(-50%,-10px);opacity:0;pointer-events:none;padding:9px 18px;border-radius:999px;font:600 .92rem var(--display);background:rgba(10,12,24,.94);border:1px solid rgba(91,134,255,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
 /* Footer: part of the page, at the very end */
-.foot{margin:0 -16px;padding:42px 16px 30px;border-top:1px solid rgba(255,255,255,.12);background:linear-gradient(rgba(10,12,24,.55),rgba(4,5,12,.96))}
+.foot{position:relative;z-index:1;margin:0 -16px;padding:42px 16px 30px;border-top:1px solid rgba(255,255,255,.12);background:linear-gradient(rgba(10,12,24,.55),rgba(4,5,12,.96))}
 .foot-in{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .foot-logo img{display:block;height:36px;width:auto}
 .totop{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 1rem var(--display);color:var(--text);padding:12px 22px;border-radius:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06)}
@@ -237,10 +237,7 @@ a.rerun[hidden]{display:none}
   .case{grid-template-columns:28px 1fr 46px}.bar2{grid-column:2/4;grid-row:2}
   .hdr-in{display:flex;justify-content:space-between;gap:8px;padding:0 8px 0 16px}.logo img{height:19px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto}.nav a{padding:6px 9px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
 }
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .js .reveal{opacity:1;translate:none;filter:none;will-change:auto}.hero h1 .hero-line,.hero .tagline,.hero .links,.hero .pfp-wrap{opacity:1;animation:none!important}.js .track li::after{transform:none}
-}
+
 </style>
 </head>
 <body>
@@ -421,7 +418,8 @@ a.rerun[hidden]{display:none}
 var ROBLOX_URL = "https://www.roblox.com/users/1098092708/profile";
 if (ROBLOX_URL !== "#") document.querySelectorAll('[data-link="roblox"]').forEach(function (a) { a.href = ROBLOX_URL; a.target = "_blank"; a.rel = "noopener"; });
 
-var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Motion is intentionally enabled here: the page's hero, reveals, and ambient background rely on it.
+var still = false;
 
 // Role chips: click to show or hide a short description. One open per card.
 document.querySelectorAll('.chip').forEach(function (chip) {
@@ -493,28 +491,50 @@ document.querySelectorAll(".reveal").forEach(function (el) {
   else io.observe(el);
 });
 
-// Give in-page navigation a slower, eased glide; wheel/touch input can interrupt it.
-var anchorScrollFrame = 0;
+// Slow wheel input to a controlled, fluid glide; touch scrolling remains native.
+var anchorScrollFrame = 0, wheelFrame = 0, wheelTarget = window.scrollY, wheelCurrent = window.scrollY;
 document.addEventListener("click", function (e) {
   var a = e.target.closest && e.target.closest('a[href^="#"]');
   if (!a || a.getAttribute("href") === "#") return;
   var target = document.querySelector(a.getAttribute("href"));
   if (!target || still) return;
   e.preventDefault();
-  cancelAnimationFrame(anchorScrollFrame);
-  var from = window.scrollY, to = target.getBoundingClientRect().top + from - 18, start = performance.now(), duration = 1050;
+  cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
+  anchorScrollFrame = 0; wheelFrame = 0;
+  var from = window.scrollY, to = target.getBoundingClientRect().top + from - 18, start = performance.now(), duration = 1250;
   function glide(now) {
     var p = Math.min((now - start) / duration, 1);
     var eased = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3)/2;
     window.scrollTo(0, from + (to - from) * eased);
     if (p < 1) anchorScrollFrame = requestAnimationFrame(glide);
+    else anchorScrollFrame = 0;
   }
   anchorScrollFrame = requestAnimationFrame(glide);
   history.replaceState(null, "", a.getAttribute("href"));
 });
-function interruptAnchorScroll() { cancelAnimationFrame(anchorScrollFrame); }
-window.addEventListener("wheel", interruptAnchorScroll, { passive: true });
-window.addEventListener("touchstart", interruptAnchorScroll, { passive: true });
+window.addEventListener("wheel", function (e) {
+  if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  e.preventDefault();
+  cancelAnimationFrame(anchorScrollFrame); anchorScrollFrame = 0;
+  var delta = e.deltaY;
+  if (e.deltaMode === 1) delta *= 32;
+  else if (e.deltaMode === 2) delta *= window.innerHeight;
+  wheelTarget = Math.max(0, Math.min(document.documentElement.scrollHeight - window.innerHeight, wheelTarget + delta * .48));
+  if (!wheelFrame) wheelCurrent = window.scrollY;
+  function glideWheel() {
+    wheelCurrent += (wheelTarget - wheelCurrent) * .13;
+    if (Math.abs(wheelTarget - wheelCurrent) < .7) {
+      wheelCurrent = wheelTarget; window.scrollTo(0, wheelCurrent); wheelFrame = 0; return;
+    }
+    window.scrollTo(0, wheelCurrent);
+    wheelFrame = requestAnimationFrame(glideWheel);
+  }
+  if (!wheelFrame) wheelFrame = requestAnimationFrame(glideWheel);
+}, { passive: false });
+window.addEventListener("touchstart", function () {
+  cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
+  anchorScrollFrame = 0; wheelFrame = 0;
+}, { passive: true });
 
 // Header: turns darker and blue-tinted after you scroll; a soft pill follows the current section.
 var hdr = document.getElementById("hdr");
@@ -578,16 +598,16 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
 // Background: stars drift upward and twinkle; an occasional streak crosses diagonally.
 (function () {
   var cv = document.getElementById("sky"), cx = cv.getContext("2d");
-  var W, H, stars = [], streak = null, nextStreak = 3000, last = 0;
+  var W, H, stars = [], streak = null, nextStreak = 1600, last = 0;
   function mk(anywhere) {
-    var big = Math.random() < 0.12;
-    return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, r: big ? 1.5 : 0.4 + Math.random() * 0.9,
-      v: (big ? 14 : 5 + Math.random() * 9), ph: Math.random() * 6.28, sp: 0.6 + Math.random() * 1.4, sway: 4 + Math.random() * 14, big: big };
+    var big = Math.random() < 0.18;
+    return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, r: big ? 2 : 0.8 + Math.random() * 1.2,
+      v: (big ? 48 : 22 + Math.random() * 24), ph: Math.random() * 6.28, sp: 0.6 + Math.random() * 1.4, sway: 7 + Math.random() * 20, big: big };
   }
   function size() {
     var d = Math.min(window.devicePixelRatio || 1, 2);
     W = window.innerWidth; H = window.innerHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0);
-    stars = []; for (var i = 0, n = Math.round(W * H / 15000); i < n; i++) stars.push(mk(true));
+    stars = []; for (var i = 0, n = Math.round(W * H / 9000); i < n; i++) stars.push(mk(true));
   }
   function frame(t) {
     var dt = Math.min((t - last) / 1000 || 0, 0.05); last = t;
@@ -606,14 +626,14 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
       nextStreak -= dt * 1000;
       if (!streak && nextStreak <= 0) {
         streak = { x: W * (0.35 + Math.random() * 0.75), y: -30, life: 0 };
-        nextStreak = 5000 + Math.random() * 6000;
+        nextStreak = 2200 + Math.random() * 3600;
       }
       if (streak) {
-        streak.x -= 620 * dt; streak.y += 620 * dt; streak.life += dt;
-        var g = cx.createLinearGradient(streak.x + 130, streak.y - 130, streak.x, streak.y);
-        g.addColorStop(0, "rgba(160,190,255,0)"); g.addColorStop(1, "rgba(220,232,255,0.85)");
-        cx.strokeStyle = g; cx.lineWidth = 1.4;
-        cx.beginPath(); cx.moveTo(streak.x + 130, streak.y - 130); cx.lineTo(streak.x, streak.y); cx.stroke();
+        streak.x -= 760 * dt; streak.y += 760 * dt; streak.life += dt;
+        var g = cx.createLinearGradient(streak.x + 190, streak.y - 190, streak.x, streak.y);
+        g.addColorStop(0, "rgba(160,190,255,0)"); g.addColorStop(1, "rgba(220,232,255,0.95)");
+        cx.strokeStyle = g; cx.lineWidth = 2;
+        cx.beginPath(); cx.moveTo(streak.x + 190, streak.y - 190); cx.lineTo(streak.x, streak.y); cx.stroke();
         if (streak.y > H + 140 || streak.x < -140) streak = null;
       }
       requestAnimationFrame(frame);
