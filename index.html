@@ -65,8 +65,8 @@ a{color:inherit}
 .links a:hover{color:#fff;border-color:var(--blue);background:rgba(91,134,255,.16);transform:translateY(-3px)}
 .links svg{width:20px;height:20px;fill:currentColor}
 .pfp-wrap{position:relative;flex:none;animation:rise 1.6s .3s var(--ease) both}
-.pfp-frame{width:clamp(170px,36vw,250px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--blue);box-shadow:0 0 0 9px rgba(91,134,255,.1);background:#2b2c30;animation:float 9s ease-in-out infinite}
-.pfp{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.2)}
+.pfp-frame{width:clamp(145px,28vw,205px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--blue);box-shadow:0 0 0 9px rgba(91,134,255,.1);background:#2b2c30;animation:float 9s ease-in-out infinite}
+.pfp{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
 .pfp-wrap::before,.pfp-wrap::after{content:"✦";position:absolute;color:#fff;text-shadow:0 0 12px #fff;animation:twinkle 4.5s ease-in-out infinite}
 .pfp-wrap::before{top:2px;left:-8px;font-size:1.6rem}
 .pfp-wrap::after{bottom:14px;right:-14px;font-size:1.1rem;animation-delay:1.4s}
@@ -127,32 +127,20 @@ a{color:inherit}
 .sec h2{font:700 2rem/1.1 var(--display);letter-spacing:-.02em}
 .sub{color:var(--muted);margin:4px 0 18px}
 
-/* QA test run */
+/* Quality Assurance cards */
 .stack{display:grid;grid-template-columns:minmax(0,1fr);gap:44px}
 section[id],#games{scroll-margin-top:96px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.suite{border:1px solid rgba(255,255,255,.13);border-radius:20px;background:var(--panel);overflow:hidden;box-shadow:0 24px 50px -30px #000}
-.suite-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.35)}
-.state{display:flex;align-items:center;gap:10px;font:600 .95rem var(--display)}
-.state i{width:8px;height:8px;border-radius:50%;background:#e8ebf5}
-.suite.run .state i{background:#fff;animation:pulse 1.4s infinite}
-.rerun{font:600 .88rem var(--display);color:var(--text);cursor:pointer;padding:6px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);transition:background .2s,transform .2s var(--ease)}
-.rerun:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}
-.case{display:grid;grid-template-columns:28px 1fr minmax(90px,38%) 48px;align-items:center;gap:16px;padding:16px 20px}
-.case+.case{border-top:1px solid rgba(255,255,255,.07)}
-.mark{position:relative;width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.2)}
-.case.go .mark{border-top-color:#fff;animation:spin .8s linear infinite}
-.case.ok .mark{background:#f2f4fb;border-color:#f2f4fb}
-.case.ok .mark::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #0b0c10;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);animation:tick .55s .05s var(--ease) forwards}
-@keyframes tick{to{transform:rotate(45deg) scale(1)}}
-.case b{display:block;font:600 1.15rem/1.2 var(--display)}
-.case small{color:var(--muted);font-size:.92rem}
-.bar2{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
-.bar2 i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#7b8196,#fff);transition:width 2s var(--ease)}
-.case.go .bar2 i,.case.ok .bar2 i{width:100%}
-.pct{font:600 .9rem ui-monospace,Menlo,Consolas,monospace;color:var(--muted);text-align:right}
-.case.ok .pct{color:#fff}
-.suite-foot{padding:12px 20px;border-top:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--muted);font-size:.92rem}
+.qa-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:680px}
+.qa-card{min-width:0;padding:12px;border:1px solid rgba(160,175,220,.18);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 18px 42px -32px #000;transition:transform .5s var(--ease),border-color .5s var(--ease),background .5s var(--ease)}
+.qa-card:hover{transform:translateY(-4px);border-color:rgba(142,171,255,.52);background:rgba(91,134,255,.07)}
+.qa-icon-wrap{position:relative;display:grid;place-items:center;aspect-ratio:1;overflow:hidden;border-radius:13px;background:linear-gradient(145deg,rgba(91,134,255,.25),rgba(16,18,29,.9));border:1px solid rgba(255,255,255,.12)}
+.qa-icon-placeholder{display:grid;place-items:center;width:100%;height:100%;font:800 clamp(1.2rem,4vw,2.5rem) var(--display);letter-spacing:-.06em;color:#dbe5ff;background:radial-gradient(circle at 30% 25%,rgba(164,190,255,.28),transparent 54%)}
+.qa-icon{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qa-icon[hidden]{display:none}
+.qa-card h3{margin:12px 0 7px;font:700 clamp(.92rem,2.4vw,1.15rem)/1.2 var(--display);overflow-wrap:anywhere}
+.qa-label{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid rgba(160,175,220,.18);background:rgba(91,134,255,.08);font:600 .68rem var(--display);letter-spacing:.03em;color:#b9c9f3;white-space:nowrap}
+.qa-label i{width:6px;height:6px;border-radius:50%;background:#91adff;box-shadow:0 0 8px rgba(145,173,255,.7)}
+@media (max-width:480px){.qa-grid{gap:9px}.qa-card{padding:8px;border-radius:15px}.qa-icon-wrap{border-radius:10px}.qa-label{font-size:.61rem;padding:4px 6px}}
 
 /* Timeline (horizontal) */
 .tl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
@@ -176,13 +164,13 @@ section[id],#games{scroll-margin-top:96px}
 
 /* Header */
 .hdr{position:fixed;top:20px;left:0;right:0;z-index:30;width:min(1100px,calc(100% - 40px));height:68px;margin:0 auto;border-radius:999px;
-  background:rgba(8,9,14,.88);border:1px solid rgba(255,255,255,.16);
+  background:rgba(179,205,255,.16);border:1px solid rgba(230,240,255,.48);
   -webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 30px -18px rgba(0,0,0,.7);
   animation:hdrin 1.3s var(--ease) both;
   transition:background-color .9s var(--ease),border-color .9s var(--ease),box-shadow .9s var(--ease),top .9s var(--ease),height .9s var(--ease)}
-.hdr.scrolled{top:14px;height:64px;background:rgba(7,12,32,.92);border-color:rgba(91,134,255,.34);
-  box-shadow:inset 0 1px 0 rgba(140,170,255,.1),0 0 0 1px rgba(91,134,255,.07),0 12px 38px -14px rgba(45,79,224,.5),0 10px 26px -18px #000}
+.hdr.scrolled{top:14px;height:64px;background:rgba(91,134,255,.24);border-color:rgba(220,234,255,.62);
+  box-shadow:inset 0 1px 0 rgba(240,246,255,.22),0 0 0 1px rgba(91,134,255,.12),0 12px 38px -14px rgba(45,79,224,.48),0 10px 26px -18px #000}
 .hdr-in{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;padding:0 14px 0 28px}
 .hdr-in>.logo{justify-self:start}.hdr-in>.nav{justify-self:end}.hdr-in>.dc{justify-self:end}
 .logo{display:block;flex:none}
@@ -241,8 +229,8 @@ a.rerun[hidden]{display:none}
 
 /* Hover system: soft lift, tiny scale, thin blue edge. Same feel everywhere. */
 .chip,.links a,.rerun,.arrows button,.view,.dc-btn,.totop{will-change:transform;transition:transform .6s var(--ease),border-color .6s var(--ease),background-color .6s var(--ease),box-shadow .6s var(--ease),color .45s var(--ease)}
-.card,.suite,.me{will-change:transform}
-.card:hover,.suite:hover,.me:hover{transform:translateY(-5px) scale(1.012);border-color:rgba(91,134,255,.5);box-shadow:0 0 0 1px rgba(91,134,255,.16),0 26px 50px -26px #000}
+.card,.me{will-change:transform}
+.card:hover,.me:hover{transform:translateY(-5px) scale(1.012);border-color:rgba(91,134,255,.5);box-shadow:0 0 0 1px rgba(91,134,255,.16),0 26px 50px -26px #000}
 .chip:hover,.links a:hover,.rerun:hover,.arrows button:hover,.view:hover,.dc-btn:hover,.totop:hover{transform:translateY(-3px) scale(1.05);border-color:rgba(91,134,255,.6);background-color:rgba(91,134,255,.1);box-shadow:0 0 0 1px rgba(91,134,255,.14);color:#fff}
 .chip:active,.links a:active,.rerun:active,.arrows button:active,.view:active,.dc-btn:active,.totop:active{transform:translateY(-1px) scale(1.01)}
 .track li:hover::before{border-color:#7ea0ff}
@@ -252,7 +240,7 @@ a.rerun[hidden]{display:none}
 @media (max-width:520px){
   .roles-label{border:0;padding:0;flex-basis:100%}
   .sep{display:none}
-  .case{grid-template-columns:28px 1fr 46px}.bar2{grid-column:2/4;grid-row:2}
+
   .hdr{top:8px;width:calc(100% - 16px);height:58px}.hdr.scrolled{top:6px;height:56px}
   .hdr-in{display:flex;justify-content:space-between;gap:6px;padding:0 8px 0 16px}.logo img{height:30px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto;gap:0;padding:2px}.nav a{padding:6px 8px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
 }
@@ -366,10 +354,9 @@ a.rerun[hidden]{display:none}
       <div class="experience-panel" id="experience-panel" hidden>
         <h3>More experience</h3>
         <ul class="experience-list">
-          <li><strong>Admin</strong><span>Gakuran Charting server</span></li>
-          <li><strong>Staff</strong><span>Gakuran Sports server</span></li>
           <li><strong>Staff</strong><span>Unbound <em>In development</em></span></li>
           <li><strong>Staff / Admin</strong><span>Multiple AOT CC games</span></li>
+          <li><strong>W.I.P</strong></li>
         </ul>
         <p class="experience-note">DM for additional info.</p>
       </div>
@@ -377,19 +364,23 @@ a.rerun[hidden]{display:none}
 
   </div>
 
-  <!-- QA: a CI-style test run that plays when it scrolls into view -->
+  <!-- Quality Assurance -->
   <section class="sec" id="qa" aria-labelledby="qa-title">
-    <h2 class="reveal" id="qa-title">QA and testing</h2>
-    <p class="sub reveal" style="--r:1">I help keep communities stable, fair, and fun by testing before things go live.</p>
-    <div class="suite pass reveal" id="suite" style="--r:2">
-      <div class="suite-top">
-        <div class="state"><i></i><span>All passing</span></div>
-        <button class="rerun" id="rerun" type="button">Run again</button>
-      </div>
-      <div class="case ok"><span class="mark"></span><div><b>Gakuran</b><small>Game QA support</small></div><div class="bar2"><i></i></div><span class="pct">100%</span></div>
-      <div class="case ok"><span class="mark"></span><div><b>Forge</b><small>Development QA</small></div><div class="bar2"><i></i></div><span class="pct">100%</span></div>
-      <div class="case ok"><span class="mark"></span><div><b>QA-Central</b><small>Testing platform</small></div><div class="bar2"><i></i></div><span class="pct">100%</span></div>
-      <div class="suite-foot" id="suite-foot" aria-live="polite">3 of 3 checks passing</div>
+    <h2 class="reveal" id="qa-title">Quality Assurance</h2>
+    <p class="sub reveal" style="--r:1">Contributions to game quality, testing, and player experience.</p>
+    <div class="qa-grid reveal" style="--r:2" aria-label="Games I support through QA and testing">
+      <article class="qa-card">
+        <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">TF</span><img class="qa-icon" data-universe="7671049560" src="the-forge.png" alt="The Forge game icon" onerror="this.hidden=true"></div>
+        <h3>The Forge</h3><span class="qa-label"><i aria-hidden="true"></i>QA / Testing</span>
+      </article>
+      <article class="qa-card">
+        <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">G</span><img class="qa-icon" data-universe="9199655655" src="gakuran.png" alt="Gakuran game icon" onerror="this.hidden=true"></div>
+        <h3>Gakuran</h3><span class="qa-label"><i aria-hidden="true"></i>QA / Testing</span>
+      </article>
+      <article class="qa-card">
+        <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">QA</span><img class="qa-icon" src="qa-central.png" alt="QA-Central icon" onerror="this.hidden=true"></div>
+        <h3>QA-Central</h3><span class="qa-label"><i aria-hidden="true"></i>QA / Testing</span>
+      </article>
     </div>
   </section>
 
@@ -468,6 +459,23 @@ document.querySelectorAll('.chip').forEach(function (chip) {
   });
 });
 
+// Resolve the official Roblox experience icons, with local PNG fallbacks.
+function loadExperienceIcon(universeId) {
+  var image = document.querySelector('[data-universe="' + universeId + '"]');
+  if (!image) return;
+  fetch("https://thumbnails.roblox.com/v1/games/icons?universeIds=" + universeId + "&size=512x512&format=Png&isCircular=false")
+    .then(function (response) { if (!response.ok) throw new Error("Icon lookup failed"); return response.json(); })
+    .then(function (result) {
+      if (!result.data || !result.data.length || !result.data[0].imageUrl) return;
+      image.hidden = false;
+      image.onload = function () { image.previousElementSibling.hidden = true; };
+      image.onerror = function () { image.hidden = true; };
+      image.src = result.data[0].imageUrl;
+    }).catch(function () { /* use the local PNG or initials fallback */ });
+}
+loadExperienceIcon("7671049560");
+loadExperienceIcon("9199655655");
+
 // Expand the complete experience list beneath the game cards.
 var experienceToggle = document.getElementById("experience-toggle");
 var experiencePanel = document.getElementById("experience-panel");
@@ -490,35 +498,7 @@ function countUp(el) {
   })(t0);
 }
 
-// QA test run: bars fill one after another, then everything turns to "passed".
-var suite = document.getElementById("suite"), cases = suite.querySelectorAll(".case");
-var stateTxt = suite.querySelector(".state span"), foot = document.getElementById("suite-foot"), timers = [];
-function setState(cls, txt) { suite.classList.remove("run", "pass"); suite.classList.add(cls); stateTxt.textContent = txt; }
-function finish() {
-  cases.forEach(function (c) { c.classList.remove("go"); c.classList.add("ok"); c.querySelector(".pct").textContent = "100%"; });
-  setState("pass", "All passing"); foot.textContent = "3 of 3 checks passing";
-}
-function runSuite() {
-  timers.forEach(clearTimeout); timers = [];
-  cases.forEach(function (c) { c.classList.remove("go", "ok"); c.querySelector(".pct").textContent = "0%"; });
-  setState("run", "Running"); foot.textContent = "Running 3 checks";
-  if (still) { finish(); return; }
-  cases.forEach(function (c, i) {
-    timers.push(setTimeout(function () {
-      c.classList.add("go");
-      var pct = c.querySelector(".pct"), t0 = performance.now(), dur = 2000;
-      (function tick(t) {
-        var p = Math.min((t - t0) / dur, 1);
-        pct.textContent = Math.round(p * 100) + "%";
-        if (p < 1) requestAnimationFrame(tick);
-        else { c.classList.remove("go"); c.classList.add("ok"); if (i === cases.length - 1) finish(); }
-      })(t0);
-    }, i * 1000));
-  });
-}
-document.getElementById("rerun").addEventListener("click", runSuite);
-
-// Reveal every marked section/card as it enters the viewport, with a stable stagger.
+ // Reveal every marked section/card as it enters the viewport, with a stable stagger.
 var revealSequence = 0;
 var io = new IntersectionObserver(function (entries) {
   entries.forEach(function (en) {
@@ -527,7 +507,6 @@ var io = new IntersectionObserver(function (entries) {
     if (!still) el.style.setProperty("--b", Math.min(revealSequence++, 5));
     el.classList.add("in");
     if (!still) el.querySelectorAll("[data-to]").forEach(countUp);
-    if (el.id === "suite") runSuite();
     io.unobserve(el);
   });
 }, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
