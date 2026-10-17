@@ -164,23 +164,23 @@ section[id],#games{scroll-margin-top:96px}
 
 /* Header */
 .hdr{position:fixed;top:20px;left:0;right:0;z-index:30;width:min(1100px,calc(100% - 40px));height:68px;margin:0 auto;border-radius:999px;
-  background:rgba(246,248,252,.88);border:1px solid rgba(255,255,255,.92);
+  background:rgba(246,248,252,.76);border:1px solid rgba(255,255,255,.94);
   -webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 12px 34px -20px rgba(0,0,0,.45),0 0 28px rgba(138,167,226,.08);
   animation:hdrin 1.3s var(--ease) both;
   transition:background-color .9s var(--ease),border-color .9s var(--ease),box-shadow .9s var(--ease),top .9s var(--ease),height .9s var(--ease)}
-.hdr.scrolled{top:14px;height:64px;background:rgba(246,248,252,.88);border-color:rgba(255,255,255,.92);
+.hdr.scrolled{top:14px;height:64px;background:rgba(246,248,252,.76);border-color:rgba(255,255,255,.94);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 0 0 1px rgba(91,134,255,.05),0 12px 38px -14px rgba(45,79,224,.3),0 10px 26px -18px #000}
 .hdr-in{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;padding:0 14px 0 28px}
 .hdr-in>.logo{justify-self:start}.hdr-in>.nav{justify-self:end}.hdr-in>.dc{justify-self:end}
 .logo{display:block;flex:none}
 .logo img{display:block;height:40px;width:auto;filter:brightness(0) saturate(100%) opacity(.85);transition:transform .6s var(--ease),filter .6s var(--ease)}
-.logo:hover img{transform:scale(1.05);filter:brightness(1.18)}
+.logo:hover img{transform:scale(1.05);filter:brightness(0) saturate(100%) opacity(1)}
 .nav{position:relative;display:flex;gap:4px;padding:4px;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none;border-radius:999px;background:transparent}
 .nav::-webkit-scrollbar{display:none}
 .nav a{position:relative;z-index:1;text-decoration:none;white-space:nowrap;font:600 1rem var(--display);color:#3d4658;padding:10px 16px;border-radius:999px;transition:color .5s var(--ease)}
 .nav a:hover,.nav a.on{color:#111827}
-.ind{position:absolute;top:3px;bottom:3px;left:0;width:0;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);transition:transform .8s var(--ease),width .8s var(--ease);pointer-events:none}
+.ind{position:absolute;top:3px;bottom:3px;left:0;width:0;border-radius:999px;background:rgba(91,134,255,.09);border:1px solid rgba(91,134,255,.16);transition:transform .8s var(--ease),width .8s var(--ease);pointer-events:none}
 
 /* Profile card */
 .me{display:block;width:100%;max-width:460px;margin:0 auto;padding:14px;border-radius:24px;border:1px solid rgba(255,255,255,.12);background:rgba(22,23,28,.82);text-decoration:none;color:inherit;transition:transform .7s var(--ease),border-color .5s var(--ease),background-color .5s var(--ease),box-shadow .7s var(--ease)}
@@ -210,10 +210,10 @@ a.rerun[hidden]{display:none}
 
 /* Discord copy button + toast */
 .dc{display:flex;align-items:center;gap:12px;flex:none}
-.dc-hint{font-size:.82rem;color:var(--muted);white-space:nowrap;transition:color .3s}
-.dc-btn{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;cursor:pointer;color:#a3a8bd;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.dc-hint{font-size:.82rem;color:#596476;white-space:nowrap;transition:color .3s}
+.dc-btn{display:grid;place-items:center;width:38px;height:38px;border-radius:999px;cursor:pointer;color:#586277;border:1px solid rgba(48,60,83,.18);background:rgba(39,54,83,.05)}
 .dc-btn svg{width:20px;height:20px;fill:currentColor}
-.dc-btn.copied{color:#fff;border-color:rgba(91,134,255,.7)}
+.dc-btn.copied{color:#fff;background:var(--blue-deep);border-color:rgba(91,134,255,.7)}
 .toast{position:fixed;left:50%;top:80px;z-index:40;transform:translate(-50%,-10px);opacity:0;pointer-events:none;padding:9px 18px;border-radius:999px;font:600 .92rem var(--display);background:rgba(10,12,24,.94);border:1px solid rgba(91,134,255,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
