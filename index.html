@@ -92,6 +92,24 @@ a{color:inherit}
 .stat span{color:var(--muted);font-size:.9rem}
 .sep{width:1px;align-self:stretch;background:var(--line)}
 
+/* Additional experience */
+.experience-more{display:grid;justify-items:center;gap:14px}
+.experience-toggle{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:12px 24px;border:1px solid rgba(160,175,220,.28);border-radius:999px;background:linear-gradient(135deg,rgba(91,134,255,.16),rgba(255,255,255,.045));color:var(--text);font:700 1rem var(--display);cursor:pointer;box-shadow:0 14px 34px -22px rgba(91,134,255,.65);transition:transform .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease)}
+.experience-toggle:hover{transform:translateY(-3px);border-color:rgba(120,157,255,.65);background:rgba(91,134,255,.18)}
+.experience-icon{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.1);font-size:1.3rem;line-height:1;transition:transform .4s var(--ease)}
+.experience-toggle[aria-expanded="true"] .experience-icon{transform:rotate(45deg)}
+.experience-panel{width:100%;padding:24px;border:1px solid rgba(160,175,220,.2);border-radius:22px;background:linear-gradient(140deg,rgba(16,19,32,.94),rgba(12,13,20,.92));box-shadow:0 24px 55px -35px #000;animation:experienceReveal .6s var(--ease) both}
+.experience-panel[hidden]{display:none}
+.experience-panel h3{font:700 1.35rem var(--display);margin-bottom:16px}
+.experience-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0;list-style:none}
+.experience-list li{display:grid;gap:4px;padding:15px 17px;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(255,255,255,.035);animation:experienceReveal .65s var(--ease) both}
+.experience-list li:nth-child(2){animation-delay:.08s}.experience-list li:nth-child(3){animation-delay:.16s}.experience-list li:nth-child(4){animation-delay:.24s}
+.experience-list strong{font:700 1rem var(--display);color:#c8d7ff}
+.experience-list li span{color:var(--muted);font-size:.93rem}
+.experience-list em{margin-left:6px;font-style:normal;font-size:.72rem;color:#d9e3ff;border:1px solid rgba(160,175,220,.25);border-radius:999px;padding:2px 7px}
+.experience-note{margin-top:15px;color:var(--muted);font-size:.9rem}
+@keyframes experienceReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
 /* Roles */
 .roles{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 26px;border-top:1px solid var(--line);background:rgba(2,4,14,.55)}
 .roles-label{font:600 .95rem var(--display);color:var(--muted);padding-right:14px;border-right:1px solid var(--line)}
@@ -157,22 +175,22 @@ section[id],#games{scroll-margin-top:96px}
 .track p{color:var(--muted);font-size:.93rem}
 
 /* Header */
-.hdr{position:fixed;top:14px;left:0;right:0;z-index:30;width:min(920px,calc(100% - 24px));height:56px;margin:0 auto;border-radius:999px;
-  background:rgba(14,17,28,.42);border:1px solid rgba(255,255,255,.1);
+.hdr{position:fixed;top:20px;left:0;right:0;z-index:30;width:min(1100px,calc(100% - 40px));height:68px;margin:0 auto;border-radius:999px;
+  background:rgba(8,9,14,.88);border:1px solid rgba(255,255,255,.16);
   -webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 30px -18px rgba(0,0,0,.7);
   animation:hdrin 1.3s var(--ease) both;
   transition:background-color .9s var(--ease),border-color .9s var(--ease),box-shadow .9s var(--ease),top .9s var(--ease),height .9s var(--ease)}
-.hdr.scrolled{top:10px;height:52px;background:rgba(7,12,32,.82);border-color:rgba(91,134,255,.34);
+.hdr.scrolled{top:14px;height:64px;background:rgba(7,12,32,.92);border-color:rgba(91,134,255,.34);
   box-shadow:inset 0 1px 0 rgba(140,170,255,.1),0 0 0 1px rgba(91,134,255,.07),0 12px 38px -14px rgba(45,79,224,.5),0 10px 26px -18px #000}
-.hdr-in{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 10px 0 24px}
-.hdr-in>.logo{justify-self:start}.hdr-in>.dc{justify-self:end}
+.hdr-in{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;padding:0 14px 0 28px}
+.hdr-in>.logo{justify-self:start}.hdr-in>.nav{justify-self:end}.hdr-in>.dc{justify-self:end}
 .logo{display:block;flex:none}
-.logo img{display:block;height:24px;width:auto;transition:transform .6s var(--ease),filter .6s var(--ease)}
+.logo img{display:block;height:40px;width:auto;transition:transform .6s var(--ease),filter .6s var(--ease)}
 .logo:hover img{transform:scale(1.05);filter:brightness(1.18)}
-.nav{position:relative;display:flex;gap:2px;padding:3px;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none;border-radius:999px;background:transparent}
+.nav{position:relative;display:flex;gap:4px;padding:4px;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none;border-radius:999px;background:transparent}
 .nav::-webkit-scrollbar{display:none}
-.nav a{position:relative;z-index:1;text-decoration:none;white-space:nowrap;font:600 .9rem var(--display);color:var(--muted);padding:7px 15px;border-radius:999px;transition:color .5s var(--ease)}
+.nav a{position:relative;z-index:1;text-decoration:none;white-space:nowrap;font:600 1rem var(--display);color:var(--muted);padding:10px 16px;border-radius:999px;transition:color .5s var(--ease)}
 .nav a:hover,.nav a.on{color:#fff}
 .ind{position:absolute;top:3px;bottom:3px;left:0;width:0;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);transition:transform .8s var(--ease),width .8s var(--ease);pointer-events:none}
 
@@ -235,7 +253,8 @@ a.rerun[hidden]{display:none}
   .roles-label{border:0;padding:0;flex-basis:100%}
   .sep{display:none}
   .case{grid-template-columns:28px 1fr 46px}.bar2{grid-column:2/4;grid-row:2}
-  .hdr-in{display:flex;justify-content:space-between;gap:8px;padding:0 8px 0 16px}.logo img{height:19px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto}.nav a{padding:6px 9px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
+  .hdr{top:8px;width:calc(100% - 16px);height:58px}.hdr.scrolled{top:6px;height:56px}
+  .hdr-in{display:flex;justify-content:space-between;gap:6px;padding:0 8px 0 16px}.logo img{height:30px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto;gap:0;padding:2px}.nav a{padding:6px 8px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
 }
 
 </style>
@@ -286,7 +305,7 @@ a.rerun[hidden]{display:none}
     <div class="banner">
       <!-- Add banner-gakuran.webp next to this file. Until it exists, the gradient shows. -->
       <img class="bimg" src="banner-gakuran.webp" alt="" onerror="this.remove()">
-      <a class="view" href="#" aria-label="View Gakuran on Roblox">View game ↗</a>
+      <a class="view" href="https://www.roblox.com/games/128736949265057/Gakuran?gameSetTypeId=100000003&amp;homePageSessionInfo=a519b06a-6bde-4caa-81e2-592aedb6cf58&amp;isAd=false&amp;newGameEnum_analyticsData=0&amp;numberOfLoadedTiles=188&amp;page=homePage&amp;placeId=128736949265057&amp;playContext=homePage&amp;position=5&amp;positionInRow=5&amp;rowOnPage=1&amp;sortPos=1&amp;sortSubId=&amp;universeId=9199655655" target="_blank" rel="noopener noreferrer" aria-label="View Gakuran on Roblox">View game ↗</a>
       <h2 id="gakuran-title">Gakuran</h2>
       <p>A thriving Roblox community focused on anime, roleplay, and more.</p>
     </div>
@@ -316,7 +335,7 @@ a.rerun[hidden]{display:none}
   <section class="card egg reveal" aria-labelledby="egg-title">
     <div class="banner">
       <img class="bimg" src="banner-steal-an-egg.webp" alt="" onerror="this.remove()">
-      <a class="view" href="#" aria-label="View Steal an Egg on Roblox">View game ↗</a>
+      <a class="view" href="https://www.roblox.com/games/107778070777162/Steal-An-Egg" target="_blank" rel="noopener noreferrer" aria-label="View Steal an Egg on Roblox">View game ↗</a>
       <h2 id="egg-title">Steal an Egg</h2>
       <p>A fun and chaotic Roblox experience where you steal eggs, upgrade, and dominate.</p>
     </div>
@@ -339,6 +358,22 @@ a.rerun[hidden]{display:none}
       <p class="note" id="e1" hidden>Placeholder: describe what you do as a Trial Moderator.</p>
     </div>
   </section>
+
+    <section class="experience-more reveal" aria-label="Additional experience">
+      <button class="experience-toggle" id="experience-toggle" type="button" aria-expanded="false" aria-controls="experience-panel">
+        <span>View all experience</span><span class="experience-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="experience-panel" id="experience-panel" hidden>
+        <h3>More experience</h3>
+        <ul class="experience-list">
+          <li><strong>Admin</strong><span>Gakuran Charting server</span></li>
+          <li><strong>Staff</strong><span>Gakuran Sports server</span></li>
+          <li><strong>Staff</strong><span>Unbound <em>In development</em></span></li>
+          <li><strong>Staff / Admin</strong><span>Multiple AOT CC games</span></li>
+        </ul>
+        <p class="experience-note">DM for additional info.</p>
+      </div>
+    </section>
 
   </div>
 
@@ -431,6 +466,16 @@ document.querySelectorAll('.chip').forEach(function (chip) {
     card.querySelectorAll('.note').forEach(function (n) { n.hidden = true; });
     if (!open) { chip.setAttribute('aria-expanded', 'true'); note.hidden = false; }
   });
+});
+
+// Expand the complete experience list beneath the game cards.
+var experienceToggle = document.getElementById("experience-toggle");
+var experiencePanel = document.getElementById("experience-panel");
+experienceToggle.addEventListener("click", function () {
+  var open = experienceToggle.getAttribute("aria-expanded") === "true";
+  experienceToggle.setAttribute("aria-expanded", String(!open));
+  experienceToggle.querySelector("span").textContent = open ? "View all experience" : "Hide experiences";
+  experiencePanel.hidden = open;
 });
 
 // Stats count up once.
