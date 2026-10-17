@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaynox</title>
+<meta name="description" content="Zaynox: community staff, QA tester, and builder.">
+<link rel="icon" href="pfp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0e24; --surface:#121738; --text:#f2f1ff; --muted:#b4b8e0;
+  --blue:#2f45c9; --lav:#cfcdf5; --red:#e23a47; --gold:#f0c070;
+  --display:'Fredoka','Trebuchet MS',system-ui,sans-serif;
+  --body:'Nunito',system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(rgba(143,150,230,.13) 1.5px,transparent 1.5px);
+  background-size:22px 22px;
+  color:var(--text); font-family:var(--body); font-size:1rem; line-height:1.55;
+  padding:clamp(20px,5vw,56px) 16px 40px;
+}
+.page{max-width:700px;margin:0 auto;display:grid;gap:36px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Hero */
+.hero{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.hero h1{font-family:var(--display);font-weight:700;line-height:.92;font-size:clamp(3.4rem,12vw,5.6rem);letter-spacing:-.01em}
+.hero h1 span{display:block;color:#7f94ff;text-shadow:4px 4px 0 #1d2a85}
+.hero p{margin-top:14px;color:var(--muted);font-size:1.1rem;max-width:24ch}
+.links{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.links a{font-family:var(--display);font-weight:500;text-decoration:none;padding:6px 16px;border:2.5px solid var(--lav);border-radius:999px;background:var(--surface);box-shadow:3px 3px 0 #1d2a85;transition:transform .12s}
+.links a:hover{transform:translate(-1px,-1px)}
+.pfp{width:clamp(150px,34vw,230px);aspect-ratio:1;border-radius:36px;border:4px solid var(--lav);box-shadow:8px 8px 0 #1d2a85;object-fit:cover;background:#2b2c30;transform:rotate(3deg)}
+
+/* Community cards */
+.card{--a:#7f94ff;--d:#1d2a85;border:3px solid var(--a);border-radius:26px;box-shadow:8px 8px 0 var(--d);background:var(--surface);overflow:hidden}
+.card.egg{--a:#5fd6e8;--d:#0f5f73}
+.banner{position:relative;min-height:190px;padding:22px 24px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+  /* PLACEHOLDER: replace with your art, e.g. background-image:url('banner-gakuran.jpg'), linear-gradient(...) */
+  background:linear-gradient(135deg,#0f1650,#2f45c9 60%,#5b72f0)}
+.egg .banner{background:linear-gradient(135deg,#07334a,#127c93 60%,#4cc9dd)}
+.banner::before{content:"学嵐";position:absolute;right:14px;top:-10px;font-size:9rem;font-weight:700;line-height:1;color:rgba(255,255,255,.12)}
+.egg .banner::before{content:"";right:38px;top:26px;width:110px;height:140px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:rgba(255,255,255,.16);border:4px solid rgba(255,255,255,.2)}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,35,.8),transparent 65%)}
+.banner>*{position:relative;z-index:1}
+.banner h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,7vw,2.7rem);line-height:1.05}
+.banner h2 a{text-decoration:none}
+.banner h2 small{font-size:.5em;margin-left:6px;opacity:.8}
+.banner p{color:#e1e4ff;max-width:36ch}
+.stats{display:flex;gap:36px;padding:16px 24px;border-bottom:3px dashed color-mix(in srgb,var(--a) 40%,transparent);flex-wrap:wrap}
+.stats b{display:block;font-family:var(--display);font-size:1.7rem;line-height:1.1;font-weight:600}
+.stats span{color:var(--muted);font-size:.95rem}
+
+/* Roles */
+.roles{padding:16px 24px 18px}
+.roles-label{font-family:var(--display);font-weight:500;color:var(--muted);margin-bottom:10px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font:600 1rem var(--display);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 16px;border-radius:999px;border:2.5px solid var(--a);background:var(--d);transition:transform .12s}
+.chip:hover{transform:translateY(-2px)}
+.chip i{font-style:normal;font-size:1.2rem;line-height:1;transition:transform .2s}
+.chip[aria-expanded="true"]{background:var(--a);color:#0b0e24}
+.chip[aria-expanded="true"] i{transform:rotate(45deg)}
+.chip.trial{border-style:dashed}
+.tag{font-size:.75rem;padding:1px 8px;border-radius:999px;background:var(--gold);color:#3a2a00}
+.note{margin-top:12px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.06);color:var(--lav)}
+.note[hidden]{display:none}
+
+/* QA */
+.qa h2,.timeline h2{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1.1}
+.sub{color:var(--muted);margin:2px 0 16px}
+.tickets{list-style:none;padding:0;display:grid;gap:12px}
+.ticket{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:0;border:3px solid #b9b4ff;border-radius:16px;background:var(--surface);box-shadow:5px 5px 0 #4a3f9e;overflow:hidden}
+.tid{align-self:stretch;display:grid;place-items:center;padding:0 16px;font:700 .95rem ui-monospace,Menlo,Consolas,monospace;background:#4a3f9e;border-right:3px dashed #b9b4ff}
+.tbody{padding:12px 16px}
+.tbody b{font-family:var(--display);font-size:1.2rem;font-weight:600;display:block;line-height:1.2}
+.tbody span{color:var(--muted);font-size:.95rem}
+.badge{margin-right:14px;font-weight:700;font-size:.85rem;padding:3px 12px;border-radius:999px;background:#1d6b4a;color:#c9ffe6;border:2px solid #5fe3a8}
+.badge::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#5fe3a8;margin-right:7px}
+
+/* Timeline */
+.timeline ol{list-style:none;padding:0;margin-top:18px;position:relative}
+.timeline ol::before{content:"";position:absolute;left:13px;top:6px;bottom:6px;width:4px;border-radius:4px;background:repeating-linear-gradient(to bottom,#4a55a8 0 10px,transparent 10px 18px)}
+.timeline li{position:relative;padding:0 0 22px 48px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:4px;top:4px;width:22px;height:22px;border-radius:50%;background:var(--c,#7f94ff);border:3.5px solid var(--bg);box-shadow:0 0 0 3px var(--c,#7f94ff)}
+.timeline time{font-family:var(--display);font-weight:600;color:var(--c,#7f94ff);font-size:1.15rem}
+.timeline h3{font-family:var(--display);font-weight:600;font-size:1.2rem;line-height:1.2}
+.timeline p{color:var(--muted)}
+
+footer{text-align:center;color:var(--muted);font-size:.95rem;padding-top:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:480px){.ticket{grid-template-columns:auto 1fr}.badge{grid-column:1/-1;justify-self:start;margin:0 16px 12px}.tid{padding:0 12px}}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div>
+      <h1>I’m <span>Zaynox</span></h1>
+      <p>Helping communities grow, one player at a time.</p>
+      <nav class="links" aria-label="My profiles">
+        <a href="#">Roblox</a>
+        <a href="#">Discord</a>
+        <a href="#">GitHub</a>
+      </nav>
+    </div>
+    <img class="pfp" src="pfp.png" alt="Zaynox’s avatar: a blue and white Roblox character with a red button on the side of its hat">
+  </header>
+
+  <!-- Gakuran -->
+  <section class="card" id="gakuran" aria-labelledby="gakuran-title">
+    <div class="banner">
+      <h2 id="gakuran-title"><a href="#">Gakuran<small>↗</small></a></h2>
+      <p>A thriving Roblox community focused on anime, roleplay, and more.</p>
+    </div>
+    <div class="stats">
+      <div><b>254M+</b><span>Discord members</span></div>
+      <div><b>12B+</b><span>Roblox visits</span></div>
+    </div>
+    <div class="roles">
+      <div class="roles-label">My roles</div>
+      <div class="chips">
+        <button class="chip" aria-expanded="false" aria-controls="g1">Helper Management <i aria-hidden="true">+</i></button>
+        <button class="chip" aria-expanded="false" aria-controls="g2">Staff <i aria-hidden="true">+</i></button>
+      </div>
+      <p class="note" id="g1" hidden>Placeholder: describe what you do as Helper Management.</p>
+      <p class="note" id="g2" hidden>Placeholder: describe what you do as Staff.</p>
+    </div>
+  </section>
+
+  <!-- Steal an Egg -->
+  <section class="card egg" aria-labelledby="egg-title">
+    <div class="banner">
+      <h2 id="egg-title"><a href="#">Steal an Egg<small>↗</small></a></h2>
+      <p>A fun and chaotic Roblox experience where you steal eggs, upgrade, and dominate.</p>
+    </div>
+    <div class="stats">
+      <div><b>18M+</b><span>Discord members</span></div>
+      <div><b>1.4B+</b><span>Roblox visits</span></div>
+    </div>
+    <div class="roles">
+      <div class="roles-label">My roles</div>
+      <div class="chips">
+        <button class="chip trial" aria-expanded="false" aria-controls="e1">Trial Moderator <span class="tag">Trial</span> <i aria-hidden="true">+</i></button>
+      </div>
+      <p class="note" id="e1" hidden>Placeholder: describe what you do as a Trial Moderator.</p>
+    </div>
+  </section>
+
+  <!-- QA -->
+  <section class="qa" aria-labelledby="qa-title">
+    <h2 id="qa-title">QA and testing</h2>
+    <p class="sub">I help keep communities stable, fair, and fun by testing before things go live.</p>
+    <ul class="tickets">
+      <li class="ticket">
+        <span class="tid">QA-01</span>
+        <div class="tbody"><b>Gakuran</b><span>Game QA support</span></div>
+        <span class="badge">Active</span>
+      </li>
+      <li class="ticket">
+        <span class="tid">QA-02</span>
+        <div class="tbody"><b>Forge</b><span>Development QA</span></div>
+        <span class="badge">Active</span>
+      </li>
+      <li class="ticket">
+        <span class="tid">QA-03</span>
+        <div class="tbody"><b>QA-Central</b><span>Testing platform</span></div>
+        <span class="badge">Active</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline" aria-labelledby="tl-title">
+    <h2 id="tl-title">Timeline</h2>
+    <p class="sub">My journey so far.</p>
+    <ol>
+      <li style="--c:#cfcdf5"><time>2021</time><h3>Joined Roblox</h3><p>Started out as a player.</p></li>
+      <li style="--c:#7f94ff"><time>2022</time><h3>Community involvement</h3><p>Began helping in Gakuran’s community.</p></li>
+      <li style="--c:#7f94ff"><time>2023</time><h3>Helper, then Staff</h3><p>Promoted to Helper and later Staff.</p></li>
+      <li style="--c:#b9b4ff"><time>2024</time><h3>QA and testing</h3><p>Joined QA-Central and expanded QA work.</p></li>
+      <li style="--c:#f0c070"><time>2025</time><h3>Still growing</h3><p>Building, learning, and making an impact.</p></li>
+    </ol>
+  </section>
+
+  <footer>Built by Zaynox</footer>
+</main>
+
+<script>
+// Role chips: click to show or hide a short description. One open per card.
+document.querySelectorAll('.chip').forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    var card = chip.closest('.card');
+    var note = document.getElementById(chip.getAttribute('aria-controls'));
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    card.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-expanded', 'false'); });
+    card.querySelectorAll('.note').forEach(function (n) { n.hidden = true; });
+    if (!open) { chip.setAttribute('aria-expanded', 'true'); note.hidden = false; }
+  });
+});
+</script>
+</body>
+</html>
