@@ -500,7 +500,7 @@ document.addEventListener("click", function (e) {
   if (!target || still) return;
   e.preventDefault();
   cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
-  anchorScrollFrame = 0; wheelFrame = 0;
+  anchorScrollFrame = 0; wheelFrame = 0; wheelCurrent = window.scrollY; wheelTarget = wheelCurrent;
   var from = window.scrollY, to = target.getBoundingClientRect().top + from - 18, start = performance.now(), duration = 1250;
   function glide(now) {
     var p = Math.min((now - start) / duration, 1);
@@ -516,11 +516,11 @@ window.addEventListener("wheel", function (e) {
   if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
   e.preventDefault();
   cancelAnimationFrame(anchorScrollFrame); anchorScrollFrame = 0;
+  if (!wheelFrame) { wheelCurrent = window.scrollY; wheelTarget = wheelCurrent; }
   var delta = e.deltaY;
   if (e.deltaMode === 1) delta *= 32;
   else if (e.deltaMode === 2) delta *= window.innerHeight;
   wheelTarget = Math.max(0, Math.min(document.documentElement.scrollHeight - window.innerHeight, wheelTarget + delta * .48));
-  if (!wheelFrame) wheelCurrent = window.scrollY;
   function glideWheel() {
     wheelCurrent += (wheelTarget - wheelCurrent) * .13;
     if (Math.abs(wheelTarget - wheelCurrent) < .7) {
@@ -533,7 +533,7 @@ window.addEventListener("wheel", function (e) {
 }, { passive: false });
 window.addEventListener("touchstart", function () {
   cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
-  anchorScrollFrame = 0; wheelFrame = 0;
+  anchorScrollFrame = 0; wheelFrame = 0; wheelCurrent = window.scrollY; wheelTarget = wheelCurrent;
 }, { passive: true });
 
 // Header: turns darker and blue-tinted after you scroll; a soft pill follows the current section.
