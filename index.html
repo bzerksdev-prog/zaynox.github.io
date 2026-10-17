@@ -77,6 +77,20 @@ body::after{content:"";position:fixed;inset:-8%;z-index:-1;pointer-events:none;a
 a{color:inherit}
 :focus-visible{outline:2px solid #fff;outline-offset:3px}
 
+/* Custom cursor: shown only for mouse and trackpad pointers. */
+@media (hover:hover) and (pointer:fine){
+  html.has-custom-cursor,html.has-custom-cursor *{cursor:none!important}
+  html.has-custom-cursor input,html.has-custom-cursor textarea,html.has-custom-cursor [contenteditable="true"]{cursor:text!important}
+  .custom-cursor{position:fixed;z-index:1000;top:0;left:0;width:34px;height:34px;border:1px solid rgba(178,204,255,.78);border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);transition:opacity .2s ease,width .25s var(--ease),height .25s var(--ease),border-color .25s ease,background-color .25s ease;will-change:transform}
+  .custom-cursor::after{content:"";position:absolute;top:50%;left:50%;width:5px;height:5px;border-radius:50%;background:#dce8ff;box-shadow:0 0 12px rgba(115,158,255,.85);transform:translate(-50%,-50%)}
+  .custom-cursor.visible{opacity:1}
+  .custom-cursor.hovering{width:46px;height:46px;border-color:rgba(196,216,255,.95);background:rgba(91,134,255,.12)}
+  .custom-cursor.pressed{width:27px;height:27px;background:rgba(91,134,255,.22)}
+}
+@media (prefers-reduced-motion:reduce){
+  .custom-cursor{transition:none}
+}
+
 @keyframes drift{to{transform:translate3d(-3%,2.5%,0) scale(1.06)}}
 
 /* Motion */
@@ -289,6 +303,7 @@ a.rerun[hidden]{display:none}
 </style>
 </head>
 <body>
+<div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
 <canvas class="sky" id="sky" aria-hidden="true"></canvas>
 <header class="hdr" id="hdr">
   <div class="hdr-in">
@@ -481,6 +496,27 @@ a.rerun[hidden]{display:none}
 </footer>
 
 <script>
+// Custom cursor follows mouse/trackpad input and grows over interactive items.
+(function () {
+  if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  var cursor = document.getElementById("custom-cursor");
+  if (!cursor) return;
+  document.documentElement.classList.add("has-custom-cursor");
+  var targets = "a,button,[role=button],.chip,.track,[tabindex]:not([tabindex='-1'])";
+  window.addEventListener("pointermove", function (event) {
+    if (event.pointerType !== "mouse") return;
+    cursor.style.transform = "translate3d(" + event.clientX + "px," + event.clientY + "px,0) translate(-50%,-50%)";
+    cursor.classList.add("visible");
+    cursor.classList.toggle("hovering", !!event.target.closest(targets));
+  }, { passive: true });
+  window.addEventListener("pointerdown", function (event) {
+    if (event.pointerType === "mouse") cursor.classList.add("pressed");
+  }, { passive: true });
+  window.addEventListener("pointerup", function () { cursor.classList.remove("pressed"); }, { passive: true });
+  document.documentElement.addEventListener("pointerleave", function () { cursor.classList.remove("visible"); });
+  document.documentElement.addEventListener("pointerenter", function () { cursor.classList.add("visible"); });
+})();
+
 // EDIT THIS: your Roblox profile link, e.g. "https://www.roblox.com/users/123456/profile"
 var ROBLOX_URL = "https://www.roblox.com/users/1098092708/profile";
 if (ROBLOX_URL !== "#") document.querySelectorAll('[data-link="roblox"]').forEach(function (a) { a.href = ROBLOX_URL; a.target = "_blank"; a.rel = "noopener"; });
