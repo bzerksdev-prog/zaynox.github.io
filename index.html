@@ -254,12 +254,18 @@ section[id],#games{scroll-margin-top:96px}
 .dsc{display:flex;align-items:center;gap:14px;flex-wrap:wrap;width:100%;max-width:460px;margin:14px auto 0;padding:14px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(22,23,28,.82);transition:transform .7s var(--ease),border-color .5s var(--ease),box-shadow .7s var(--ease)}
 .dsc:hover{transform:translateY(-4px) scale(1.01);border-color:rgba(91,134,255,.5);box-shadow:0 0 0 1px rgba(91,134,255,.16),0 22px 44px -24px #000}
 .dsc-av{position:relative;flex:none;width:46px;height:46px}
-.dsc-av img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;transform:scale(1);background:#2b2c30}
-.dsc-av span{position:absolute;right:-3px;bottom:-3px;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--blue-deep);border:2px solid #16171c}
-.dsc-av svg{width:11px;height:11px;fill:#fff}
-.dsc-info{flex:1 1 130px;min-width:0}
-.dsc-info small{display:block;color:var(--muted);font-size:.78rem}
-.dsc-info b{display:block;font:600 1.05rem/1.25 var(--display);overflow-wrap:anywhere}
+.dsc-av .dsc-avatar{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;background:#2b2c30}
+.dsc-av .dsc-decoration{position:absolute;inset:-8px;width:62px;height:62px;object-fit:contain;border-radius:0;background:transparent;pointer-events:none;z-index:2}
+.dsc-status-dot{position:absolute;right:-2px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#23a55a;border:2px solid #16171c;z-index:3;box-shadow:0 0 9px rgba(35,165,90,.45)}
+.dsc-info{flex:1 1 150px;min-width:0}
+.dsc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dsc-info b{display:block;font:700 1.05rem/1.2 var(--display);overflow-wrap:anywhere}
+.dsc-username{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
+.dsc-badges{display:inline-flex;align-items:center;gap:5px}
+.dsc-badge{display:grid;place-items:center;width:19px;height:19px;overflow:hidden;border:1px solid rgba(190,205,255,.28);border-radius:6px;background:rgba(91,134,255,.12)}
+.dsc-badge img{display:block;width:100%;height:100%;object-fit:contain}
+.dsc-status-line{display:flex;align-items:center;gap:6px;margin-top:5px;color:#8dd9a4;font-size:.78rem}
+.dsc-status-line .dsc-status-dot{position:static;display:inline-block;width:8px;height:8px;border:0;box-shadow:0 0 8px rgba(35,165,90,.5)}
 .dsc-btns{display:flex;gap:8px;flex-wrap:wrap}
 a.rerun{display:inline-block;text-decoration:none}
 a.rerun[hidden]{display:none}
@@ -477,10 +483,21 @@ a.rerun[hidden]{display:none}
 
     <div class="dsc reveal" style="--r:1">
       <div class="dsc-av">
-        <img src="pfp.png" alt="" style="object-position:50% 30%">
-        <span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></span>
+        <img class="dsc-avatar" src="discord-pfp.png" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
+        <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
+        <span class="dsc-status-dot" aria-label="Online" title="Online"></span>
       </div>
-      <div class="dsc-info"><small>Discord</small><b id="dsc-name">justcalculatewastaken</b></div>
+      <div class="dsc-info">
+        <div class="dsc-name-row">
+          <b id="dsc-name">Zaynox</b>
+          <div class="dsc-badges" aria-label="Profile badges">
+            <span class="dsc-badge"><img src="discord-badge-1.png" alt="" aria-label="Badge 1" onerror="this.hidden=true"></span>
+            <span class="dsc-badge"><img src="discord-badge-2.png" alt="" aria-label="Badge 2" onerror="this.hidden=true"></span>
+          </div>
+        </div>
+        <span class="dsc-username" id="dsc-username">@justcalculatewastaken</span>
+        <span class="dsc-status-line"><i class="dsc-status-dot" aria-hidden="true"></i>Online</span>
+      </div>
       <div class="dsc-btns">
         <button class="rerun" id="dsc-copy" type="button">Copy username</button>
         <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile ↗</a>
@@ -689,7 +706,8 @@ dcBtn.addEventListener("click", function () {
 });
 
 // Discord profile card: shows the username, copies it, and links to your profile.
-document.getElementById("dsc-name").textContent = DISCORD;
+document.getElementById("dsc-name").textContent = "Zaynox";
+document.getElementById("dsc-username").textContent = "@" + DISCORD;
 document.getElementById("dsc-copy").addEventListener("click", function () {
   copyText(DISCORD).then(function () { say("Copied " + DISCORD); }, function () { say("Couldn’t copy. My Discord: " + DISCORD); });
 });
