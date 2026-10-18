@@ -251,6 +251,17 @@ section[id],#games{scroll-margin-top:96px}
 .me-stage{aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:radial-gradient(ellipse at 50% 28%,#2c2e36,#111216 78%)}
 .me-stage img{display:block;width:100%;height:100%;object-fit:contain;transform:scale(1.06);transition:transform 1s var(--ease)}
 .me:hover .me-stage img{transform:scale(1.11)}
+/* Draggable 3D avatar: the canvas fades in over the static image once the model has loaded. */
+.me-stage{position:relative;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.me-stage img{transition:transform 1s var(--ease),opacity .6s var(--ease)}
+.me-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .6s var(--ease)}
+.me-stage.is3d{cursor:grab}
+.me-stage.is3d.dragging{cursor:grabbing}
+.me-stage.is3d canvas{opacity:1}
+.me-stage.is3d img{opacity:0}
+.me-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(10,12,20,.62);color:rgba(242,245,255,.72);font:600 .72rem/1 var(--body);letter-spacing:.06em;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .5s var(--ease)}
+.me-stage.is3d .me-hint{opacity:1}
+.me-stage.touched .me-hint{opacity:0}
 .dsc{display:flex;align-items:center;gap:14px;flex-wrap:wrap;width:100%;max-width:460px;margin:14px auto 0;padding:14px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(22,23,28,.82);transition:transform .7s var(--ease),border-color .5s var(--ease),box-shadow .7s var(--ease)}
 .dsc:hover{transform:translateY(-4px) scale(1.01);border-color:rgba(91,134,255,.5);box-shadow:0 0 0 1px rgba(91,134,255,.16),0 22px 44px -24px #000}
 .dsc-av{position:relative;flex:none;width:46px;height:46px}
@@ -478,7 +489,7 @@ a.rerun[hidden]{display:none}
         <span class="me-name">@thekillerfr06</span>
         <span class="pills"><span class="pill"><b>5.5k</b>followers</span><span class="pill"><b>43</b>friends</span></span>
       </div>
-      <div class="me-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar"></div>
+      <div class="me-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar"><span class="me-hint" aria-hidden="true">Drag to rotate</span></div>
     </a>
 
     <div class="dsc reveal" style="--r:1">
@@ -777,6 +788,222 @@ track.addEventListener("pointerdown", function (e) {
 });
 window.addEventListener("pointermove", function (e) { if (down) track.scrollLeft = sl - (e.clientX - sx); });
 window.addEventListener("pointerup", function () { down = false; track.classList.remove("drag"); });
+
+// 3D avatar: loads your Roblox avatar model and lets visitors drag (or swipe sideways) to rotate it.
+// If anything fails (network, blocked requests, no WebGL) the static avatar.png simply stays in place.
+(function () {
+  var stage = document.querySelector(".me-stage");
+  var card = stage && stage.closest(".me");
+  var idMatch = /users\/(\d+)/.exec(typeof ROBLOX_URL === "string" ? ROBLOX_URL : "");
+  if (!stage || !card || !idMatch) return;
+  var userId = idMatch[1];
+  var THREE_BASE = "https://cdn.jsdelivr.net/npm/three@0.128.0/";
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var started = false, visible = false, ready = false, dragging = false, failed = false;
+  var renderer, scene, camera, pivot, dims, raf = 0, last = 0, vel = 0, lastTouch = 0;
+
+  function loadScript(src) {
+    return new Promise(function (ok, no) {
+      var s = document.createElement("script");
+      s.src = src; s.async = true; s.onload = ok;
+      s.onerror = function () { no(new Error("Could not load " + src)); };
+      document.head.appendChild(s);
+    });
+  }
+  // Roblox serves thumbnail files from t0-t7.rbxcdn.com, chosen from the file hash.
+  function rbxUrl(hash) {
+    var h = 31;
+    for (var i = 0; i < hash.length; i++) h ^= hash.charCodeAt(i);
+    return "https://t" + (h % 8) + ".rbxcdn.com/" + hash;
+  }
+  function getJSON(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + " returned " + r.status); return r.json(); }); }
+  function getText(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + " returned " + r.status); return r.text(); }); }
+  function wait(ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); }
+  function getMeta(tries) {
+    return getJSON("https://thumbnails.roblox.com/v1/users/avatar-3d?userId=" + userId).then(function (res) {
+      if (res && res.state === "Completed" && res.imageUrl) return getJSON(res.imageUrl);
+      if (tries > 0 && res && res.state === "Pending") return wait(1200).then(function () { return getMeta(tries - 1); });
+      throw new Error("3D avatar not available (" + (res && res.state) + ")");
+    });
+  }
+
+  function teardown() {
+    ready = false;
+    stage.classList.remove("is3d", "dragging");
+    card.removeAttribute("draggable");
+    if (renderer) {
+      renderer.dispose();
+      if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
+    }
+  }
+  function fail(err) {
+    if (failed) return;
+    failed = true;
+    if (window.console) console.warn("3D avatar unavailable, showing the image instead.", err);
+    teardown();
+  }
+
+  function fit() {
+    if (!renderer || !dims) return;
+    var w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) return;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    var t = Math.tan(camera.fov * Math.PI / 360);
+    var radius = Math.max(dims.x, dims.z) / 2;
+    var dist = Math.max((dims.y / 2) * 1.12 / t, radius * 1.15 / (t * camera.aspect)) + radius;
+    camera.position.set(0, dims.y * 0.04, dist);
+    camera.lookAt(0, 0, 0);
+    camera.near = 0.1; camera.far = dist + radius * 4 + 50;
+    camera.updateProjectionMatrix();
+    if (ready) kick();
+  }
+
+  function tick(now) {
+    raf = 0;
+    if (!ready || !visible || document.hidden) { last = 0; return; }
+    var dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
+    last = now;
+    if (!dragging) {
+      // Coast after a flick, then drift into a slow idle spin.
+      if (!reduceMotion && now - lastTouch > 2500) vel += (0.45 - vel) * (1 - Math.exp(-2 * dt));
+      else vel *= Math.exp(-3 * dt);
+      pivot.rotation.y += vel * dt;
+    }
+    renderer.render(scene, camera);
+    if (dragging || !reduceMotion || Math.abs(vel) > 0.01) raf = requestAnimationFrame(tick);
+  }
+  function kick() {
+    if (raf || !ready || !visible || document.hidden) return;
+    last = 0; raf = requestAnimationFrame(tick);
+  }
+
+  function bindPointer() {
+    var pid = null, lastX = 0, lastT = 0;
+    stage.addEventListener("pointerdown", function (e) {
+      if (!ready || (e.pointerType === "mouse" && e.button !== 0)) return;
+      dragging = true; pid = e.pointerId; lastX = e.clientX; lastT = performance.now(); vel = 0;
+      try { stage.setPointerCapture(pid); } catch (err) { /* not critical */ }
+      stage.classList.add("dragging", "touched");
+      kick();
+    });
+    stage.addEventListener("pointermove", function (e) {
+      if (!dragging || e.pointerId !== pid) return;
+      var now = performance.now(), dt = Math.max((now - lastT) / 1000, 0.008);
+      var rot = (e.clientX - lastX) * 0.012;
+      pivot.rotation.y += rot;
+      vel = Math.max(-14, Math.min(14, rot / dt)) * 0.6 + vel * 0.4;
+      lastX = e.clientX; lastT = now; lastTouch = now;
+      kick();
+    });
+    function release(e) {
+      if (!dragging || e.pointerId !== pid) return;
+      dragging = false; pid = null;
+      var now = performance.now();
+      if (now - lastT > 90) vel = 0;
+      lastTouch = now;
+      stage.classList.remove("dragging");
+      kick();
+    }
+    stage.addEventListener("pointerup", release);
+    stage.addEventListener("pointercancel", release);
+    // The whole card is a link: don't open it from the avatar area, and don't start a native link drag.
+    stage.addEventListener("click", function (e) { if (ready) e.preventDefault(); });
+    card.addEventListener("dragstart", function (e) { if (ready && dragging) e.preventDefault(); });
+  }
+
+  function setup(data) {
+    var mtl = data.mtl;
+    (data.meta.textures || []).forEach(function (hash) { mtl = mtl.split(hash).join(rbxUrl(hash)); });
+
+    var manager = new THREE.LoadingManager(), revealed = false;
+    function reveal() {
+      if (revealed || failed) return;
+      revealed = true; ready = true;
+      stage.classList.add("is3d");
+      card.setAttribute("draggable", "false");
+      lastTouch = performance.now();
+      vel = reduceMotion ? 0 : 2.4; // a quick intro spin
+      kick();
+    }
+    manager.onLoad = reveal;
+    manager.onError = function (url) { fail(new Error("Could not load " + url)); };
+
+    var materials = new THREE.MTLLoader(manager).parse(mtl, "");
+    var objLoader = new THREE.OBJLoader(manager);
+    objLoader.setMaterials(materials);
+    var model = objLoader.parse(data.obj);
+    model.traverse(function (o) {
+      if (!o.isMesh) return;
+      (Array.isArray(o.material) ? o.material : [o.material]).forEach(function (m) {
+        m.side = THREE.DoubleSide;
+        if (m.map) m.map.encoding = THREE.sRGBEncoding;
+        if (m.alphaMap) m.alphaTest = 0.5;
+        m.needsUpdate = true;
+      });
+    });
+
+    var box = new THREE.Box3().setFromObject(model);
+    dims = box.getSize(new THREE.Vector3());
+    model.position.sub(box.getCenter(new THREE.Vector3()));
+    pivot = new THREE.Group();
+    pivot.add(model);
+    // Face the same way as Roblox's own thumbnail camera.
+    var dir = data.meta.camera && data.meta.camera.direction;
+    pivot.rotation.y = dir ? -Math.atan2(-dir.x, -dir.z) : 0;
+
+    scene = new THREE.Scene();
+    scene.add(pivot);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+    var key = new THREE.DirectionalLight(0xffffff, 0.55);
+    key.position.set(2, 4, 6);
+    scene.add(key);
+    camera = new THREE.PerspectiveCamera(28, 4 / 3, 0.1, 1000);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.setClearColor(0x000000, 0);
+    var canvas = renderer.domElement;
+    canvas.setAttribute("role", "img");
+    canvas.setAttribute("aria-label", "Interactive 3D model of Zaynox’s Roblox avatar. Drag to rotate.");
+    stage.insertBefore(canvas, stage.querySelector(".me-hint"));
+    fit();
+    if ("ResizeObserver" in window) new ResizeObserver(fit).observe(stage);
+    else window.addEventListener("resize", fit);
+    bindPointer();
+    setTimeout(reveal, 5000); // in case the model has no textures to wait for
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    loadScript(THREE_BASE + "build/three.min.js").then(function () {
+      return Promise.all([
+        loadScript(THREE_BASE + "examples/js/loaders/OBJLoader.js"),
+        loadScript(THREE_BASE + "examples/js/loaders/MTLLoader.js")
+      ]);
+    }).then(function () {
+      return getMeta(5);
+    }).then(function (meta) {
+      if (!meta || !meta.obj || !meta.mtl) throw new Error("Unexpected 3D avatar data");
+      return Promise.all([getText(rbxUrl(meta.obj)), getText(rbxUrl(meta.mtl))]).then(function (files) {
+        return { meta: meta, obj: files[0], mtl: files[1] };
+      });
+    }).then(setup).catch(fail);
+  }
+
+  // Only download the 3D libraries once the card is near the screen, and pause drawing when it isn't.
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) { start(); kick(); }
+    }, { rootMargin: "300px 0px" }).observe(stage);
+  } else {
+    visible = true; start();
+  }
+  document.addEventListener("visibilitychange", kick);
+})();
 </script>
 </body>
 </html>
