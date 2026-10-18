@@ -262,23 +262,33 @@ section[id],#games{scroll-margin-top:96px}
 .me-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(10,12,20,.62);color:rgba(242,245,255,.72);font:600 .72rem/1 var(--body);letter-spacing:.06em;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .5s var(--ease)}
 .me-stage.is3d .me-hint{opacity:1}
 .me-stage.touched .me-hint{opacity:0}
-.dsc{display:flex;align-items:center;gap:14px;flex-wrap:wrap;width:100%;max-width:460px;margin:14px auto 0;padding:14px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(22,23,28,.82);transition:transform .7s var(--ease),border-color .5s var(--ease),box-shadow .7s var(--ease)}
-.dsc:hover{transform:translateY(-4px) scale(1.01);border-color:rgba(91,134,255,.5);box-shadow:0 0 0 1px rgba(91,134,255,.16),0 22px 44px -24px #000}
-.dsc-av{position:relative;flex:none;width:46px;height:46px}
-.dsc-av .dsc-avatar{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;background:#2b2c30}
-.dsc-av .dsc-decoration{position:absolute;inset:-8px;width:62px;height:62px;object-fit:contain;border-radius:0;background:transparent;mix-blend-mode:screen;pointer-events:none;z-index:2}
-.dsc-status-dot{position:absolute;right:-2px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#23a55a;border:2px solid #16171c;z-index:3;box-shadow:0 0 9px rgba(35,165,90,.45)}
-.dsc-info{flex:1 1 150px;min-width:0}
-.dsc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.dsc-info b{display:block;font:700 1.05rem/1.2 var(--display);overflow-wrap:anywhere}
-.dsc-username{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
-.dsc-badges{display:inline-flex;align-items:center;gap:5px}
-.dsc-badge{display:grid;place-items:center;width:19px;height:19px;overflow:hidden;border:1px solid rgba(190,205,255,.28);border-radius:6px;background:rgba(91,134,255,.12)}
+/* Discord profile card */
+.dsc{--card:#13141b;position:relative;width:100%;max-width:460px;margin:18px auto 0;border-radius:26px;overflow:hidden;isolation:isolate;border:1px solid rgba(120,150,255,.34);background:linear-gradient(165deg,#1a1d2c,#12131a 62%);box-shadow:0 0 0 1px rgba(91,134,255,.1),0 30px 70px -36px rgba(45,79,224,.75),0 22px 44px -28px #000;transition:transform .7s var(--ease),border-color .5s var(--ease),box-shadow .7s var(--ease)}
+.dsc:hover{transform:translateY(-5px) scale(1.012);border-color:rgba(135,163,255,.62);box-shadow:0 0 0 1px rgba(91,134,255,.2),0 34px 80px -32px rgba(45,79,224,.9),0 26px 50px -26px #000}
+.dsc-banner{position:relative;height:96px;overflow:hidden;background:radial-gradient(90% 160% at 10% -15%,rgba(180,202,255,.6),transparent 56%),radial-gradient(70% 150% at 100% 130%,rgba(128,92,255,.6),transparent 62%),linear-gradient(115deg,#2243d2,#4a74ff 58%,#6b7cff)}
+.dsc-banner::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.7) 0 1px,transparent 1.7px);background-size:34px 34px;opacity:.3;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,transparent)}
+.dsc-banner::after{content:"";position:absolute;top:0;bottom:0;left:-45%;width:38%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.24),transparent);transform:skewX(-18deg);animation:dscSheen 7s ease-in-out 1.5s infinite}
+@keyframes dscSheen{0%,55%{left:-45%}100%{left:135%}}
+.dsc-banner svg{position:absolute;right:18px;top:50%;width:62px;height:62px;transform:translateY(-50%) rotate(12deg);fill:rgba(255,255,255,.24)}
+.dsc-body{display:flex;align-items:flex-start;gap:18px;padding:0 22px}
+.dsc-av{position:relative;flex:none;width:84px;height:84px;margin-top:-42px}
+.dsc-av .dsc-avatar{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 20%;background:radial-gradient(circle at 50% 30%,#3b3e4e,#22242e);box-shadow:0 0 0 6px var(--card)}
+.dsc-av .dsc-decoration{position:absolute;inset:-7px;width:98px;height:98px;object-fit:contain;pointer-events:none;z-index:2}
+.dsc-status-dot{position:absolute;right:-2px;bottom:-2px;width:14px;height:14px;border-radius:50%;background:#23a55a;border:2px solid var(--card);z-index:3;box-shadow:0 0 9px rgba(35,165,90,.45)}
+.dsc-av .dsc-status-dot{right:-3px;bottom:-3px;width:24px;height:24px;border-width:5px}
+.dsc-info{flex:1 1 auto;min-width:0;padding-top:14px}
+.dsc-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dsc-info b{display:block;font:800 1.4rem/1.15 var(--display);letter-spacing:-.015em;overflow-wrap:anywhere}
+.dsc-username{display:block;margin-top:3px;color:#aab3cf;font-size:.92rem;overflow-wrap:anywhere}
+.dsc-badges{display:inline-flex;align-items:center;gap:6px}
+.dsc-badge{display:grid;place-items:center;width:24px;height:24px;overflow:hidden;border:1px solid rgba(190,205,255,.3);border-radius:8px;background:rgba(91,134,255,.14)}
 .dsc-badge img{display:block;width:100%;height:100%;object-fit:contain}
-.dsc-status-line{display:flex;align-items:center;gap:6px;margin-top:5px;color:#8dd9a4;font-size:.78rem}
+.dsc-status-line{display:inline-flex;align-items:center;gap:7px;margin-top:11px;padding:4px 12px 4px 10px;border-radius:999px;color:#8dd9a4;font:600 .78rem/1.2 var(--display);background:color-mix(in srgb,currentColor 12%,transparent);border:1px solid color-mix(in srgb,currentColor 32%,transparent)}
 .dsc-status-line .dsc-status-dot{position:static;display:inline-block;width:8px;height:8px;border:0;box-shadow:0 0 8px rgba(35,165,90,.5)}
-.dsc-btns{display:flex;gap:8px;flex-wrap:wrap}
-a.rerun{display:inline-block;text-decoration:none}
+.dsc-btns{display:flex;gap:10px;flex-wrap:wrap;padding:20px 22px 22px}
+.rerun{flex:1 1 auto;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:14px;border:1px solid rgba(160,175,220,.28);background-color:rgba(255,255,255,.05);color:var(--text);font:700 .95rem var(--display);cursor:pointer;text-decoration:none}
+.rerun svg{width:17px;height:17px;flex:none}
+#dsc-copy{background-image:linear-gradient(135deg,#3f66f2,#2a49d8);border-color:rgba(155,180,255,.5);box-shadow:0 14px 30px -16px rgba(45,79,224,.95)}
 a.rerun[hidden]{display:none}
 
 /* Discord copy button + toast */
@@ -345,21 +355,11 @@ a.rerun[hidden]{display:none}
 .zx-dialog h2{font:700 1.5rem/1.2 var(--display);letter-spacing:-.01em;margin-bottom:6px;padding-right:40px}
 .zx-dialog h3{display:flex;justify-content:space-between;gap:10px;font:700 .78rem var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:20px 0 10px}
 .zx-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);font-size:1.3rem;line-height:1;cursor:pointer}
-.zx-keys,.zx-ach-list{list-style:none;padding:0;display:grid;gap:8px}
+.zx-keys{list-style:none;padding:0;display:grid;gap:8px}
 .zx-keys li{display:flex;align-items:center;gap:12px;color:#dfe2ee;font-size:.95rem}
 .zx-keys kbd{flex:none;min-width:30px;padding:4px 8px;text-align:center;font:600 .82rem var(--display);color:#fff;border-radius:8px;border:1px solid rgba(160,175,220,.3);background:rgba(255,255,255,.07);box-shadow:0 2px 0 rgba(0,0,0,.4)}
-.zx-ach-list li{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035)}
-.zx-ach-list li.locked{opacity:.55}
-.zx-ach-list b{display:block;font:700 .95rem var(--display)}
-.zx-ach-list .d,.ach .d{display:block;color:var(--muted);font-size:.85rem}
-.ico{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:rgba(91,134,255,.18);color:#bcd0ff}
-.zx-ach-list li.locked .ico{background:rgba(255,255,255,.06);color:#8b93ad}
-.ach{position:fixed;left:16px;bottom:16px;z-index:70;display:flex;align-items:center;gap:12px;max-width:min(340px,calc(100% - 90px));padding:12px 16px 12px 12px;border-radius:16px;border:1px solid rgba(91,134,255,.5);background:rgba(10,12,24,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 18px 40px -20px #000;transform:translateY(24px);opacity:0;pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.ach.show{opacity:1;transform:none}
-.ach small{display:block;font:700 .64rem var(--display);letter-spacing:.12em;text-transform:uppercase;color:#8fb0ff}
-.ach .t{display:block;font:700 1rem/1.25 var(--display)}
 @keyframes zxFade{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){.zx-overlay{animation:none}.ach,.dock-btn,.shots img{transition:none}}
+@media (prefers-reduced-motion:reduce){.dsc-banner::after{animation:none;display:none}.zx-overlay{animation:none}.dock-btn,.shots img{transition:none}}
 </style>
 </head>
 <body>
@@ -527,7 +527,7 @@ a.rerun[hidden]{display:none}
     <ol class="track" id="track" tabindex="0" aria-label="Timeline">
       <li class="reveal" style="--i:0;--r:0"><time>2017</time><h3>Joined Roblox</h3><p>Started out as a player.</p></li>
       <li class="reveal" style="--i:1;--r:1"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></li>
-      <li class="reveal" style="--i:2;--r:2"><h3>Community involvement in Gakuran</h3><p>Helped in the community.</p></li>
+      <li class="reveal" style="--i:2;--r:2"><h3>Community involvement in Gakuran</h3><p>Became a Helper &amp; got involved with the community.</p></li>
       <li class="reveal" style="--i:3;--r:3"><h3>Promoted to Staff &amp; Helper Management</h3></li>
       <li class="reveal" style="--i:4;--r:4"><h3>SAE Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></li>
       <li class="reveal now" style="--i:5;--r:5"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></li>
@@ -546,27 +546,32 @@ a.rerun[hidden]{display:none}
       <div class="me-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar"><span class="me-hint" aria-hidden="true">Drag to rotate</span></div>
     </a>
 
-    <div class="dsc reveal" style="--r:1">
-      <div class="dsc-av">
-        <img class="dsc-avatar" src="discord-pfp.png" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
-        <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
-        <span class="dsc-status-dot" id="dsc-dot" aria-label="Online" title="Online"></span>
+    <div class="dsc reveal" style="--r:1" data-status="online">
+      <div class="dsc-banner" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
       </div>
-      <div class="dsc-info">
-        <div class="dsc-name-row">
-          <b id="dsc-name">Zaynox</b>
-          <div class="dsc-badges" aria-label="Profile badges">
-            <span class="dsc-badge"><img src="discord-badge-1.png" alt="" aria-label="Badge 1" onerror="this.hidden=true"></span>
-            <span class="dsc-badge"><img src="discord-badge-2.png" alt="" aria-label="Badge 2" onerror="this.hidden=true"></span>
-          </div>
+      <div class="dsc-body">
+        <div class="dsc-av">
+          <img class="dsc-avatar" src="discord-pfp.png" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
+          <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
+          <span class="dsc-status-dot" id="dsc-dot" aria-label="Online" title="Online"></span>
         </div>
-        <span class="dsc-username" id="dsc-username">@justcalculatewastaken</span>
-        <span class="dsc-status-line"><i class="dsc-status-dot" aria-hidden="true"></i><span id="dsc-status-text">Online</span></span>
-        <span class="dsc-activity" id="dsc-activity" hidden></span>
+        <div class="dsc-info">
+          <div class="dsc-name-row">
+            <b id="dsc-name">Zaynox</b>
+            <div class="dsc-badges" aria-label="Profile badges">
+              <span class="dsc-badge"><img src="discord-badge-1.png" alt="" aria-label="Badge 1" onerror="this.hidden=true"></span>
+              <span class="dsc-badge"><img src="discord-badge-2.png" alt="" aria-label="Badge 2" onerror="this.hidden=true"></span>
+            </div>
+          </div>
+          <span class="dsc-username" id="dsc-username">@justcalculatewastaken</span>
+          <span class="dsc-status-line"><i class="dsc-status-dot" aria-hidden="true"></i><span id="dsc-status-text">Online</span></span>
+          <span class="dsc-activity" id="dsc-activity" hidden></span>
+        </div>
       </div>
       <div class="dsc-btns">
-        <button class="rerun" id="dsc-copy" type="button">Copy username</button>
-        <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile ↗</a>
+        <button class="rerun" id="dsc-copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>Copy username</button>
+        <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>
@@ -935,7 +940,7 @@ window.addEventListener("pointerup", function () { down = false; track.classList
   }
 
   function bindPointer() {
-    var pid = null, lastX = 0, lastT = 0, travel = 0, spun = false;
+    var pid = null, lastX = 0, lastT = 0;
     stage.addEventListener("pointerdown", function (e) {
       if (!ready || (e.pointerType === "mouse" && e.button !== 0)) return;
       dragging = true; pid = e.pointerId; lastX = e.clientX; lastT = performance.now(); vel = 0;
@@ -950,8 +955,6 @@ window.addEventListener("pointerup", function () { down = false; track.classList
       pivot.rotation.y += rot;
       vel = Math.max(-14, Math.min(14, rot / dt)) * 0.6 + vel * 0.4;
       lastX = e.clientX; lastT = now; lastTouch = now;
-      travel += Math.abs(rot);
-      if (!spun && travel > 2) { spun = true; document.dispatchEvent(new CustomEvent("zx:spin")); }
       kick();
     });
     function release(e) {
@@ -1063,20 +1066,19 @@ window.addEventListener("pointerup", function () { down = false; track.classList
 })();
 </script>
 
-<!-- Site controls: sound switch and shortcuts/achievements panel -->
+<!-- Site controls: sound switch and keyboard shortcuts panel -->
 <div class="dock" role="group" aria-label="Site controls">
   <button class="dock-btn" id="zx-sound" type="button" aria-pressed="true" aria-label="Sound effects" title="Sound effects (M)">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ico-on" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor"/><path class="ico-off" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor"/><path class="ico-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="ico-off" d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
   </button>
-  <button class="dock-btn" id="zx-help" type="button" aria-label="Shortcuts and achievements" title="Shortcuts and achievements (?)" aria-haspopup="dialog">
+  <button class="dock-btn" id="zx-help" type="button" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)" aria-haspopup="dialog">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.7 2.2c-.8.5-1.3.9-1.3 1.9M12 16.7v.1"/></svg>
   </button>
 </div>
 <div class="zx-overlay" id="zx-overlay" hidden>
   <div class="zx-dialog" role="dialog" aria-modal="true" aria-labelledby="zx-title" tabindex="-1">
     <button class="zx-close" id="zx-close" type="button" aria-label="Close">×</button>
-    <h2 id="zx-title">Shortcuts &amp; achievements</h2>
-    <h3>Keyboard</h3>
+    <h2 id="zx-title">Keyboard shortcuts</h2>
     <ul class="zx-keys">
       <li><kbd>?</kbd><span>Open or close this panel</span></li>
       <li><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><kbd>5</kbd><span>Jump to Home, Games, QA, Timeline, Me</span></li>
@@ -1084,17 +1086,11 @@ window.addEventListener("pointerup", function () { down = false; track.classList
       <li><kbd>D</kbd><span>Copy my Discord username</span></li>
       <li><kbd>Esc</kbd><span>Close this panel</span></li>
     </ul>
-    <h3>Achievements <span id="zx-ach-count"></span></h3>
-    <ul class="zx-ach-list" id="zx-ach-list"></ul>
   </div>
-</div>
-<div class="ach" id="zx-ach" role="status" aria-live="polite">
-  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7M10 17h4"/></svg></span>
-  <div><small>Achievement unlocked</small><span class="t"></span><span class="d"></span></div>
 </div>
 
 <script>
-// Extras: sound effects, shortcuts, achievements, card effects, and live Roblox and Discord data.
+// Extras: sound effects, shortcuts, card effects, and live Roblox and Discord data.
 // All optional: if a request is blocked or a feature isn't supported, the page keeps its static content.
 (function () {
   "use strict";
@@ -1148,7 +1144,6 @@ window.addEventListener("pointerup", function () { down = false; track.classList
     open: function () { tone(420, 0, 0.1, "sine", 0.06); tone(630, 0.07, 0.14, "sine", 0.05); },
     close: function () { tone(630, 0, 0.08, "sine", 0.05); tone(420, 0.06, 0.12, "sine", 0.05); },
     unmute: function () { tone(660, 0, 0.09, "sine", 0.06); tone(880, 0.08, 0.12, "sine", 0.05); },
-    achieve: function () { [523.25, 659.25, 783.99, 1046.5].forEach(function (f, i) { tone(f, i * 0.09, 0.26, "triangle", 0.07); }); },
     cheat: function () { [392, 523.25, 659.25, 784, 1046.5, 1318.5].forEach(function (f, i) { tone(f, i * 0.07, 0.2, "square", 0.04); }); }
   };
   function play(name) { if (sound.on && SFX[name]) SFX[name](); }
@@ -1171,82 +1166,16 @@ window.addEventListener("pointerup", function () { down = false; track.classList
     play("click");
   });
 
-  /* ---------- Achievements, shortcuts panel, Konami code ---------- */
-  var ACH = [
-    { id: "welcome", name: "Spawned In", desc: "Visited the site." },
-    { id: "explorer", name: "Explorer", desc: "Scrolled through every section." },
-    { id: "spin", name: "Spin Doctor", desc: "Rotated my 3D avatar." },
-    { id: "staff", name: "Meet the Staff", desc: "Opened a role to read about it." },
-    { id: "networking", name: "Networking", desc: "Copied my Discord username." },
-    { id: "shortcuts", name: "Power User", desc: "Opened the shortcuts panel." },
-    { id: "konami", name: "Cheat Code", desc: "Found the hidden code.", hidden: true },
-    { id: "completionist", name: "Completionist", desc: "Unlocked every other achievement." }
-  ];
-  var TROPHY = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7M10 17h4"/></svg>';
-  var LOCK = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
-  var done = {};
-  try { JSON.parse(store("zx-ach") || "[]").forEach(function (id) { done[id] = true; }); } catch (e) { done = {}; }
-  var achEl = $("zx-ach"), queue = [], showing = false;
-
-  function renderAch() {
-    var list = $("zx-ach-list");
-    if (!list) return;
-    list.textContent = "";
-    var count = 0;
-    ACH.forEach(function (a) {
-      var has = !!done[a.id];
-      if (has) count++;
-      var li = document.createElement("li");
-      if (!has) li.className = "locked";
-      var ico = document.createElement("span");
-      ico.className = "ico";
-      ico.innerHTML = has ? TROPHY : LOCK; // fixed icon markup, no user data
-      var box = document.createElement("div"), name = document.createElement("b"), desc = document.createElement("span");
-      desc.className = "d";
-      name.textContent = (!has && a.hidden) ? "Hidden achievement" : a.name;
-      desc.textContent = (!has && a.hidden) ? "Keep exploring to find it." : a.desc;
-      box.appendChild(name); box.appendChild(desc);
-      li.appendChild(ico); li.appendChild(box);
-      list.appendChild(li);
-    });
-    var c = $("zx-ach-count");
-    if (c) c.textContent = count + " / " + ACH.length;
-  }
-  function nextPopup() {
-    if (showing || !queue.length || !achEl) return;
-    showing = true;
-    var a = queue.shift();
-    achEl.querySelector(".t").textContent = a.name;
-    achEl.querySelector(".d").textContent = a.desc;
-    achEl.classList.add("show");
-    play(a.id === "konami" ? "cheat" : "achieve");
-    setTimeout(function () {
-      achEl.classList.remove("show");
-      setTimeout(function () { showing = false; nextPopup(); }, 600);
-    }, 4200);
-  }
-  function unlock(id) {
-    if (done[id]) return;
-    var a = ACH.filter(function (x) { return x.id === id; })[0];
-    if (!a) return;
-    done[id] = true;
-    store("zx-ach", JSON.stringify(Object.keys(done)));
-    renderAch();
-    queue.push(a);
-    nextPopup();
-    if (!done.completionist && ACH.every(function (x) { return x.id === "completionist" || done[x.id]; })) unlock("completionist");
-  }
-  renderAch();
+  /* ---------- Shortcuts panel and Konami code ---------- */
+  try { window.localStorage.removeItem("zx-ach"); } catch (e) { /* storage can be blocked */ }
 
   var overlay = $("zx-overlay"), closeBtn = $("zx-close"), helpBtn = $("zx-help"), lastFocus = null;
   function openPanel() {
     if (!overlay || !overlay.hidden) return;
     lastFocus = document.activeElement;
-    renderAch();
     overlay.hidden = false;
     play("open");
     if (closeBtn) closeBtn.focus();
-    unlock("shortcuts");
   }
   function closePanel() {
     if (!overlay || overlay.hidden) return;
@@ -1304,7 +1233,7 @@ window.addEventListener("pointerup", function () { down = false; track.classList
       if (seqPos === SEQ.length) {
         seqPos = 0;
         confetti();
-        if (done.konami) play("cheat"); else unlock("konami");
+        play("cheat");
       }
     } else {
       seqPos = (k === SEQ[0]) ? 1 : 0;
@@ -1330,22 +1259,6 @@ window.addEventListener("pointerup", function () { down = false; track.classList
     else if (e.key === "m" || e.key === "M") setSound(!sound.on);
     else if (e.key === "d" || e.key === "D") { var dc = $("dc-btn"); if (dc) dc.click(); }
   });
-
-  document.addEventListener("zx:spin", function () { unlock("spin"); });
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest) return;
-    if (e.target.closest(".chip")) unlock("staff");
-    if (e.target.closest("#dc-btn, #dsc-copy")) unlock("networking");
-  });
-  if (!done.explorer && "IntersectionObserver" in window) {
-    var ids = ["top", "games", "qa", "timeline", "me"], seen = {};
-    var tour = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) seen[en.target.id] = true; });
-      if (ids.every(function (id) { return seen[id]; })) { unlock("explorer"); tour.disconnect(); }
-    }, { rootMargin: "-45% 0px -45% 0px" });
-    ids.forEach(function (id) { var el = $(id); if (el) tour.observe(el); });
-  }
-  if (!done.welcome) setTimeout(function () { unlock("welcome"); }, 2800);
 
   /* ---------- Roblox IDs, shared by the live stats and the screenshot carousel ---------- */
   var universePromises = {};
