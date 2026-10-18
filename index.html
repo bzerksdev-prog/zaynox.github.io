@@ -318,6 +318,48 @@ a.rerun[hidden]{display:none}
   .hdr-in{display:flex;justify-content:space-between;gap:6px;padding:0 8px 0 16px}.logo img{height:30px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto;gap:0;padding:2px}.nav a{padding:6px 8px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
 }
 
+/* Live data, card effects and site controls */
+.stat[hidden],.sep[hidden],.pill[hidden],.dsc-activity[hidden]{display:none}
+.banner .shots{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .7s var(--ease);pointer-events:none}
+.banner .shots.show{opacity:1}
+.shots img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transition:opacity .9s var(--ease),transform 3.2s var(--ease)}
+.shots img.on{opacity:1;transform:scale(1.08)}
+.js .card.tilting{transition:transform .16s ease-out,border-color .5s var(--ease),box-shadow .7s var(--ease);transition-delay:0s}
+.card.tilting:hover{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-5px) scale(1.012)}
+.dsc-activity{display:block;margin-top:3px;color:var(--muted);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dsc[data-status="idle"] .dsc-status-dot{background:#f0b232;box-shadow:0 0 9px rgba(240,178,50,.45)}
+.dsc[data-status="dnd"] .dsc-status-dot{background:#f23f43;box-shadow:0 0 9px rgba(242,63,67,.45)}
+.dsc[data-status="offline"] .dsc-status-dot{background:#80848e;box-shadow:none}
+.dsc[data-status="idle"] .dsc-status-line{color:#f5cf7a}
+.dsc[data-status="dnd"] .dsc-status-line{color:#ff9a9d}
+.dsc[data-status="offline"] .dsc-status-line{color:#a3a7b3}
+.dock{position:fixed;right:16px;bottom:16px;z-index:35;display:flex;gap:8px}
+.dock-btn{display:grid;place-items:center;width:40px;height:40px;border-radius:999px;cursor:pointer;color:rgba(240,244,255,.82);border:1px solid rgba(245,248,255,.2);background:rgba(18,20,27,.62);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:transform .45s var(--ease),border-color .45s var(--ease),background-color .45s var(--ease),color .3s}
+.dock-btn:hover{transform:translateY(-2px);border-color:rgba(91,134,255,.6);background:rgba(45,79,224,.28);color:#fff}
+.dock-btn svg{width:20px;height:20px}
+.dock-btn[aria-pressed="false"] .ico-on,.dock-btn[aria-pressed="true"] .ico-off{display:none}
+.dock-btn[aria-pressed="false"]{color:rgba(240,244,255,.5)}
+.zx-overlay{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(3,4,10,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:zxFade .25s var(--ease) both}
+.zx-overlay[hidden]{display:none}
+.zx-dialog{position:relative;width:min(560px,100%);max-height:min(86vh,720px);overflow:auto;padding:26px 26px 22px;border-radius:24px;border:1px solid rgba(160,175,220,.25);background:linear-gradient(145deg,rgba(20,23,36,.97),rgba(12,13,20,.97));box-shadow:0 30px 80px -30px #000;outline:none}
+.zx-dialog h2{font:700 1.5rem/1.2 var(--display);letter-spacing:-.01em;margin-bottom:6px;padding-right:40px}
+.zx-dialog h3{display:flex;justify-content:space-between;gap:10px;font:700 .78rem var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:20px 0 10px}
+.zx-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);font-size:1.3rem;line-height:1;cursor:pointer}
+.zx-keys,.zx-ach-list{list-style:none;padding:0;display:grid;gap:8px}
+.zx-keys li{display:flex;align-items:center;gap:12px;color:#dfe2ee;font-size:.95rem}
+.zx-keys kbd{flex:none;min-width:30px;padding:4px 8px;text-align:center;font:600 .82rem var(--display);color:#fff;border-radius:8px;border:1px solid rgba(160,175,220,.3);background:rgba(255,255,255,.07);box-shadow:0 2px 0 rgba(0,0,0,.4)}
+.zx-ach-list li{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035)}
+.zx-ach-list li.locked{opacity:.55}
+.zx-ach-list b{display:block;font:700 .95rem var(--display)}
+.zx-ach-list .d,.ach .d{display:block;color:var(--muted);font-size:.85rem}
+.ico{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:rgba(91,134,255,.18);color:#bcd0ff}
+.zx-ach-list li.locked .ico{background:rgba(255,255,255,.06);color:#8b93ad}
+.ach{position:fixed;left:16px;bottom:16px;z-index:70;display:flex;align-items:center;gap:12px;max-width:min(340px,calc(100% - 90px));padding:12px 16px 12px 12px;border-radius:16px;border:1px solid rgba(91,134,255,.5);background:rgba(10,12,24,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 18px 40px -20px #000;transform:translateY(24px);opacity:0;pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.ach.show{opacity:1;transform:none}
+.ach small{display:block;font:700 .64rem var(--display);letter-spacing:.12em;text-transform:uppercase;color:#8fb0ff}
+.ach .t{display:block;font:700 1rem/1.25 var(--display)}
+@keyframes zxFade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.zx-overlay{animation:none}.ach,.dock-btn,.shots img{transition:none}}
 </style>
 </head>
 <body>
@@ -363,10 +405,11 @@ a.rerun[hidden]{display:none}
   <div class="stack" id="games">
 
   <!-- Gakuran -->
-  <section class="card reveal" id="gakuran" aria-labelledby="gakuran-title">
+  <section class="card reveal" id="gakuran" data-uid="9199655655" aria-labelledby="gakuran-title">
     <div class="banner">
       <!-- Add banner-gakuran.webp next to this file. Until it exists, the gradient shows. -->
       <img class="bimg" src="banner-gakuran.webp" alt="" onerror="this.remove()">
+      <div class="shots" aria-hidden="true"></div>
       <a class="view" href="https://www.roblox.com/games/128736949265057/Gakuran?gameSetTypeId=100000003&amp;homePageSessionInfo=a519b06a-6bde-4caa-81e2-592aedb6cf58&amp;isAd=false&amp;newGameEnum_analyticsData=0&amp;numberOfLoadedTiles=188&amp;page=homePage&amp;placeId=128736949265057&amp;playContext=homePage&amp;position=5&amp;positionInRow=5&amp;rowOnPage=1&amp;sortPos=1&amp;sortSubId=&amp;universeId=9199655655" target="_blank" rel="noopener noreferrer" aria-label="View Gakuran on Roblox">View game ↗</a>
       <h2 id="gakuran-title">Gakuran</h2>
       <p>A thriving Roblox community focused on anime, roleplay, and more.</p>
@@ -379,7 +422,12 @@ a.rerun[hidden]{display:none}
       <div class="sep"></div>
       <div class="stat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
-        <div><b data-to="271.2" data-suf="M+">271.2M+</b><span>Roblox visits</span></div>
+        <div><b data-to="271.2" data-suf="M+" data-live="visits">271.2M+</b><span>Roblox visits</span></div>
+      </div>
+      <div class="sep" hidden></div>
+      <div class="stat" data-live-playing hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.6"/><path d="M7.2 7.2a6.8 6.8 0 0 0 0 9.6M16.8 7.2a6.8 6.8 0 0 1 0 9.6M4.2 4.2a11 11 0 0 0 0 15.6M19.8 4.2a11 11 0 0 1 0 15.6"/></svg>
+        <div><b>0</b><span>Playing now</span></div>
       </div>
     </div>
     <div class="roles reveal" style="--r:3">
@@ -394,9 +442,10 @@ a.rerun[hidden]{display:none}
   </section>
 
   <!-- Steal an Egg -->
-  <section class="card egg reveal" aria-labelledby="egg-title">
+  <section class="card egg reveal" data-place="107778070777162" aria-labelledby="egg-title">
     <div class="banner">
       <img class="bimg" src="banner-steal-an-egg.webp" alt="" onerror="this.remove()">
+      <div class="shots" aria-hidden="true"></div>
       <a class="view" href="https://www.roblox.com/games/107778070777162/Steal-An-Egg" target="_blank" rel="noopener noreferrer" aria-label="View Steal an Egg on Roblox">View game ↗</a>
       <h2 id="egg-title">Steal an Egg</h2>
       <p>A fun and chaotic Roblox experience where you steal eggs, upgrade, and dominate.</p>
@@ -409,7 +458,12 @@ a.rerun[hidden]{display:none}
       <div class="sep"></div>
       <div class="stat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
-        <div><b data-to="8.3" data-suf="B+">8.3B+</b><span>Roblox visits</span></div>
+        <div><b data-to="8.3" data-suf="B+" data-live="visits">8.3B+</b><span>Roblox visits</span></div>
+      </div>
+      <div class="sep" hidden></div>
+      <div class="stat" data-live-playing hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.6"/><path d="M7.2 7.2a6.8 6.8 0 0 0 0 9.6M16.8 7.2a6.8 6.8 0 0 1 0 9.6M4.2 4.2a11 11 0 0 0 0 15.6M19.8 4.2a11 11 0 0 1 0 15.6"/></svg>
+        <div><b>0</b><span>Playing now</span></div>
       </div>
     </div>
     <div class="roles reveal" style="--r:3">
@@ -487,7 +541,7 @@ a.rerun[hidden]{display:none}
       <div class="me-top">
         <span class="rbx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/></svg></span>
         <span class="me-name">@thekillerfr06</span>
-        <span class="pills"><span class="pill"><b>5.5k</b>followers</span><span class="pill"><b>43</b>friends</span></span>
+        <span class="pills"><span class="pill"><b data-live="followers">5.5k</b>followers</span><span class="pill"><b data-live="friends">43</b>friends</span><span class="pill" data-live-group hidden><b>0</b>group members</span></span>
       </div>
       <div class="me-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar"><span class="me-hint" aria-hidden="true">Drag to rotate</span></div>
     </a>
@@ -496,7 +550,7 @@ a.rerun[hidden]{display:none}
       <div class="dsc-av">
         <img class="dsc-avatar" src="discord-pfp.png" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
         <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
-        <span class="dsc-status-dot" aria-label="Online" title="Online"></span>
+        <span class="dsc-status-dot" id="dsc-dot" aria-label="Online" title="Online"></span>
       </div>
       <div class="dsc-info">
         <div class="dsc-name-row">
@@ -507,7 +561,8 @@ a.rerun[hidden]{display:none}
           </div>
         </div>
         <span class="dsc-username" id="dsc-username">@justcalculatewastaken</span>
-        <span class="dsc-status-line"><i class="dsc-status-dot" aria-hidden="true"></i>Online</span>
+        <span class="dsc-status-line"><i class="dsc-status-dot" aria-hidden="true"></i><span id="dsc-status-text">Online</span></span>
+        <span class="dsc-activity" id="dsc-activity" hidden></span>
       </div>
       <div class="dsc-btns">
         <button class="rerun" id="dsc-copy" type="button">Copy username</button>
@@ -880,7 +935,7 @@ window.addEventListener("pointerup", function () { down = false; track.classList
   }
 
   function bindPointer() {
-    var pid = null, lastX = 0, lastT = 0;
+    var pid = null, lastX = 0, lastT = 0, travel = 0, spun = false;
     stage.addEventListener("pointerdown", function (e) {
       if (!ready || (e.pointerType === "mouse" && e.button !== 0)) return;
       dragging = true; pid = e.pointerId; lastX = e.clientX; lastT = performance.now(); vel = 0;
@@ -895,6 +950,8 @@ window.addEventListener("pointerup", function () { down = false; track.classList
       pivot.rotation.y += rot;
       vel = Math.max(-14, Math.min(14, rot / dt)) * 0.6 + vel * 0.4;
       lastX = e.clientX; lastT = now; lastTouch = now;
+      travel += Math.abs(rot);
+      if (!spun && travel > 2) { spun = true; document.dispatchEvent(new CustomEvent("zx:spin")); }
       kick();
     });
     function release(e) {
@@ -1003,6 +1060,480 @@ window.addEventListener("pointerup", function () { down = false; track.classList
     visible = true; start();
   }
   document.addEventListener("visibilitychange", kick);
+})();
+</script>
+
+<!-- Site controls: sound switch and shortcuts/achievements panel -->
+<div class="dock" role="group" aria-label="Site controls">
+  <button class="dock-btn" id="zx-sound" type="button" aria-pressed="true" aria-label="Sound effects" title="Sound effects (M)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ico-on" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor"/><path class="ico-off" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor"/><path class="ico-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="ico-off" d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <button class="dock-btn" id="zx-help" type="button" aria-label="Shortcuts and achievements" title="Shortcuts and achievements (?)" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.7 2.2c-.8.5-1.3.9-1.3 1.9M12 16.7v.1"/></svg>
+  </button>
+</div>
+<div class="zx-overlay" id="zx-overlay" hidden>
+  <div class="zx-dialog" role="dialog" aria-modal="true" aria-labelledby="zx-title" tabindex="-1">
+    <button class="zx-close" id="zx-close" type="button" aria-label="Close">×</button>
+    <h2 id="zx-title">Shortcuts &amp; achievements</h2>
+    <h3>Keyboard</h3>
+    <ul class="zx-keys">
+      <li><kbd>?</kbd><span>Open or close this panel</span></li>
+      <li><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><kbd>5</kbd><span>Jump to Home, Games, QA, Timeline, Me</span></li>
+      <li><kbd>M</kbd><span>Sound on or off</span></li>
+      <li><kbd>D</kbd><span>Copy my Discord username</span></li>
+      <li><kbd>Esc</kbd><span>Close this panel</span></li>
+    </ul>
+    <h3>Achievements <span id="zx-ach-count"></span></h3>
+    <ul class="zx-ach-list" id="zx-ach-list"></ul>
+  </div>
+</div>
+<div class="ach" id="zx-ach" role="status" aria-live="polite">
+  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7M10 17h4"/></svg></span>
+  <div><small>Achievement unlocked</small><span class="t"></span><span class="d"></span></div>
+</div>
+
+<script>
+// Extras: sound effects, shortcuts, achievements, card effects, and live Roblox and Discord data.
+// All optional: if a request is blocked or a feature isn't supported, the page keeps its static content.
+(function () {
+  "use strict";
+  var fine = !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function noop() {}
+  function $(id) { return document.getElementById(id); }
+  function store(key, val) {
+    try {
+      if (val === undefined) return window.localStorage.getItem(key);
+      window.localStorage.setItem(key, val);
+    } catch (e) { /* storage can be blocked */ }
+    return null;
+  }
+  function getJSON(url) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + " returned " + r.status); return r.json(); });
+  }
+  function toast(msg) { if (typeof say === "function") say(msg); }
+
+  /* ---------- Sound effects (synthesized, no audio files) ---------- */
+  var sound = { on: store("zx-sound") !== "off", ctx: null, master: null };
+  function audio() {
+    if (!sound.ctx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      try {
+        sound.ctx = new AC();
+        sound.master = sound.ctx.createGain();
+        sound.master.gain.value = 0.6;
+        sound.master.connect(sound.ctx.destination);
+      } catch (e) { sound.ctx = null; return null; }
+    }
+    if (sound.ctx.state === "suspended" && sound.ctx.resume) sound.ctx.resume();
+    return sound.ctx;
+  }
+  function tone(freq, delay, dur, type, vol, glide) {
+    var c = audio();
+    if (!c) return;
+    var t = c.currentTime + delay, o = c.createOscillator(), g = c.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(freq, t);
+    if (glide) o.frequency.exponentialRampToValueAtTime(glide, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(sound.master);
+    o.start(t); o.stop(t + dur + 0.03);
+  }
+  var SFX = {
+    click: function () { tone(540, 0, 0.07, "triangle", 0.07, 360); },
+    open: function () { tone(420, 0, 0.1, "sine", 0.06); tone(630, 0.07, 0.14, "sine", 0.05); },
+    close: function () { tone(630, 0, 0.08, "sine", 0.05); tone(420, 0.06, 0.12, "sine", 0.05); },
+    unmute: function () { tone(660, 0, 0.09, "sine", 0.06); tone(880, 0.08, 0.12, "sine", 0.05); },
+    achieve: function () { [523.25, 659.25, 783.99, 1046.5].forEach(function (f, i) { tone(f, i * 0.09, 0.26, "triangle", 0.07); }); },
+    cheat: function () { [392, 523.25, 659.25, 784, 1046.5, 1318.5].forEach(function (f, i) { tone(f, i * 0.07, 0.2, "square", 0.04); }); }
+  };
+  function play(name) { if (sound.on && SFX[name]) SFX[name](); }
+  var soundBtn = $("zx-sound");
+  function setSound(on) {
+    sound.on = on;
+    store("zx-sound", on ? "on" : "off");
+    if (soundBtn) soundBtn.setAttribute("aria-pressed", String(on));
+    toast(on ? "Sound on" : "Sound off");
+    if (on) play("unmute");
+  }
+  if (soundBtn) {
+    soundBtn.setAttribute("aria-pressed", String(sound.on));
+    soundBtn.addEventListener("click", function () { setSound(!sound.on); });
+  }
+  // A soft click on buttons and links (not on the avatar viewer or the panel controls).
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("button, a[href]");
+    if (!t || t.id === "zx-sound" || t.id === "zx-help" || t.id === "zx-close" || t.closest(".me-stage")) return;
+    play("click");
+  });
+
+  /* ---------- Achievements, shortcuts panel, Konami code ---------- */
+  var ACH = [
+    { id: "welcome", name: "Spawned In", desc: "Visited the site." },
+    { id: "explorer", name: "Explorer", desc: "Scrolled through every section." },
+    { id: "spin", name: "Spin Doctor", desc: "Rotated my 3D avatar." },
+    { id: "staff", name: "Meet the Staff", desc: "Opened a role to read about it." },
+    { id: "networking", name: "Networking", desc: "Copied my Discord username." },
+    { id: "shortcuts", name: "Power User", desc: "Opened the shortcuts panel." },
+    { id: "konami", name: "Cheat Code", desc: "Found the hidden code.", hidden: true },
+    { id: "completionist", name: "Completionist", desc: "Unlocked every other achievement." }
+  ];
+  var TROPHY = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7M10 17h4"/></svg>';
+  var LOCK = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+  var done = {};
+  try { JSON.parse(store("zx-ach") || "[]").forEach(function (id) { done[id] = true; }); } catch (e) { done = {}; }
+  var achEl = $("zx-ach"), queue = [], showing = false;
+
+  function renderAch() {
+    var list = $("zx-ach-list");
+    if (!list) return;
+    list.textContent = "";
+    var count = 0;
+    ACH.forEach(function (a) {
+      var has = !!done[a.id];
+      if (has) count++;
+      var li = document.createElement("li");
+      if (!has) li.className = "locked";
+      var ico = document.createElement("span");
+      ico.className = "ico";
+      ico.innerHTML = has ? TROPHY : LOCK; // fixed icon markup, no user data
+      var box = document.createElement("div"), name = document.createElement("b"), desc = document.createElement("span");
+      desc.className = "d";
+      name.textContent = (!has && a.hidden) ? "Hidden achievement" : a.name;
+      desc.textContent = (!has && a.hidden) ? "Keep exploring to find it." : a.desc;
+      box.appendChild(name); box.appendChild(desc);
+      li.appendChild(ico); li.appendChild(box);
+      list.appendChild(li);
+    });
+    var c = $("zx-ach-count");
+    if (c) c.textContent = count + " / " + ACH.length;
+  }
+  function nextPopup() {
+    if (showing || !queue.length || !achEl) return;
+    showing = true;
+    var a = queue.shift();
+    achEl.querySelector(".t").textContent = a.name;
+    achEl.querySelector(".d").textContent = a.desc;
+    achEl.classList.add("show");
+    play(a.id === "konami" ? "cheat" : "achieve");
+    setTimeout(function () {
+      achEl.classList.remove("show");
+      setTimeout(function () { showing = false; nextPopup(); }, 600);
+    }, 4200);
+  }
+  function unlock(id) {
+    if (done[id]) return;
+    var a = ACH.filter(function (x) { return x.id === id; })[0];
+    if (!a) return;
+    done[id] = true;
+    store("zx-ach", JSON.stringify(Object.keys(done)));
+    renderAch();
+    queue.push(a);
+    nextPopup();
+    if (!done.completionist && ACH.every(function (x) { return x.id === "completionist" || done[x.id]; })) unlock("completionist");
+  }
+  renderAch();
+
+  var overlay = $("zx-overlay"), closeBtn = $("zx-close"), helpBtn = $("zx-help"), lastFocus = null;
+  function openPanel() {
+    if (!overlay || !overlay.hidden) return;
+    lastFocus = document.activeElement;
+    renderAch();
+    overlay.hidden = false;
+    play("open");
+    if (closeBtn) closeBtn.focus();
+    unlock("shortcuts");
+  }
+  function closePanel() {
+    if (!overlay || overlay.hidden) return;
+    overlay.hidden = true;
+    play("close");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  if (overlay) {
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) closePanel(); });
+    // Let the panel scroll natively instead of the page's smooth-scroll handler taking the wheel.
+    overlay.addEventListener("wheel", function (e) { e.stopPropagation(); }, { passive: true });
+  }
+  if (closeBtn) closeBtn.addEventListener("click", closePanel);
+  if (helpBtn) helpBtn.addEventListener("click", function () { if (overlay.hidden) openPanel(); else closePanel(); });
+
+  function confetti() {
+    if (reduceMotion) return;
+    var cv = document.createElement("canvas"), cx = cv.getContext("2d"), d = Math.min(window.devicePixelRatio || 1, 2);
+    var W = window.innerWidth, H = window.innerHeight;
+    if (!cx) return;
+    cv.width = W * d; cv.height = H * d;
+    cx.setTransform(d, 0, 0, d, 0, 0);
+    cv.setAttribute("aria-hidden", "true");
+    cv.style.cssText = "position:fixed;inset:0;width:100%;height:100%;z-index:65;pointer-events:none";
+    document.body.appendChild(cv);
+    var colors = ["#5b86ff", "#bcd0ff", "#ffffff", "#2d4fe0", "#ffd166", "#8dd9a4"], parts = [];
+    for (var i = 0; i < 150; i++) {
+      var ang = -Math.PI / 2 + (Math.random() - 0.5) * 1.5, sp = 380 + Math.random() * 520;
+      parts.push({ x: W / 2, y: H * 0.72, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, r: 3 + Math.random() * 4, rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 12, c: colors[i % colors.length], star: i % 5 === 0 });
+    }
+    var t0 = performance.now(), last = t0;
+    (function frame(now) {
+      var dt = Math.min((now - last) / 1000, 0.05), age = (now - t0) / 1000;
+      last = now;
+      cx.clearRect(0, 0, W, H);
+      parts.forEach(function (p) {
+        p.vy += 900 * dt; p.vx *= 0.995; p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+        cx.save();
+        cx.globalAlpha = Math.max(0, Math.min(1, 3.2 - age));
+        cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.c;
+        if (p.star) { cx.fillRect(-p.r, -0.8, p.r * 2, 1.6); cx.fillRect(-0.8, -p.r, 1.6, p.r * 2); }
+        else cx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 0.6);
+        cx.restore();
+      });
+      if (age < 3.2) requestAnimationFrame(frame);
+      else if (cv.parentNode) cv.parentNode.removeChild(cv);
+    })(t0);
+  }
+
+  var SEQ = ["arrowup", "arrowup", "arrowdown", "arrowdown", "arrowleft", "arrowright", "arrowleft", "arrowright", "b", "a"], seqPos = 0;
+  function konami(e) {
+    var k = (e.key || "").toLowerCase();
+    if (k === SEQ[seqPos]) {
+      seqPos++;
+      if (seqPos === SEQ.length) {
+        seqPos = 0;
+        confetti();
+        if (done.konami) play("cheat"); else unlock("konami");
+      }
+    } else {
+      seqPos = (k === SEQ[0]) ? 1 : 0;
+    }
+  }
+
+  var NAV_KEYS = { "1": "#top", "2": "#games", "3": "#qa", "4": "#timeline", "5": "#me" };
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    konami(e);
+    if (overlay && !overlay.hidden) {
+      if (e.key === "Escape") closePanel();
+      else if (e.key === "Tab") { e.preventDefault(); if (closeBtn) closeBtn.focus(); }
+      return;
+    }
+    if (e.key === "?") { e.preventDefault(); openPanel(); }
+    else if (NAV_KEYS[e.key]) {
+      var link = document.querySelector('.nav a[href="' + NAV_KEYS[e.key] + '"]');
+      if (link) link.click();
+    }
+    else if (e.key === "m" || e.key === "M") setSound(!sound.on);
+    else if (e.key === "d" || e.key === "D") { var dc = $("dc-btn"); if (dc) dc.click(); }
+  });
+
+  document.addEventListener("zx:spin", function () { unlock("spin"); });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest(".chip")) unlock("staff");
+    if (e.target.closest("#dc-btn, #dsc-copy")) unlock("networking");
+  });
+  if (!done.explorer && "IntersectionObserver" in window) {
+    var ids = ["top", "games", "qa", "timeline", "me"], seen = {};
+    var tour = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) seen[en.target.id] = true; });
+      if (ids.every(function (id) { return seen[id]; })) { unlock("explorer"); tour.disconnect(); }
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    ids.forEach(function (id) { var el = $(id); if (el) tour.observe(el); });
+  }
+  if (!done.welcome) setTimeout(function () { unlock("welcome"); }, 2800);
+
+  /* ---------- Roblox IDs, shared by the live stats and the screenshot carousel ---------- */
+  var universePromises = {};
+  function universeFor(card) {
+    if (card.dataset.uid) return Promise.resolve(card.dataset.uid);
+    var place = card.dataset.place;
+    if (!place) return Promise.reject(new Error("No game id"));
+    if (!universePromises[place]) {
+      universePromises[place] = getJSON("https://apis.roblox.com/universes/v1/places/" + place + "/universe").then(function (j) {
+        if (!j || !j.universeId) throw new Error("No universe id");
+        card.dataset.uid = String(j.universeId);
+        return card.dataset.uid;
+      });
+      universePromises[place].catch(function () { delete universePromises[place]; });
+    }
+    return universePromises[place];
+  }
+  var gameCards = [].slice.call(document.querySelectorAll("#games .card"));
+
+  /* ---------- Tilt on the game cards ---------- */
+  if (fine && !reduceMotion) {
+    gameCards.forEach(function (card) {
+      var frame = 0, px = 0, py = 0;
+      function apply() {
+        frame = 0;
+        card.style.setProperty("--rx", (-py * 5).toFixed(2) + "deg");
+        card.style.setProperty("--ry", (px * 7).toFixed(2) + "deg");
+      }
+      card.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") card.classList.add("tilting"); });
+      card.addEventListener("pointermove", function (e) {
+        if (e.pointerType !== "mouse") return;
+        var r = card.getBoundingClientRect();
+        px = (e.clientX - r.left) / r.width - 0.5;
+        py = (e.clientY - r.top) / r.height - 0.5;
+        if (!frame) frame = requestAnimationFrame(apply);
+      });
+      card.addEventListener("pointerleave", function () {
+        cancelAnimationFrame(frame); frame = 0;
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+        card.classList.remove("tilting");
+      });
+    });
+  }
+
+  /* ---------- Screenshot carousel on hover ---------- */
+  if (fine && !reduceMotion) {
+    gameCards.forEach(function (card) {
+      var shots = card.querySelector(".banner .shots");
+      if (!shots) return;
+      var imgs = [], index = 0, timer = 0, hovering = false, started = false;
+      function show(i) { imgs.forEach(function (im, n) { im.classList.toggle("on", n === i); }); }
+      function cycle() {
+        if (timer || imgs.length < 2) return;
+        timer = setInterval(function () { index = (index + 1) % imgs.length; show(index); }, 2600);
+      }
+      function stop() { clearInterval(timer); timer = 0; }
+      function build(urls) {
+        urls.forEach(function (url) {
+          var im = new Image();
+          im.alt = ""; im.decoding = "async";
+          im.onload = function () {
+            shots.appendChild(im); imgs.push(im);
+            if (imgs.length === 1) { index = 0; show(0); if (hovering) shots.classList.add("show"); }
+            if (hovering) cycle();
+          };
+          im.src = url;
+        });
+      }
+      card.addEventListener("pointerenter", function (e) {
+        if (e.pointerType !== "mouse") return;
+        hovering = true;
+        if (!started) {
+          started = true;
+          universeFor(card).then(function (uid) {
+            return getJSON("https://thumbnails.roblox.com/v1/games/multiget/thumbnails?universeIds=" + uid + "&countPerUniverse=6&defaults=true&size=768x432&format=Png&isCircular=false");
+          }).then(function (j) {
+            var list = (j && j.data && j.data[0] && j.data[0].thumbnails) || [];
+            var urls = list.filter(function (t) { return t.imageUrl && (!t.state || t.state === "Completed"); }).map(function (t) { return t.imageUrl; });
+            if (urls.length) build(urls);
+          }).catch(noop);
+        } else if (imgs.length) {
+          shots.classList.add("show"); cycle();
+        }
+      });
+      card.addEventListener("pointerleave", function () { hovering = false; shots.classList.remove("show"); stop(); });
+    });
+  }
+
+  /* ---------- Live Roblox stats (static numbers stay if a request fails) ---------- */
+  function compact(n) {
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k";
+    return String(n);
+  }
+  function setLive(name, text) {
+    [].forEach.call(document.querySelectorAll('[data-live="' + name + '"]'), function (el) { el.textContent = text; });
+  }
+  function setVisits(el, visits) {
+    var big = visits >= 1e9, val = (big ? visits / 1e9 : visits / 1e6).toFixed(1), suf = big ? "B" : "M";
+    el.dataset.to = val; el.dataset.suf = suf;
+    if (el.dataset.done) {
+      // The count-up may still be running; set it again once it has finished.
+      el.textContent = val + suf;
+      setTimeout(function () { el.textContent = val + suf; }, 2400);
+    }
+  }
+  var userMatch = /users\/(\d+)/.exec(typeof ROBLOX_URL === "string" ? ROBLOX_URL : "");
+  var groupLink = document.querySelector('a[href*="/communities/"]');
+  var groupMatch = groupLink && /communities\/(\d+)/.exec(groupLink.getAttribute("href") || "");
+  function refreshStats() {
+    if (document.hidden) return;
+    if (userMatch) {
+      getJSON("https://friends.roblox.com/v1/users/" + userMatch[1] + "/followers/count").then(function (j) {
+        if (j && typeof j.count === "number") setLive("followers", compact(j.count));
+      }).catch(noop);
+      getJSON("https://friends.roblox.com/v1/users/" + userMatch[1] + "/friends/count").then(function (j) {
+        if (j && typeof j.count === "number") setLive("friends", compact(j.count));
+      }).catch(noop);
+    }
+    if (groupMatch) {
+      getJSON("https://groups.roblox.com/v1/groups/" + groupMatch[1]).then(function (j) {
+        var pill = document.querySelector("[data-live-group]");
+        if (!pill || !j || typeof j.memberCount !== "number") return;
+        pill.querySelector("b").textContent = compact(j.memberCount);
+        pill.hidden = false;
+      }).catch(noop);
+    }
+    Promise.all(gameCards.map(function (card) {
+      return universeFor(card).then(function (uid) { return { card: card, uid: uid }; }, function () { return null; });
+    })).then(function (pairs) {
+      pairs = pairs.filter(Boolean);
+      if (!pairs.length) return;
+      return getJSON("https://games.roblox.com/v1/games?universeIds=" + pairs.map(function (p) { return p.uid; }).join(",")).then(function (j) {
+        var byId = {};
+        ((j && j.data) || []).forEach(function (g) { byId[String(g.id)] = g; });
+        pairs.forEach(function (p) {
+          var g = byId[p.uid];
+          if (!g) return;
+          var v = p.card.querySelector('[data-live="visits"]');
+          if (v && typeof g.visits === "number" && g.visits > 0) setVisits(v, g.visits);
+          var playing = p.card.querySelector("[data-live-playing]");
+          if (playing && typeof g.playing === "number") {
+            playing.querySelector("b").textContent = g.playing.toLocaleString();
+            playing.hidden = false;
+            var sep = playing.previousElementSibling;
+            if (sep && sep.classList.contains("sep")) sep.hidden = false;
+          }
+        });
+      });
+    }).catch(noop);
+  }
+  refreshStats();
+  setInterval(refreshStats, 120000);
+
+  /* ---------- Live Discord status through Lanyard ---------- */
+  (function () {
+    var dsc = document.querySelector(".dsc"), text = $("dsc-status-text"), act = $("dsc-activity"), dot = $("dsc-dot");
+    var id = typeof DISCORD_ID === "string" ? DISCORD_ID : "";
+    if (!dsc || !text || !act || !/^\d{15,25}$/.test(id)) return;
+    var LABEL = { online: "Online", idle: "Idle", dnd: "Do not disturb", offline: "Offline" };
+    function activityLine(d) {
+      var acts = d.activities || [], i;
+      for (i = 0; i < acts.length; i++) if (acts[i].type === 0 && acts[i].name) return "Playing " + acts[i].name;
+      if (d.listening_to_spotify && d.spotify && d.spotify.song) return "Listening to " + d.spotify.song + (d.spotify.artist ? " · " + d.spotify.artist : "");
+      for (i = 0; i < acts.length; i++) if (acts[i].type === 1 && acts[i].name) return "Streaming " + acts[i].name;
+      for (i = 0; i < acts.length; i++) if (acts[i].type === 4 && acts[i].state) return acts[i].state;
+      return "";
+    }
+    function apply(d) {
+      var s = LABEL[d.discord_status] ? d.discord_status : "offline";
+      dsc.setAttribute("data-status", s);
+      text.textContent = LABEL[s];
+      if (dot) { dot.setAttribute("aria-label", LABEL[s]); dot.setAttribute("title", LABEL[s]); }
+      var line = s === "offline" ? "" : activityLine(d);
+      act.textContent = line;
+      act.hidden = !line;
+    }
+    function poll() {
+      if (document.hidden) return;
+      getJSON("https://api.lanyard.rest/v1/users/" + id).then(function (j) {
+        if (j && j.success && j.data) apply(j.data);
+      }).catch(noop);
+    }
+    poll();
+    setInterval(poll, 30000);
+    document.addEventListener("visibilitychange", poll);
+  })();
 })();
 </script>
 </body>
