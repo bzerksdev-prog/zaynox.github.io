@@ -61,7 +61,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scrollbar-color:#3f6bff #05070f;scrollbar-width:thin;background:var(--bg);scroll-padding-top:90px}
+html{scrollbar-color:#3f6bff #05070f;scrollbar-width:thin;background:var(--bg);scroll-padding-top:90px}
 ::-webkit-scrollbar{width:12px;height:10px}
 ::-webkit-scrollbar-track{background:#05070f}
 ::-webkit-scrollbar-thumb{background:linear-gradient(#6c93ff,#2d4fe0);border-radius:10px;border:3px solid #05070f}
@@ -683,50 +683,61 @@ document.querySelectorAll(".reveal").forEach(function (el) {
   else io.observe(el);
 });
 
-// Slow wheel input to a controlled, fluid glide; touch scrolling remains native.
-var anchorScrollFrame = 0, wheelFrame = 0, wheelTarget = window.scrollY, wheelCurrent = window.scrollY;
+// Smooth scrolling. Mouse-wheel notches and in-page links glide; trackpads, touch and the keyboard stay native.
+// The glide is time-based rather than per-frame, so it covers the same distance on slow or busy devices.
+var anchorScrollFrame = 0, wheelFrame = 0, wheelTarget = 0, wheelCurrent = 0, wheelLastSet = 0, wheelLastFrame = 0, wheelLastAt = 0, wheelStreak = 0;
+function maxScroll() { return Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
+function stopGlides() {
+  cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
+  anchorScrollFrame = 0; wheelFrame = 0;
+}
 document.addEventListener("click", function (e) {
   var a = e.target.closest && e.target.closest('a[href^="#"]');
   if (!a || a.getAttribute("href") === "#") return;
   var target = document.querySelector(a.getAttribute("href"));
   if (!target || still) return;
   e.preventDefault();
-  cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
-  anchorScrollFrame = 0; wheelFrame = 0; wheelCurrent = window.scrollY; wheelTarget = wheelCurrent;
-  var from = window.scrollY, to = target.getBoundingClientRect().top + from - 18, start = performance.now(), duration = 1250;
+  stopGlides();
+  var from = window.scrollY, to = Math.max(0, Math.min(maxScroll(), target.getBoundingClientRect().top + from - 18));
+  var start = performance.now(), duration = Math.max(600, Math.min(1500, 500 + Math.abs(to - from) * .35));
   function glide(now) {
-    var p = Math.min((now - start) / duration, 1);
+    var p = Math.max(0, Math.min((now - start) / duration, 1));
     var eased = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3)/2;
     window.scrollTo(0, from + (to - from) * eased);
-    if (p < 1) anchorScrollFrame = requestAnimationFrame(glide);
-    else anchorScrollFrame = 0;
+    anchorScrollFrame = p < 1 ? requestAnimationFrame(glide) : 0;
   }
   anchorScrollFrame = requestAnimationFrame(glide);
   history.replaceState(null, "", a.getAttribute("href"));
 });
+function glideWheel(now) {
+  var dt = wheelLastFrame ? Math.min(now - wheelLastFrame, 100) : 16;
+  wheelLastFrame = now;
+  // If something else moved the page (scrollbar drag, keyboard, find-in-page), stop gliding instead of fighting it.
+  if (Math.abs(window.scrollY - wheelLastSet) > 3) { wheelFrame = 0; return; }
+  wheelCurrent += (wheelTarget - wheelCurrent) * (1 - Math.exp(-dt / 150));
+  var done = Math.abs(wheelTarget - wheelCurrent) < .5;
+  if (done) wheelCurrent = wheelTarget;
+  window.scrollTo(0, wheelCurrent);
+  wheelLastSet = window.scrollY;
+  wheelFrame = done ? 0 : requestAnimationFrame(glideWheel);
+}
 window.addEventListener("wheel", function (e) {
-  if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  if (still || e.ctrlKey || e.defaultPrevented || !e.deltaY || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  var dy = e.deltaY;
+  if (e.deltaMode === 1) dy *= 32;
+  else if (e.deltaMode === 2) dy *= window.innerHeight;
+  // Trackpads and precision wheels send many small deltas and the browser already scrolls those smoothly.
+  if (Math.abs(dy) < 40) { cancelAnimationFrame(wheelFrame); wheelFrame = 0; return; }
   e.preventDefault();
+  var now = performance.now();
+  wheelStreak = now - wheelLastAt < 150 ? Math.min(wheelStreak + 1, 8) : 0; // quick repeated notches pick up a little speed
+  wheelLastAt = now;
   cancelAnimationFrame(anchorScrollFrame); anchorScrollFrame = 0;
-  if (!wheelFrame) { wheelCurrent = window.scrollY; wheelTarget = wheelCurrent; }
-  var delta = e.deltaY;
-  if (e.deltaMode === 1) delta *= 32;
-  else if (e.deltaMode === 2) delta *= window.innerHeight;
-  wheelTarget = Math.max(0, Math.min(document.documentElement.scrollHeight - window.innerHeight, wheelTarget + delta * .48));
-  function glideWheel() {
-    wheelCurrent += (wheelTarget - wheelCurrent) * .13;
-    if (Math.abs(wheelTarget - wheelCurrent) < .7) {
-      wheelCurrent = wheelTarget; window.scrollTo(0, wheelCurrent); wheelFrame = 0; return;
-    }
-    window.scrollTo(0, wheelCurrent);
-    wheelFrame = requestAnimationFrame(glideWheel);
-  }
+  if (!wheelFrame) { wheelCurrent = window.scrollY; wheelLastSet = wheelCurrent; wheelTarget = wheelCurrent; wheelLastFrame = 0; }
+  wheelTarget = Math.max(0, Math.min(maxScroll(), wheelTarget + dy * .8 * (1 + wheelStreak * .1)));
   if (!wheelFrame) wheelFrame = requestAnimationFrame(glideWheel);
 }, { passive: false });
-window.addEventListener("touchstart", function () {
-  cancelAnimationFrame(anchorScrollFrame); cancelAnimationFrame(wheelFrame);
-  anchorScrollFrame = 0; wheelFrame = 0; wheelCurrent = window.scrollY; wheelTarget = wheelCurrent;
-}, { passive: true });
+window.addEventListener("touchstart", stopGlides, { passive: true });
 
 // Header: turns darker and blue-tinted after you scroll; a soft pill follows the current section.
 var hdr = document.getElementById("hdr");
