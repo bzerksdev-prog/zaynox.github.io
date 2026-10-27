@@ -328,6 +328,29 @@ a.rerun[hidden]{display:none}
   .hdr-in{display:flex;justify-content:space-between;gap:6px;padding:0 8px 0 16px}.logo img{height:23px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto;gap:0;padding:2px}.nav a{padding:6px 8px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
 }
 
+/* About me button (under the profile picture) and its panel */
+.pfp-wrap{display:flex;flex-direction:column;align-items:center;gap:26px}
+.pfp-wrap::after{bottom:92px}
+.about-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:9px 18px 9px 10px;border-radius:999px;border:1px solid rgba(160,175,220,.3);background:linear-gradient(135deg,rgba(91,134,255,.2),rgba(255,255,255,.045));color:var(--text);font:700 .98rem var(--display);cursor:pointer;box-shadow:0 14px 34px -22px rgba(91,134,255,.8);transition:transform .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease)}
+.about-btn:hover{transform:translateY(-3px);border-color:rgba(120,157,255,.65);background:linear-gradient(135deg,rgba(91,134,255,.32),rgba(255,255,255,.06));box-shadow:0 18px 38px -20px rgba(91,134,255,.95)}
+.about-btn:active{transform:translateY(-1px)}
+.ab-ico{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(91,134,255,.25);color:#d3e0ff}
+.ab-ico svg{width:16px;height:16px}
+.ab-chev{width:15px;height:15px;margin-left:2px;color:#b9c9f3;transition:transform .45s var(--ease)}
+.about-btn[aria-expanded="true"] .ab-chev{transform:rotate(180deg)}
+.about{position:relative;padding:clamp(24px,4.5vw,36px);border:1px solid rgba(160,175,220,.22);border-radius:24px;overflow:hidden;background:radial-gradient(60% 90% at 100% 0%,rgba(91,134,255,.16),transparent 70%),linear-gradient(145deg,rgba(18,22,40,.95),rgba(12,13,22,.94));box-shadow:0 26px 60px -38px #000;animation:experienceReveal .6s var(--ease) both}
+.about[hidden]{display:none}
+.about::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,#5b86ff,#bcd0ff,#5b86ff,transparent);opacity:.85}
+.about-kicker{margin-bottom:10px;color:#8fb0ff;font:700 .74rem var(--display);letter-spacing:.16em;text-transform:uppercase}
+.about h2{margin-bottom:14px;font:800 clamp(1.45rem,4.6vw,1.95rem)/1.15 var(--display);letter-spacing:-.02em}
+.about p{max-width:62ch;color:#c9d0e6}
+.about p+p{margin-top:10px}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
+.about-tags li{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid rgba(160,175,220,.25);background:rgba(91,134,255,.1);color:#dfe7ff;font:600 .88rem var(--display)}
+.about-tags li::before{content:"";width:6px;height:6px;border-radius:50%;background:#7ea0ff;box-shadow:0 0 8px rgba(126,160,255,.85)}
+.about-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#bcd0ff;font:700 .95rem var(--display);text-decoration:none;transition:color .3s,gap .4s var(--ease)}
+.about-link:hover{color:#fff;gap:12px}
+
 /* Live data, card effects and site controls */
 .stat[hidden],.sep[hidden],.pill[hidden],.dsc-activity[hidden]{display:none}
 .banner .shots{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .7s var(--ease);pointer-events:none}
@@ -399,8 +422,25 @@ a.rerun[hidden]{display:none}
     </div>
     <div class="pfp-wrap">
       <div class="pfp-frame"><img class="pfp" src="pfp.png" alt="Zaynox’s avatar: a blue and white Roblox character with a red button on its hat"></div>
+      <button class="about-btn" id="about-btn" type="button" aria-expanded="false" aria-controls="about-panel">
+        <span class="ab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.6 20.2c.7-3.9 3.7-6 7.4-6s6.7 2.1 7.4 6"/></svg></span>
+        <span>About me</span>
+        <svg class="ab-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
     </div>
   </header>
+
+  <!-- About me: opens from the button under the profile picture. Edit the wording here. -->
+  <section class="about" id="about-panel" aria-labelledby="about-title" hidden>
+    <p class="about-kicker">About me</p>
+    <h2 id="about-title">Hard-working, dependable, and community first.</h2>
+    <p>I’m Zaynox, a Roblox community staff member and QA tester. I’ve been on Roblox since 2017, and I love helping communities grow, whether that’s leading Helper teams, keeping players safe, or testing games so they launch better.</p>
+    <p>I take the work seriously and put in the effort to do it properly. I’m reliable, I communicate clearly, and I aim to leave every community better than I found it.</p>
+    <ul class="about-tags" aria-label="Strengths">
+      <li>Hard working</li><li>Reliable</li><li>Community focused</li><li>Clear communicator</li><li>Detail oriented</li>
+    </ul>
+    <a class="about-link" href="#games">See my experience <span aria-hidden="true">↓</span></a>
+  </section>
 
   <div class="stack" id="games">
 
@@ -653,6 +693,23 @@ experienceToggle.addEventListener("click", function () {
   experienceToggle.querySelector("span").textContent = open ? "View all experience" : "Hide experiences";
   experiencePanel.hidden = open;
 });
+
+// About me: the button under the profile picture opens a short bio panel.
+(function () {
+  var btn = document.getElementById("about-btn"), panel = document.getElementById("about-panel");
+  if (!btn || !panel) return;
+  function setOpen(open) {
+    btn.setAttribute("aria-expanded", String(open));
+    panel.hidden = !open;
+    if (open && panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  btn.addEventListener("click", function () { setOpen(btn.getAttribute("aria-expanded") !== "true"); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !panel.hidden && (panel.contains(document.activeElement) || document.activeElement === btn)) {
+      setOpen(false); btn.focus();
+    }
+  });
+})();
 
 // Stats count up once.
 function countUp(el) {
