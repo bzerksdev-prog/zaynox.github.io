@@ -122,7 +122,7 @@ a{color:inherit}
 .links svg{width:20px;height:20px;fill:currentColor}
 .pfp-wrap{position:relative;flex:none;animation:rise 1.6s .3s var(--ease) both}
 .pfp-frame{width:clamp(145px,28vw,205px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--blue);box-shadow:0 0 0 9px rgba(91,134,255,.1);background:#2b2c30;animation:float 9s ease-in-out infinite}
-.pfp{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
+.pfp{display:block;width:100%;height:100%;object-fit:contain;transform:scale(.92)}
 .pfp-wrap::before,.pfp-wrap::after{content:"✦";position:absolute;color:#fff;text-shadow:0 0 12px #fff;animation:twinkle 4.5s ease-in-out infinite}
 .pfp-wrap::before{top:2px;left:-8px;font-size:1.6rem}
 .pfp-wrap::after{bottom:14px;right:-14px;font-size:1.1rem;animation-delay:1.4s}
@@ -212,6 +212,9 @@ section[id],#games{scroll-margin-top:96px}
 .track li::after{content:"";position:absolute;left:20px;right:0;top:9px;height:2px;background:linear-gradient(90deg,#8a90a6,#4a4e5e);transform-origin:left}
 .js .track li::after{transform:scaleX(0);transition:transform 1.3s var(--ease);transition-delay:calc(var(--i)*.25s + .3s)}
 .js .track li.in::after{transform:scaleX(1)}
+.js .track li{opacity:0;translate:0 8px;transition:opacity .55s var(--ease),translate .55s var(--ease);transition-delay:calc(var(--i)*.08s)}
+.js .track li.in{opacity:1;translate:0 0}
+@media (prefers-reduced-motion:reduce){.js .track li{opacity:1;translate:none;transition:none}.js .track li::after{transform:scaleX(1);transition:none}}
 .track li:last-child::after{background:linear-gradient(90deg,#8a90a6,transparent)}
 .track li.now::before{background:#fff;border-color:#fff;animation:pulse 2s infinite}
 .track time{font:700 1.15rem var(--display);color:#d5d9e8}
@@ -338,18 +341,21 @@ a.rerun[hidden]{display:none}
 .ab-ico svg{width:16px;height:16px}
 .ab-chev{width:15px;height:15px;margin-left:2px;color:#b9c9f3;transition:transform .45s var(--ease)}
 .about-btn[aria-expanded="true"] .ab-chev{transform:rotate(180deg)}
-.about{position:relative;padding:clamp(24px,4.5vw,36px);border:1px solid rgba(160,175,220,.22);border-radius:24px;overflow:hidden;background:radial-gradient(60% 90% at 100% 0%,rgba(91,134,255,.16),transparent 70%),linear-gradient(145deg,rgba(18,22,40,.95),rgba(12,13,22,.94));box-shadow:0 26px 60px -38px #000;animation:experienceReveal .6s var(--ease) both}
+.about{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);align-items:center;gap:clamp(20px,4vw,42px);padding:clamp(24px,4.5vw,36px);border:1px solid rgba(255,255,255,.13);border-radius:22px;overflow:hidden;background:linear-gradient(145deg,rgba(25,27,33,.94),rgba(16,17,22,.94));box-shadow:0 24px 50px -30px #000;animation:experienceReveal .6s var(--ease) both}
 .about[hidden]{display:none}
-.about::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,#5b86ff,#bcd0ff,#5b86ff,transparent);opacity:.85}
-.about-kicker{margin-bottom:10px;color:#8fb0ff;font:700 .74rem var(--display);letter-spacing:.16em;text-transform:uppercase}
+.about::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);opacity:.75}
+.about-copy{position:relative;z-index:1}
+.about-kicker{margin-bottom:10px;color:#aab0c4;font:700 .74rem var(--display);letter-spacing:.16em;text-transform:uppercase}
 .about h2{margin-bottom:14px;font:800 clamp(1.45rem,4.6vw,1.95rem)/1.15 var(--display);letter-spacing:-.02em}
-.about p{max-width:62ch;color:#c9d0e6}
+.about p{max-width:62ch;color:#c9cbd1}
 .about p+p{margin-top:10px}
+.about-art{display:block;width:100%;max-height:235px;object-fit:contain;object-position:right center;filter:drop-shadow(0 18px 22px rgba(0,0,0,.16))}
 .about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
-.about-tags li{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid rgba(160,175,220,.25);background:rgba(91,134,255,.1);color:#dfe7ff;font:600 .88rem var(--display)}
-.about-tags li::before{content:"";width:6px;height:6px;border-radius:50%;background:#7ea0ff;box-shadow:0 0 8px rgba(126,160,255,.85)}
-.about-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#bcd0ff;font:700 .95rem var(--display);text-decoration:none;transition:color .3s,gap .4s var(--ease)}
+.about-tags li{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.055);color:#e2e3e7;font:600 .88rem var(--display)}
+.about-tags li::before{content:"";width:6px;height:6px;border-radius:50%;background:#d8dbe3}
+.about-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#e4e5e9;font:700 .95rem var(--display);text-decoration:none;transition:color .3s,gap .4s var(--ease)}
 .about-link:hover{color:#fff;gap:12px}
+@media (max-width:640px){.about{grid-template-columns:minmax(0,1fr)}.about-art{grid-row:1;width:min(100%,390px);height:150px;justify-self:end;object-position:right center;margin-bottom:-12px}}
 
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
@@ -453,14 +459,17 @@ a.rerun[hidden]{display:none}
 
   <!-- About me: opens from the button under the profile picture. Edit the wording here. -->
   <section class="about" id="about-panel" aria-labelledby="about-title" hidden>
-    <p class="about-kicker">About me</p>
-    <h2 id="about-title">Hard-working, dependable, and community first.</h2>
-    <p>I’m Zaynox, a Roblox community staff member and QA tester. I’ve been on Roblox since 2017, and I love helping communities grow, whether that’s leading Helper teams, keeping players safe, or testing games so they launch better.</p>
-    <p>I take the work seriously and put in the effort to do it properly. I’m reliable, I communicate clearly, and I aim to leave every community better than I found it.</p>
-    <ul class="about-tags" aria-label="Strengths">
-      <li>Hard working</li><li>Reliable</li><li>Community focused</li><li>Clear communicator</li><li>Detail oriented</li>
-    </ul>
-    <a class="about-link" href="#games">See my experience <span aria-hidden="true">↓</span></a>
+    <div class="about-copy">
+      <p class="about-kicker">About me</p>
+      <h2 id="about-title">Good work comes from focus.</h2>
+      <p>I’m Zaynox, a Roblox community staff member and QA tester. I’ve been on Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
+      <p>I value quality over quantity. I’d rather give a few communities and projects my full attention than jump between lots of games. I take feedback seriously, follow through, and care about getting the details right.</p>
+      <ul class="about-tags" aria-label="Strengths">
+        <li>Quality focused</li><li>Reliable</li><li>Community minded</li><li>Detail oriented</li>
+      </ul>
+      <a class="about-link" href="#games">See my experience <span aria-hidden="true">↓</span></a>
+    </div>
+    <img class="about-art" src="about-banner.png" alt="Transparent illustration of Zaynox’s Roblox avatar">
   </section>
 
   <div class="stack" id="games">
@@ -589,7 +598,7 @@ a.rerun[hidden]{display:none}
     <ol class="track" id="track" tabindex="0" aria-label="Timeline">
       <li class="reveal" style="--i:0;--r:0"><time>2017</time><h3>Joined Roblox</h3><p>Started out as a player.</p></li>
       <li class="reveal" style="--i:1;--r:1"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></li>
-      <li class="reveal" style="--i:2;--r:2"><h3>Community involvement in Gakuran</h3><p>Became a Helper &amp; got involved with the community.</p></li>
+      <li class="reveal" style="--i:2;--r:2"><h3>Became a Helper</h3><p>Became involved in the Gakuran community.</p></li>
       <li class="reveal" style="--i:3;--r:3"><h3>Promoted to Staff &amp; Helper Management</h3></li>
       <li class="reveal" style="--i:4;--r:4"><h3>SAE Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></li>
       <li class="reveal now" style="--i:5;--r:5"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></li>
