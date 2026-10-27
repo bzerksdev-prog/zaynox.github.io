@@ -351,6 +351,17 @@ a.rerun[hidden]{display:none}
 .about-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#bcd0ff;font:700 .95rem var(--display);text-decoration:none;transition:color .3s,gap .4s var(--ease)}
 .about-link:hover{color:#fff;gap:12px}
 
+/* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.brand-mark{display:block;flex:none;width:40px;height:40px;overflow:visible;transition:filter .5s var(--ease),transform .6s var(--ease)}
+.brand:hover .brand-mark{filter:drop-shadow(0 0 9px rgba(110,150,255,.65));transform:scale(1.05)}
+.brand-word{font:600 1.02rem/1 var(--display);letter-spacing:.24em;text-indent:.02em;color:#eef2ff}
+.foot-logo.brand .brand-mark{width:34px;height:34px}
+.foot-logo.brand .brand-word{font-size:.92rem}
+@media (max-width:860px){.dc-hint{display:none}}
+@media (max-width:520px){.brand{gap:9px}.brand-mark{width:30px;height:30px}.brand-word{font-size:.8rem;letter-spacing:.18em}}
+@media (max-width:400px){.logo.brand .brand-word{display:none}}
+
 /* Live data, card effects and site controls */
 .stat[hidden],.sep[hidden],.pill[hidden],.dsc-activity[hidden]{display:none}
 .banner .shots{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .7s var(--ease);pointer-events:none}
@@ -386,11 +397,21 @@ a.rerun[hidden]{display:none}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="zgRing" x1="6" y1="4" x2="34" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#a9c1ff"/><stop offset=".6" stop-color="#5b86ff"/><stop offset="1" stop-color="#3552e0"/></linearGradient>
+    <linearGradient id="zgZ" x1="0" y1="13" x2="0" y2="27" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b8cbff"/></linearGradient>
+    <symbol id="zmark" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18.2" fill="rgba(91,134,255,.07)" stroke="url(#zgRing)" stroke-width="1.4"/>
+      <path d="M12.5 13.6H27.5L12.5 26.4H27.5" fill="none" stroke="url(#zgZ)" stroke-width="2.5" stroke-linejoin="miter" stroke-miterlimit="6" stroke-linecap="butt"/>
+    </symbol>
+  </defs>
+</svg>
 <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
 <canvas class="sky" id="sky" aria-hidden="true"></canvas>
 <header class="hdr" id="hdr">
   <div class="hdr-in">
-    <a class="logo" href="#top" aria-label="Zaynox, back to top"><img src="zaynox-logo.png" alt="Zaynox"></a>
+    <a class="logo brand" href="#top" aria-label="Zaynox, back to top"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg><span class="brand-word">ZAYNOX</span></a>
     <nav class="nav" aria-label="Sections">
       <span class="ind" aria-hidden="true"></span>
       <a href="#top" class="on">Home</a><a href="#games">Games</a><a href="#qa">QA</a><a href="#timeline">Timeline</a><a href="#me">Me</a>
@@ -620,7 +641,7 @@ a.rerun[hidden]{display:none}
 
 <footer class="foot">
   <div class="foot-in">
-    <a class="foot-logo" href="#top" aria-label="Zaynox, back to top"><img src="zaynox-logo.png" alt="Zaynox"></a>
+    <a class="foot-logo brand" href="#top" aria-label="Zaynox, back to top"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg><span class="brand-word">ZAYNOX</span></a>
     <a class="totop" href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </div>
   <p class="legal">A personal portfolio. Game names, logos and trademarks belong to their respective owners. Not affiliated with Roblox Corporation.</p>
