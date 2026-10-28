@@ -605,16 +605,45 @@ a.rerun[hidden]{display:none}
 .brand-intro-core{position:relative;display:grid;place-items:center;width:68px;height:68px}
 .brand-intro-mark{display:block;width:58px;height:58px;opacity:0;filter:drop-shadow(0 0 22px rgba(91,134,255,.48));animation:introMarkIn .62s cubic-bezier(.18,.78,.25,1) .25s both}
 .brand-intro-dot{position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px rgba(160,190,255,.88),0 0 34px 8px rgba(74,111,255,.55);opacity:0;transform:translate(-50%,-50%);animation:introDotBloom .82s cubic-bezier(.2,.7,.25,1) both}
-.brand-intro-word{color:#f4f6ff;font:700 .72rem/1 var(--display);letter-spacing:.28em;text-indent:.28em;opacity:0;filter:blur(5px);transform:translateY(7px);animation:introWordIn .42s ease-out .52s both}
+.brand-intro-word{color:#f4f6ff;font:700 .94rem/1 var(--display);letter-spacing:.18em;text-indent:.18em;opacity:0;filter:blur(5px);transform:translateY(7px);animation:introWordIn .42s ease-out .52s both}
 @keyframes introDotBloom{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}16%{opacity:1}62%{opacity:.7;transform:translate(-50%,-50%) scale(1.6)}100%{opacity:0;transform:translate(-50%,-50%) scale(10)}}
 @keyframes introMarkIn{0%{opacity:0;transform:scale(.62) rotate(-12deg);filter:blur(8px) drop-shadow(0 0 0 transparent)}100%{opacity:1;transform:scale(1) rotate(0);filter:drop-shadow(0 0 22px rgba(91,134,255,.48))}}
 @keyframes introWordIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
 @keyframes introHalo{0%{opacity:0;transform:scale(.7)}35%{opacity:1}100%{opacity:.45;transform:scale(1.2)}}
 @keyframes introVeilOut{to{opacity:0;visibility:hidden}}
-@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .26s linear .56s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
+@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .34s linear .98s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
 @keyframes introDotReduced{0%,100%{opacity:0}35%{opacity:1}}
 @keyframes introMarkReduced{from{opacity:0}to{opacity:1}}
 @keyframes introWordReduced{from{opacity:0}to{opacity:1}}
+
+/* About section inspired by an editorial profile layout, using site colors and concise highlights. */
+.about-section-head{max-width:760px;margin:0 auto 28px;text-align:center}
+.about-section-kicker{display:inline-flex;align-items:center;gap:10px;color:#a9bdff;font:700 .74rem/1 var(--display);letter-spacing:.2em;text-transform:uppercase}
+.about-section-kicker::before{content:"";width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,#6f91ff,#c8d7ff);box-shadow:0 0 12px rgba(108,143,255,.55)}
+.about-section-head h2{margin:12px 0 8px;color:#f4f6ff;font:800 clamp(2rem,4vw,3.15rem)/1 var(--display);letter-spacing:-.045em}
+.about-section-head p{margin:0;color:#aeb8d1;font-size:clamp(.96rem,1.3vw,1.05rem)}
+.about{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);align-items:center;gap:clamp(22px,3.6vw,44px);width:min(1120px,calc(100vw - 48px));min-height:0;margin:0 auto;padding:clamp(26px,4vw,46px);border-color:rgba(170,190,255,.2);background:radial-gradient(ellipse at 82% 48%,rgba(60,88,190,.14),transparent 42%),linear-gradient(145deg,rgba(14,17,31,.96),rgba(9,12,22,.94))}
+.about-copy{width:100%;max-width:none;text-shadow:none}
+.about-eyebrow{margin-bottom:14px;color:#a9bdff}
+.about-headline{max-width:17ch;margin:0;color:#f5f7ff;font:800 clamp(2rem,3.45vw,3.3rem)/.98 var(--display);letter-spacing:-.055em;text-shadow:0 5px 30px rgba(76,115,255,.2)}
+.about-lead{max-width:45ch;margin:14px 0 0;color:#cbd3e8;font-size:1rem;line-height:1.6}
+.about-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:18px}
+.about-stats>div{min-height:65px;padding:11px 13px;border:1px solid rgba(170,190,255,.15);border-radius:13px;background:rgba(255,255,255,.035)}
+.about-stats span{display:block;margin-bottom:6px;color:#95a2c4;font:700 .62rem/1 var(--display);letter-spacing:.12em}
+.about-stats strong{display:block;color:#f0f3ff;font:700 .9rem/1.2 var(--display)}
+.about-points{gap:8px;margin-top:14px}
+.about-points li{min-width:0;padding:11px 11px 12px;border-radius:14px;background:linear-gradient(155deg,rgba(111,141,255,.1),rgba(255,255,255,.025))}
+.about-points li svg{width:20px;height:20px;margin-bottom:7px}
+.about-points li b{display:block;margin-bottom:3px;font-size:.79rem}
+.about-points li span{display:block;color:#aeb8d1;font-size:.72rem;line-height:1.35}
+.about-contact-trigger{margin-top:17px}
+.about-art-wrap{position:relative;grid-column:2;grid-row:1;top:auto;right:auto;bottom:auto;width:100%;height:auto;min-height:300px;aspect-ratio:1.48;transform:none;overflow:hidden;border:1px solid rgba(177,197,255,.22);border-radius:22px;background:radial-gradient(ellipse at 77% 46%,rgba(74,105,236,.3),transparent 58%),linear-gradient(145deg,rgba(31,39,79,.74),rgba(11,14,27,.9));box-shadow:inset 0 1px rgba(255,255,255,.08),0 24px 48px -32px #000}
+.about-art-wrap::before{inset:0;border-radius:inherit;background:radial-gradient(circle at 82% 17%,rgba(255,255,255,.85) 0 1px,transparent 1.8px),radial-gradient(circle at 26% 31%,rgba(184,205,255,.58) 0 1px,transparent 1.7px),radial-gradient(ellipse at 75% 70%,rgba(72,104,255,.18),transparent 60%);filter:none}
+.about-art{position:absolute;z-index:1;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:right center;transform:scale(1.015);-webkit-mask-image:none;mask-image:none;filter:drop-shadow(0 20px 26px rgba(0,0,0,.4))}
+.about-art-wrap::after{z-index:3;top:-10%;bottom:-10%;left:-72%;width:62%;filter:blur(12px)}
+@media(max-width:860px){.about{grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);gap:22px}.about-points{grid-template-columns:1fr}.about-points li{display:grid;grid-template-columns:23px 1fr;column-gap:9px;align-items:center}.about-points li svg{grid-row:span 2;margin:0}.about-points li b{margin:0}.about-points li span{grid-column:2}.about-art-wrap{min-height:270px}}
+@media(max-width:640px){.about-section-head{margin-bottom:20px}.about{grid-template-columns:1fr;gap:17px;width:calc(100vw - 32px);padding:18px;margin:0 auto}.about-art-wrap{grid-column:1;grid-row:1;width:100%;min-height:0;aspect-ratio:1.65}.about-copy{grid-column:1;grid-row:2}.about-headline{max-width:14ch;font-size:clamp(2rem,9vw,2.65rem)}.about-stats{gap:7px}.about-stats>div{padding:10px}.about-points{grid-template-columns:1fr}.about-points li{display:grid}}
+@media(prefers-reduced-motion:reduce){.about{animation:none;transition:none}.about-points li{transition:none}}
 </style>
 </head>
 <body>
@@ -627,23 +656,33 @@ a.rerun[hidden]{display:none}
     </symbol>
   </defs>
 </svg>
-<div class="brand-intro" id="brand-intro" aria-hidden="true">
-  <div class="brand-intro-lockup">
-    <div class="brand-intro-core">
-      <span class="brand-intro-dot"></span>
-      <svg class="brand-intro-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg>
+<template id="brand-intro-template">
+  <div class="brand-intro" id="brand-intro" aria-hidden="true">
+    <div class="brand-intro-lockup">
+      <div class="brand-intro-core">
+        <span class="brand-intro-dot"></span>
+        <svg class="brand-intro-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg>
+      </div>
+      <span class="brand-intro-word">Zaynox</span>
     </div>
-    <span class="brand-intro-word">ZAYNOX</span>
   </div>
-</div>
+</template>
 <script>
 (function(){
-  var intro=document.getElementById("brand-intro");
-  if(!intro)return;
-  intro.addEventListener("animationend",function(event){
-    if(event.target===intro&&event.animationName==="introVeilOut")intro.remove();
-  });
-  window.setTimeout(function(){if(intro.isConnected)intro.remove();},1900);
+  var template=document.getElementById("brand-intro-template");
+  if(!template)return;
+  function playIntro(){
+    var old=document.getElementById("brand-intro");
+    if(old)old.remove();
+    var intro=template.content.firstElementChild.cloneNode(true);
+    template.parentNode.insertBefore(intro,template.nextSibling);
+    intro.addEventListener("animationend",function(event){
+      if(event.target===intro&&event.animationName==="introVeilOut")intro.remove();
+    });
+    window.setTimeout(function(){if(intro.isConnected)intro.remove();},1900);
+  }
+  playIntro();
+  window.addEventListener("pageshow",function(event){if(event.persisted)playIntro();});
 })();
 </script>
 <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
@@ -817,12 +856,20 @@ a.rerun[hidden]{display:none}
 
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
-    <!-- About me -->
+    <header class="about-section-head reveal">
+      <span class="about-section-kicker">About me</span>
+      <h2>A little about me</h2>
+      <p>Roblox player · Community manager · QA tester</p>
+    </header>
     <article class="about reveal" aria-labelledby="about-title"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
-        <span class="about-eyebrow">About me</span>
-        <h2 class="about-headline" id="about-title">I enjoy <span>leading</span> communities.</h2>
-        <p class="about-lead">I focus on a few communities, value quality over quantity, and enjoy helping their teams create a better player experience.</p>
+        <span class="about-eyebrow">What matters to me</span>
+        <h3 class="about-headline" id="about-title">Good communities are <span>built together.</span></h3>
+        <p class="about-lead">I focus on a few communities, value quality over quantity, and help their teams create a better player experience.</p>
+        <div class="about-stats" aria-label="A little more about me">
+          <div><span>ON ROBLOX</span><strong>Since 2017</strong></div>
+          <div><span>MY APPROACH</span><strong>Quality over quantity</strong></div>
+        </div>
         <ul class="about-points" aria-label="What I do">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.5-3.8 3-5.8 6.2-5.8s5.7 2 6.2 5.8M16 5.2a3.4 3.4 0 0 1 0 6.4M18.4 14.6c1.8.7 2.9 2.6 3.2 5.4"/></svg>
@@ -845,7 +892,6 @@ a.rerun[hidden]{display:none}
       </div>
       <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
     </article>
-
   </section>
 </main>
 
