@@ -592,6 +592,47 @@ a.rerun[hidden]{display:none}
 .qa-card:hover .qa-icon-wrap::after{animation:pictureGleam 1.25s cubic-bezier(.2,.72,.25,1) both}
 @media(prefers-reduced-motion:reduce){.about:hover .about-art-wrap::after,.card:hover .banner::before,.qa-card:hover .qa-icon-wrap::after{animation:none!important;opacity:0!important}}
 
+
+/* Framed artwork with feathered top and bottom edges so the character crop feels intentional. */
+.about-art-wrap{top:48%;right:-1%;width:75%;height:116%;overflow:visible}
+.about-art-wrap::before{content:"";position:absolute;z-index:0;inset:14% 4% 10% 16%;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse at 70% 48%,rgba(89,119,255,.28),rgba(79,90,190,.12) 38%,transparent 72%);filter:blur(24px)}
+.about-art{position:absolute;z-index:1;top:50%;right:0;left:auto;width:120%;height:100%;max-width:none;object-fit:contain;object-position:right center;transform:translateY(-50%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent</svg>
+<div class="brand-intro" id="brand-intro" aria-hidden="true">
+  <div class="brand-intro-lockup">
+    <div class="brand-intro-core">
+      <span class="brand-intro-dot"></span>
+      <svg class="brand-intro-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg>
+    </div>
+    <span class="brand-intro-word">ZAYNOX</span>
+  </div>
+</div>
+<script>
+(function(){
+  var intro=document.getElementById("brand-intro");
+  if(!intro)return;
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){intro.remove();return;}
+  intro.addEventListener("animationend",function(event){
+    if(event.target===intro&&event.animationName==="introVeilOut")intro.remove();
+  });
+  window.setTimeout(function(){if(intro.isConnected)intro.remove();},1900);
+})();
+</script>
+<div class="custom-cursor"to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%)}
+@media(max-width:640px){.about-art-wrap{top:0;right:0;width:100%;height:64%;transform:none}.about-art-wrap::before{inset:8% 4% 0 18%;filter:blur(20px)}.about-art{top:0;right:-4%;width:118%;height:100%;transform:none;object-position:right center}}
+
+.brand-intro{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;overflow:hidden;pointer-events:none;background:rgba(4,6,14,.94);-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);animation:introVeilOut .48s cubic-bezier(.65,0,.35,1) .98s both}
+.brand-intro::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 48%,rgba(80,112,255,.18),transparent 22%);animation:introHalo .95s ease-out .05s both}
+.brand-intro-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px}
+.brand-intro-core{position:relative;display:grid;place-items:center;width:68px;height:68px}
+.brand-intro-mark{display:block;width:58px;height:58px;opacity:0;filter:drop-shadow(0 0 22px rgba(91,134,255,.48));animation:introMarkIn .62s cubic-bezier(.18,.78,.25,1) .25s both}
+.brand-intro-dot{position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px rgba(160,190,255,.88),0 0 34px 8px rgba(74,111,255,.55);opacity:0;transform:translate(-50%,-50%);animation:introDotBloom .82s cubic-bezier(.2,.7,.25,1) both}
+.brand-intro-word{color:#f4f6ff;font:700 .72rem/1 var(--display);letter-spacing:.28em;text-indent:.28em;opacity:0;filter:blur(5px);transform:translateY(7px);animation:introWordIn .42s ease-out .52s both}
+@keyframes introDotBloom{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}16%{opacity:1}62%{opacity:.7;transform:translate(-50%,-50%) scale(1.6)}100%{opacity:0;transform:translate(-50%,-50%) scale(10)}}
+@keyframes introMarkIn{0%{opacity:0;transform:scale(.62) rotate(-12deg);filter:blur(8px) drop-shadow(0 0 0 transparent)}100%{opacity:1;transform:scale(1) rotate(0);filter:drop-shadow(0 0 22px rgba(91,134,255,.48))}}
+@keyframes introWordIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes introHalo{0%{opacity:0;transform:scale(.7)}35%{opacity:1}100%{opacity:.45;transform:scale(1.2)}}
+@keyframes introVeilOut{to{opacity:0;visibility:hidden}}
+@media(prefers-reduced-motion:reduce){.brand-intro{display:none;animation:none}.brand-intro *{animation:none}}
 </style>
 </head>
 <body>
