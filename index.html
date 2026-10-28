@@ -328,30 +328,27 @@ a.rerun[hidden]{display:none}
   .hdr-in{display:flex;justify-content:space-between;gap:6px;padding:0 8px 0 16px}.logo img{height:23px}.dc-hint{display:none}.dc-btn{width:34px;height:34px}.nav{flex:0 1 auto;gap:0;padding:2px}.nav a{padding:6px 8px;font-size:.78rem}.nav a[href="#top"]{display:none}.pills{width:100%}
 }
 
-/* About me button (under the profile picture) and its panel */
-.pfp-wrap{display:flex;flex-direction:column;align-items:center;gap:26px}
-.pfp-wrap::after{bottom:92px}
-.about-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:9px 18px 9px 10px;border-radius:999px;border:1px solid rgba(160,175,220,.3);background:linear-gradient(135deg,rgba(91,134,255,.2),rgba(255,255,255,.045));color:var(--text);font:700 .98rem var(--display);cursor:pointer;box-shadow:0 14px 34px -22px rgba(91,134,255,.8);transition:transform .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease)}
-.about-btn:hover{transform:translateY(-3px);border-color:rgba(120,157,255,.65);background:linear-gradient(135deg,rgba(91,134,255,.32),rgba(255,255,255,.06));box-shadow:0 18px 38px -20px rgba(91,134,255,.95)}
-.about-btn:active{transform:translateY(-1px)}
-.ab-ico{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(91,134,255,.25);color:#d3e0ff}
-.ab-ico svg{width:16px;height:16px}
-.ab-chev{width:15px;height:15px;margin-left:2px;color:#b9c9f3;transition:transform .45s var(--ease)}
-.about-btn[aria-expanded="true"] .ab-chev{transform:rotate(180deg)}
+/* About me and illustrated banner */
+.pfp-wrap{display:flex;flex-direction:column;align-items:center;gap:0}
+.pfp-wrap::after{bottom:14px}
 .about{position:relative;display:flex;align-items:center;min-height:clamp(350px,40vw,460px);width:min(1020px,calc(100vw - 48px));margin-left:calc((100% - min(1020px,calc(100vw - 48px)))/2);padding:clamp(30px,5vw,54px);border:1px solid rgba(255,255,255,.13);border-radius:22px;overflow:hidden;background:radial-gradient(ellipse at 82% 54%,rgba(45,79,224,.13),transparent 43%),linear-gradient(145deg,rgba(16,17,22,.94),rgba(16,17,22,.84));box-shadow:0 24px 50px -30px #000;animation:experienceReveal .6s var(--ease) both}
-.about[hidden]{display:none}
 .about::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);opacity:.75}
 .about::after{content:"";position:absolute;z-index:0;inset:0 0 0 auto;width:74%;pointer-events:none;background:radial-gradient(circle at 70% 19%,rgba(255,255,255,.7) 0 1px,transparent 1.7px),radial-gradient(circle at 84% 66%,rgba(206,220,255,.55) 0 1px,transparent 1.7px),radial-gradient(circle at 94% 36%,rgba(255,255,255,.5) 0 1px,transparent 1.6px),radial-gradient(circle at 59% 82%,rgba(230,232,255,.4) 0 1px,transparent 1.6px)}
 .about-copy{position:relative;z-index:2;width:min(54%,560px);text-shadow:0 2px 14px rgba(0,0,0,.62)}
 .about p{max-width:54ch;color:#eef0f6;font-size:clamp(1.02rem,1.45vw,1.15rem);line-height:1.65}
 .about p+p{margin-top:18px;color:#cdd2e3;font-size:clamp(.96rem,1.3vw,1.05rem)}
+.about-links{position:relative;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px}
+.about-profile{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid rgba(120,157,255,.32);border-radius:999px;background:rgba(91,134,255,.15);color:var(--text);font:700 .88rem var(--display);text-decoration:none;transition:transform .3s var(--ease),border-color .3s,background .3s}
+.about-profile:hover{transform:translateY(-2px);border-color:rgba(150,180,255,.65);background:rgba(91,134,255,.24)}
+.about-pill{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border:1px solid rgba(255,255,255,.11);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:.78rem;white-space:nowrap}
+.about-pill b{color:var(--text);font-variant-numeric:tabular-nums}
 .about-art-wrap{position:absolute;z-index:1;right:0;top:50%;width:73%;height:100%;transform:translateY(-50%);overflow:hidden}
 .about-art-wrap::after{content:"";position:absolute;top:-18%;bottom:-18%;left:-24%;width:14%;pointer-events:none;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.9) 50%,transparent 100%);transform:skewX(-24deg);opacity:0}
 .about-art-wrap:hover::after{animation:aboutPhotoShine 1.15s ease-out}
 .about-art{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:right center;filter:drop-shadow(0 18px 22px rgba(0,0,0,.24))}
 @keyframes aboutPhotoShine{0%{left:-24%;opacity:0}12%{opacity:1}100%{left:125%;opacity:0}}
 @media (max-width:640px){.about{width:calc(100vw - 32px);min-height:560px;margin-left:0;align-items:flex-end;padding:26px}.about-copy{width:100%;padding-top:190px}.about-art-wrap{top:0;right:0;width:100%;height:58%;transform:none;border-radius:22px 22px 0 0}.about-art{object-position:85% center}.about p{font-size:1.08rem}.about p+p{font-size:.98rem}}
-@media (prefers-reduced-motion:reduce){.about-art-wrap:hover::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.about-art-wrap:hover::after{animation:none}.about-profile{transition:none}}
 
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
@@ -445,22 +442,11 @@ a.rerun[hidden]{display:none}
     </div>
     <div class="pfp-wrap">
       <div class="pfp-frame"><img class="pfp" src="pfp.png" alt="Zaynox’s avatar: a blue and white Roblox character with a red button on its hat"></div>
-      <button class="about-btn" id="about-btn" type="button" aria-expanded="false" aria-controls="about-panel">
-        <span class="ab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.6 20.2c.7-3.9 3.7-6 7.4-6s6.7 2.1 7.4 6"/></svg></span>
-        <span>About me</span>
-        <svg class="ab-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
     </div>
   </header>
 
   <!-- About me: opens from the button under the profile picture. Edit the wording here. -->
-  <section class="about" id="about-panel" aria-label="About Zaynox" hidden>
-    <div class="about-copy">
-      <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
-      <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
-    </div>
-    <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
-  </section>
+
 
   <div class="stack" id="games">
 
@@ -592,16 +578,21 @@ a.rerun[hidden]{display:none}
   </section>
 
   <!-- Profile -->
-  <section class="sec" id="me" aria-label="My profiles">
+  <section class="sec" id="me" aria-label="About me and my profiles">
     <!-- Set the Roblox link in ROBLOX_URL (see the script). -->
-    <a class="me reveal" href="#" data-link="roblox" aria-label="Zaynox on Roblox">
-      <div class="me-top">
-        <span class="rbx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/></svg></span>
-        <span class="me-name">@thekillerfr06</span>
-        <span class="pills"><span class="pill"><b data-live="followers">5.5k</b>followers</span><span class="pill"><b data-live="friends">43</b>friends</span><span class="pill" data-live-group hidden><b>0</b>group members</span></span>
+    <article class="about reveal" aria-label="About Zaynox">
+      <div class="about-copy">
+        <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
+        <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
+        <div class="about-links" aria-label="Roblox profile details">
+          <a class="about-profile" href="#" data-link="roblox">View my Roblox profile <span aria-hidden="true">↗</span></a>
+          <span class="about-pill"><b data-live="followers">5.5k</b> followers</span>
+          <span class="about-pill"><b data-live="friends">43</b> friends</span>
+          <span class="about-pill" data-live-group hidden><b>0</b> group members</span>
+        </div>
       </div>
-      <div class="me-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar"><span class="me-hint" aria-hidden="true">Drag to rotate</span></div>
-    </a>
+      <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
+    </article>
 
     <div class="dsc reveal" style="--r:1" data-status="online">
       <div class="dsc-banner" aria-hidden="true">
@@ -710,22 +701,7 @@ experienceToggle.addEventListener("click", function () {
   experiencePanel.hidden = open;
 });
 
-// About me: the button under the profile picture opens a short bio panel.
-(function () {
-  var btn = document.getElementById("about-btn"), panel = document.getElementById("about-panel");
-  if (!btn || !panel) return;
-  function setOpen(open) {
-    btn.setAttribute("aria-expanded", String(open));
-    panel.hidden = !open;
-    if (open && panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }
-  btn.addEventListener("click", function () { setOpen(btn.getAttribute("aria-expanded") !== "true"); });
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !panel.hidden && (panel.contains(document.activeElement) || document.activeElement === btn)) {
-      setOpen(false); btn.focus();
-    }
-  });
-})();
+// The About section lives alongside the profile links in the Me section.
 
 // Stats count up once.
 function countUp(el) {
