@@ -351,26 +351,42 @@ a.rerun[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){.about-art-wrap:hover::after{animation:none}.about-profile{transition:none}}
 
 
-/* Compact About Me launcher and accessible modal. */
-.about-launch{display:flex;align-items:center;gap:15px;width:100%;max-width:460px;min-height:88px;margin:0 auto 18px;padding:17px 20px;border:1px solid rgba(160,175,220,.2);border-radius:22px;background:linear-gradient(135deg,rgba(21,24,36,.9),rgba(14,16,24,.82));color:var(--text);text-align:left;cursor:pointer;box-shadow:0 20px 48px -34px #000;transition:transform .55s var(--ease),border-color .45s var(--ease),background .45s var(--ease),box-shadow .55s var(--ease)}
-.about-launch:hover{transform:translateY(-4px);border-color:rgba(120,157,255,.52);background:linear-gradient(135deg,rgba(34,42,68,.92),rgba(16,18,28,.9));box-shadow:0 24px 54px -34px rgba(45,79,224,.55)}
-.about-launch-icon{display:grid;place-items:center;width:46px;height:46px;flex:none;border:1px solid rgba(145,173,255,.28);border-radius:15px;background:rgba(91,134,255,.12);color:#c8d7ff;font-size:1.3rem}
-.about-launch-copy{display:grid;gap:3px;flex:1;min-width:0}
-.about-launch-copy strong{font:700 1.12rem var(--display)}
-.about-launch-copy span{color:var(--muted);font-size:.86rem}
-.about-launch-arrow{color:#a9bdff;font-size:1.2rem;transition:transform .35s var(--ease)}
-.about-launch:hover .about-launch-arrow{transform:translate(2px,-2px)}
-.about-dialog{position:fixed;inset:0;width:min(860px,calc(100% - 32px));max-width:none;max-height:min(88vh,760px);margin:auto;padding:28px;border:1px solid rgba(160,175,220,.25);border-radius:26px;overflow:auto;background:linear-gradient(145deg,rgba(20,23,36,.98),rgba(9,11,18,.98));color:var(--text);box-shadow:0 35px 100px -28px #000}
-.about-dialog::backdrop{background:rgba(3,4,10,.76);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
-.about-dialog[open]{animation:zxFade .24s var(--ease) both}
-.about-dialog h2{font:700 1.65rem/1.2 var(--display);letter-spacing:-.02em;margin:0 46px 18px 2px}
-.about-close{position:absolute;top:20px;right:20px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.06);color:var(--text);font-size:1.45rem;line-height:1;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
-.about-close:hover{transform:rotate(90deg);background:rgba(91,134,255,.18);border-color:rgba(120,157,255,.5)}
-.about-dialog .about{width:100%;min-height:390px;margin:0;padding:clamp(24px,4vw,42px)}
-.about-dialog .about-copy{width:min(58%,560px)}
-.about-dialog .about-art-wrap{width:68%}
-@media (max-width:640px){.about-dialog{padding:22px 16px 16px;border-radius:22px}.about-dialog h2{font-size:1.45rem;margin-bottom:14px}.about-dialog .about{display:flex;flex-direction:column;align-items:stretch;width:100%;min-height:0;padding:22px}.about-dialog .about-copy{order:2;width:100%;padding:0}.about-dialog .about-art-wrap{position:relative;order:1;top:auto;right:auto;width:calc(100% + 44px);height:210px;margin:-22px -22px 18px;transform:none;border-radius:20px 20px 0 0}.about-dialog .about-art{object-fit:contain;object-position:center}}
-@media (prefers-reduced-motion:reduce){.about-launch,.about-close,.about-launch-arrow{transition:none}.about-dialog[open]{animation:none}}
+/* About art card and Discord contact popup. */
+.contact-trigger{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 15px;border:1px solid rgba(120,157,255,.36);border-radius:14px;background:linear-gradient(135deg,rgba(91,134,255,.19),rgba(91,134,255,.08));color:#e8edff;font:700 .88rem var(--display);cursor:pointer;white-space:nowrap;transition:transform .35s var(--ease),border-color .35s,background .35s,box-shadow .35s}
+.contact-trigger:hover{transform:translateY(-3px);border-color:rgba(160,185,255,.72);background:rgba(91,134,255,.24);box-shadow:0 10px 28px -18px #5b86ff}
+.contact-trigger>span:last-child{color:#afc3ff}
+.contact-trigger-dot{width:7px;height:7px;border-radius:50%;background:#8dd9a4;box-shadow:0 0 10px rgba(141,217,164,.75);animation:contactPulse 2.8s ease-in-out infinite}
+@keyframes contactPulse{50%{box-shadow:0 0 0 5px rgba(141,217,164,.08);opacity:.7}}
+.about{width:100%;min-height:clamp(370px,42vw,430px);margin:0;padding:clamp(28px,4vw,48px);border-color:rgba(160,175,220,.2);background:radial-gradient(ellipse at 86% 42%,rgba(45,79,224,.16),transparent 42%),linear-gradient(145deg,rgba(17,19,29,.94),rgba(12,14,22,.9));}
+.about::after{width:80%;background-image:radial-gradient(circle at 68% 18%,rgba(255,255,255,.78) 0 1px,transparent 1.8px),radial-gradient(circle at 79% 66%,rgba(206,220,255,.68) 0 1px,transparent 1.8px),radial-gradient(circle at 94% 36%,rgba(255,255,255,.55) 0 1px,transparent 1.6px),radial-gradient(circle at 59% 82%,rgba(230,232,255,.48) 0 1px,transparent 1.6px);animation:aboutStarDrift 9s ease-in-out infinite alternate}
+@keyframes aboutStarDrift{to{opacity:.48;transform:translate3d(-5px,3px,0)}}
+.about-copy{width:min(59%,460px)}
+.about-eyebrow{display:inline-block;margin-bottom:7px;color:#adc1ff;font:700 .72rem var(--display);letter-spacing:.16em;text-transform:uppercase}
+.about h2{margin:0 0 14px;font:800 clamp(1.7rem,3.2vw,2.2rem)/1.05 var(--display);letter-spacing:-.03em;color:#f2f5ff}
+.about-art-wrap{width:72%}
+.about-art-wrap::after{width:18%;opacity:0;filter:blur(.5px)}
+.about-art-wrap:hover::after{animation:aboutPhotoShine 1.1s ease-out}
+.about-art{filter:drop-shadow(0 18px 26px rgba(0,0,0,.4))}
+.contact-dialog{position:fixed;inset:0;width:min(440px,calc(100% - 32px));max-width:none;max-height:min(85vh,620px);margin:auto;padding:32px;border:1px solid rgba(160,175,220,.25);border-radius:26px;background:linear-gradient(145deg,rgba(20,23,36,.98),rgba(9,11,18,.98));color:var(--text);box-shadow:0 35px 100px -28px #000;overflow:auto}
+.contact-dialog::backdrop{background:rgba(3,4,10,.76);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
+.contact-dialog[open]{animation:contactPop .32s var(--ease) both}
+@keyframes contactPop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.contact-close{position:absolute;top:18px;right:18px;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.06);color:var(--text);font-size:1.35rem;cursor:pointer}
+.contact-eyebrow{display:block;margin:2px 40px 7px 0;color:#a9bdff;font:700 .7rem var(--display);letter-spacing:.17em}
+.contact-dialog h2{margin:0 42px 22px 0;font:800 1.65rem/1.1 var(--display);letter-spacing:-.03em}
+.contact-profile{display:flex;align-items:center;gap:16px;padding:18px;border:1px solid rgba(160,175,220,.16);border-radius:19px;background:linear-gradient(135deg,rgba(91,134,255,.1),rgba(255,255,255,.025))}
+.contact-avatar{width:76px;height:76px;flex:none;border-radius:50%;object-fit:cover;border:2px solid rgba(130,163,255,.6);box-shadow:0 0 0 5px rgba(91,134,255,.12)}
+.contact-profile-info{display:grid;gap:4px;min-width:0}
+.contact-profile-info strong{font:800 1.2rem var(--display)}
+.contact-profile-info>span{color:#bec6dc;font-size:.9rem}
+.contact-profile-info small{display:flex;align-items:center;gap:7px;margin-top:4px;color:#a6dcb5;font-size:.78rem}
+.contact-profile-info small i{width:7px;height:7px;border-radius:50%;background:#8dd9a4;box-shadow:0 0 8px rgba(141,217,164,.65)}
+.contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.contact-copy,.contact-open-profile{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;border:1px solid rgba(160,175,220,.25);border-radius:13px;background:rgba(255,255,255,.05);color:var(--text);font:700 .85rem var(--display);text-align:center;text-decoration:none;cursor:pointer;transition:transform .3s var(--ease),border-color .3s,background .3s}
+.contact-copy{background:linear-gradient(135deg,#3f66f2,#2a49d8);border-color:rgba(155,180,255,.5)}
+.contact-copy:hover,.contact-open-profile:hover{transform:translateY(-2px);border-color:rgba(150,180,255,.65);background-color:rgba(91,134,255,.18)}
+@media(max-width:640px){.about{width:100%;min-height:0;margin:0;align-items:stretch;flex-direction:column;padding:22px}.about-art-wrap{position:relative;order:0;top:auto;right:auto;width:calc(100% + 44px);height:220px;margin:-22px -22px 18px;transform:none;border-radius:22px 22px 0 0}.about-art{object-position:85% center}.about-copy{order:1;width:100%;padding:0}.about h2{font-size:1.85rem}.contact-dialog{padding:26px 20px 20px}.contact-actions{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.contact-trigger,.contact-trigger-dot,.about::after,.about-art-wrap:hover::after,.contact-dialog[open]{animation:none;transition:none}}
 
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
@@ -453,13 +469,16 @@ a.rerun[hidden]{display:none}
     <div>
       <h1><span class="hero-line">I’m</span><span class="hero-line name">Zaynox</span></h1>
       <p class="tagline">Helping communities grow, aspiring manager &amp; experienced Staff.</p>
-      <nav class="links" aria-label="My profiles">
+      <nav class="links" aria-label="My profiles and contact">
         <a href="https://www.roblox.com/communities/179887691/Zaynoxs-World#!/about" target="_blank" rel="noopener" aria-label="Roblox group" title="Roblox group">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/></svg>
         </a>
         <a href="#" aria-label="Twitter profile" title="Twitter">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
         </a>
+        <button class="contact-trigger" id="contact-open" type="button" aria-haspopup="dialog" aria-controls="contact-dialog">
+          <span class="contact-trigger-dot" aria-hidden="true"></span>Let’s get in contact <span aria-hidden="true">↗</span>
+        </button>
       </nav>
     </div>
     <div class="pfp-wrap">
@@ -467,8 +486,23 @@ a.rerun[hidden]{display:none}
     </div>
   </header>
 
-  <!-- About me: opens from the button under the profile picture. Edit the wording here. -->
-
+  <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title">
+    <button class="contact-close" id="contact-close" type="button" aria-label="Close contact popup">×</button>
+    <span class="contact-eyebrow">LET’S CONNECT</span>
+    <h2 id="contact-title">Find me on Discord</h2>
+    <div class="contact-profile">
+      <img src="discord-pfp.jpg" alt="Zaynox’s Discord avatar" class="contact-avatar">
+      <div class="contact-profile-info">
+        <strong>Zaynox</strong>
+        <span>@justcalculatewastaken</span>
+        <small><i aria-hidden="true"></i> Message me on Discord</small>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <button class="contact-copy" id="contact-copy" type="button">Copy username</button>
+      <a class="contact-open-profile" href="https://discord.com/users/649787182348894261" target="_blank" rel="noopener noreferrer">Open Discord profile <span aria-hidden="true">↗</span></a>
+    </div>
+  </dialog>
 
   <div class="stack" id="games">
 
@@ -601,29 +635,22 @@ a.rerun[hidden]{display:none}
 
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
-    <button class="about-launch reveal" id="about-open" type="button" aria-haspopup="dialog" aria-controls="about-dialog">
-      <span class="about-launch-icon" aria-hidden="true">✦</span>
-      <span class="about-launch-copy"><strong>About Me</strong><span>A little about who I am and what I value</span></span>
-      <span class="about-launch-arrow" aria-hidden="true">↗</span>
-    </button>
-
-    <dialog class="about-dialog" id="about-dialog" aria-labelledby="about-title">
-      <button class="about-close" id="about-close" type="button" aria-label="Close About Me">×</button>
-      <h2 id="about-title">About Me</h2>
-      <article class="about" aria-label="About Zaynox">
-        <div class="about-copy">
-          <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
-          <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
-          <div class="about-links" aria-label="Roblox profile details">
-            <a class="about-profile" href="#" data-link="roblox">View my Roblox profile <span aria-hidden="true">↗</span></a>
-            <span class="about-pill"><b data-live="followers">5.5k</b> followers</span>
-            <span class="about-pill"><b data-live="friends">43</b> friends</span>
-            <span class="about-pill" data-live-group hidden><b>0</b> group members</span>
-          </div>
+    <!-- About me -->
+    <article class="about reveal" aria-label="About Zaynox">
+      <div class="about-copy">
+        <span class="about-eyebrow">A little about me</span>
+        <h2>About Me</h2>
+        <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
+        <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
+        <div class="about-links" aria-label="Roblox profile details">
+          <a class="about-profile" href="#" data-link="roblox">View my Roblox profile <span aria-hidden="true">↗</span></a>
+          <span class="about-pill"><b data-live="followers">5.5k</b> followers</span>
+          <span class="about-pill"><b data-live="friends">43</b> friends</span>
+          <span class="about-pill" data-live-group hidden><b>0</b> group members</span>
         </div>
-        <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
-      </article>
-    </dialog>
+      </div>
+      <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
+    </article>
 
     <div class="dsc reveal" style="--r:1" data-status="online">
       <div class="dsc-banner" aria-hidden="true">
@@ -631,7 +658,7 @@ a.rerun[hidden]{display:none}
       </div>
       <div class="dsc-body">
         <div class="dsc-av">
-          <img class="dsc-avatar" src="discord-pfp.png" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
+          <img class="dsc-avatar" src="discord-pfp.jpg" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
           <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
           <span class="dsc-status-dot" id="dsc-dot" aria-label="Online" title="Online"></span>
         </div>
@@ -732,17 +759,34 @@ experienceToggle.addEventListener("click", function () {
   experiencePanel.hidden = open;
 });
 
-// About Me dialog: native dialog behavior handles Escape and focus restoration.
-var aboutDialog = document.getElementById("about-dialog");
-var aboutOpen = document.getElementById("about-open");
-var aboutClose = document.getElementById("about-close");
-if (aboutDialog && aboutOpen && aboutClose) {
-  aboutOpen.addEventListener("click", function () { aboutDialog.showModal(); });
-  aboutClose.addEventListener("click", function () { aboutDialog.close(); });
-  aboutDialog.addEventListener("click", function (event) {
-    if (event.target === aboutDialog) aboutDialog.close();
+// Contact dialog: native dialog provides Escape handling and restores focus.
+var contactDialog = document.getElementById("contact-dialog");
+var contactOpen = document.getElementById("contact-open");
+var contactClose = document.getElementById("contact-close");
+var contactCopy = document.getElementById("contact-copy");
+if (contactDialog && contactOpen && contactClose) {
+  contactOpen.addEventListener("click", function () { contactDialog.showModal(); });
+  contactClose.addEventListener("click", function () { contactDialog.close(); });
+  contactDialog.addEventListener("click", function (event) {
+    if (event.target === contactDialog) contactDialog.close();
   });
 }
+if (contactCopy) contactCopy.addEventListener("click", function () {
+  var username = "justcalculatewastaken";
+  function copied() {
+    contactCopy.textContent = "Copied!";
+    setTimeout(function () { contactCopy.textContent = "Copy username"; }, 1800);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(username).then(copied, function () {});
+  } else {
+    var temporary = document.createElement("textarea");
+    temporary.value = username; temporary.style.position = "fixed"; temporary.style.opacity = "0";
+    document.body.appendChild(temporary); temporary.select();
+    try { if (document.execCommand("copy")) copied(); } catch (e) {}
+    temporary.remove();
+  }
+});
 
 // Stats count up once.
 function countUp(el) {
