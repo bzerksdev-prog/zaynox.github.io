@@ -748,6 +748,30 @@ a.rerun[hidden]{display:none}
 #me .about-contact-trigger .about-contact-label,#me .about-contact-trigger .about-contact-arrow,#me .about-contact-trigger .about-contact-spark{color:#18264b!important;text-shadow:none}
 </style>
 
+
+<style id="profile-and-contact-layout">
+/* Give the transparent portrait the same layered navy-blue surface as the About card. */
+.pfp-frame{background:radial-gradient(ellipse at 28% 55%,rgba(48,75,173,.19),transparent 54%),radial-gradient(ellipse at 83% 40%,rgba(45,79,224,.18),transparent 52%),linear-gradient(145deg,rgba(12,15,28,.97),rgba(10,12,21,.94));border-color:rgba(104,145,255,.78)}
+.pfp-frame .pfp{object-fit:contain;object-position:center 48%;transform:none}
+/* Keep the contact action directly below the three role cards without growing the panel. */
+#me .about{row-gap:10px}
+#me .about-points{grid-row:2;grid-column:1/4}
+#me .about-points li{min-height:74px;display:grid;grid-template-columns:27px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;align-items:center;column-gap:10px;row-gap:2px;padding:11px 13px}
+#me .about-points svg{grid-column:1;grid-row:1/3;width:25px;height:25px}
+#me .about-points b{grid-column:2;grid-row:1;margin:0}
+#me .about-points span{grid-column:2;grid-row:2;font-size:.77rem;line-height:1.3}
+#me .about-contact-trigger{grid-column:1/4;grid-row:3;min-height:56px;justify-content:center;align-self:stretch;width:100%;padding:10px 16px}
+@media(max-width:640px){
+ #me .about{row-gap:8px}
+ #me .about-points{grid-column:1;grid-row:3}
+ #me .about-points li{min-height:0;grid-template-columns:30px 1fr;padding:14px}
+ #me .about-points svg{grid-column:1;grid-row:1/3;width:25px;height:25px}
+ #me .about-points b{grid-column:2;grid-row:1}
+ #me .about-points span{grid-column:2;grid-row:2}
+ #me .about-contact-trigger{grid-column:1;grid-row:4;min-height:58px}
+}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -823,7 +847,7 @@ a.rerun[hidden]{display:none}
       </nav>
     </div>
     <div class="pfp-wrap">
-      <div class="pfp-frame"><img class="pfp" src="pfp.png" alt="Zaynox’s avatar: a blue and white Roblox character with a red button on its hat"></div>
+      <div class="pfp-frame"><img class="pfp" src="profile-portrait.png" alt="Zaynox’s Roblox character wearing a white shirt and blue cap"></div>
     </div>
   </header>
 
