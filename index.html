@@ -355,6 +355,53 @@ a.rerun[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){.about-art-wrap:hover::after{animation:none}.about-profile{transition:none}}
 
 
+/* Contact focused About banner */
+.about{background:radial-gradient(ellipse at 28% 55%,rgba(48,75,173,.19),transparent 48%),radial-gradient(ellipse at 83% 40%,rgba(45,79,224,.18),transparent 43%),linear-gradient(145deg,rgba(12,15,28,.97),rgba(10,12,21,.94))}
+.about::after{width:100%;background-image:radial-gradient(circle at 14% 23%,rgba(255,255,255,.8) 0 1px,transparent 1.9px),radial-gradient(circle at 22% 75%,rgba(206,220,255,.74) 0 1px,transparent 1.8px),radial-gradient(circle at 47% 21%,rgba(255,255,255,.65) 0 1px,transparent 1.8px),radial-gradient(circle at 66% 72%,rgba(206,220,255,.58) 0 1px,transparent 1.8px),radial-gradient(circle at 91% 18%,rgba(255,255,255,.66) 0 1px,transparent 1.7px),radial-gradient(circle at 94% 81%,rgba(230,232,255,.48) 0 1px,transparent 1.6px);animation:aboutStarDrift 9s ease-in-out infinite alternate}
+.about-stars{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.about-stars i{position:absolute;font-style:normal;color:#d7e2ff;text-shadow:0 0 14px rgba(178,202,255,.95);animation:contactPulse 3.6s ease-in-out infinite}
+.about-stars i:nth-child(1){left:9%;top:22%;font-size:1rem}
+.about-stars i:nth-child(2){left:36%;top:19%;font-size:1.4rem;animation-delay:.8s}
+.about-stars i:nth-child(3){left:43%;top:72%;font-size:2rem;animation-delay:1.5s}
+.about-stars i:nth-child(4){left:16%;top:81%;font-size:.85rem;animation-delay:2s}
+.about-stars i:nth-child(5){left:50%;top:38%;font-size:1.1rem;animation-delay:2.4s}
+.about-headline{margin:8px 0 8px;font:800 clamp(2.7rem,5vw,4.4rem)/.95 var(--display);letter-spacing:-.065em;color:#f5f7ff;text-shadow:0 5px 30px rgba(76,115,255,.22)}
+.about-headline span,.contact-heading h2 span{background:linear-gradient(105deg,#fff 0%,#b9ccff 38%,#7195ff 75%,#d7e2ff 100%);background-clip:text;-webkit-background-clip:text;color:transparent}
+.about-subline{max-width:34ch;margin:0 0 18px;color:#c2c9dc;font-size:clamp(.91rem,1.2vw,1rem);line-height:1.5}
+.about-tags{gap:7px;margin-bottom:2px}
+.about-tags span{background:rgba(10,14,30,.62);border-color:rgba(181,201,255,.24);color:#e7edff}
+.about-contact-trigger{margin-top:20px;box-shadow:0 0 28px -13px rgba(105,144,255,.8),inset 0 1px rgba(255,255,255,.08)}
+.about-contact-trigger:focus-visible{outline:2px solid #dce6ff;outline-offset:4px}
+@keyframes aboutStarDrift{to{opacity:.5;transform:translate3d(-4px,3px,0)}}
+
+/* Full screen contact view */
+.contact-overlay{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:clamp(14px,3vw,38px);background:rgba(3,5,14,.88);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);animation:zxFade .32s var(--ease) both}
+.contact-overlay[hidden]{display:none}
+.contact-dialog{position:relative;isolation:isolate;width:min(1040px,100%);height:min(760px,100%);max-height:100%;overflow:auto;padding:clamp(28px,5vw,64px);border:1px solid rgba(170,193,255,.25);border-radius:30px;background:radial-gradient(ellipse at 12% 10%,rgba(56,83,194,.2),transparent 45%),radial-gradient(ellipse at 90% 95%,rgba(96,65,194,.14),transparent 42%),linear-gradient(145deg,#101321,#0a0c14 78%);box-shadow:0 40px 120px -40px #000,inset 0 1px rgba(255,255,255,.1);animation:experienceReveal .5s var(--ease) both;outline:none}
+.contact-dialog::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background-image:radial-gradient(circle at 12% 19%,rgba(255,255,255,.55) 0 1px,transparent 1.7px),radial-gradient(circle at 88% 13%,rgba(190,207,255,.58) 0 1px,transparent 1.7px),radial-gradient(circle at 76% 78%,rgba(255,255,255,.42) 0 1px,transparent 1.7px)}
+.contact-close{position:absolute;top:20px;right:22px;z-index:3;width:44px;height:44px;border:1px solid rgba(220,230,255,.2);border-radius:50%;background:rgba(255,255,255,.06);color:#f5f7ff;font:400 1.8rem/1 var(--display);cursor:pointer;transition:background .25s,transform .25s}
+.contact-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
+.contact-heading{position:relative;z-index:1;margin:8px 0 34px}
+.contact-heading .about-eyebrow{margin-bottom:13px}
+.contact-heading h2{font:800 clamp(3.2rem,9vw,6.4rem)/.9 var(--display);letter-spacing:-.07em}
+.contact-heading p{margin-top:16px;color:#b6bfd7;font-size:1.02rem}
+.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:18px;max-width:800px}
+#contact-overlay #about-discord-card{width:100%;max-width:none;height:100%;margin:0;display:flex;flex-direction:column}
+#contact-overlay #about-discord-card .dsc-body{flex:1}
+#contact-overlay .dsc-btns{margin-top:auto}
+.roblox-contact{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:280px;padding:26px;border:1px solid rgba(160,175,220,.22);border-radius:26px;overflow:hidden;background:radial-gradient(circle at 88% 5%,rgba(91,134,255,.22),transparent 42%),linear-gradient(150deg,rgba(22,27,46,.96),rgba(14,16,25,.98));box-shadow:0 28px 60px -38px #000}
+.roblox-contact::after{content:"";position:absolute;width:170px;height:170px;right:-36px;top:-45px;border:1px solid rgba(174,195,255,.16);border-radius:32px;transform:rotate(24deg);box-shadow:0 0 0 18px rgba(255,255,255,.018),0 0 0 36px rgba(255,255,255,.012)}
+.roblox-contact-mark{display:grid;place-items:center;width:56px;height:56px;border:1px solid rgba(181,201,255,.3);border-radius:17px;background:rgba(91,134,255,.16);color:#dbe5ff}
+.roblox-contact-mark svg{width:30px;height:30px}
+.roblox-contact-copy{margin-top:24px}
+.roblox-contact-copy>span{color:#aebfff;font:700 .7rem var(--display);letter-spacing:.18em}
+.roblox-contact-copy h3{margin-top:5px;font:800 1.6rem var(--display)}
+.roblox-contact-copy p{margin-top:3px;color:var(--muted);font-size:.9rem}
+.roblox-contact-link{position:relative;z-index:1;display:inline-flex;align-items:center;gap:12px;margin-top:auto;padding:11px 16px;border:1px solid rgba(160,185,255,.32);border-radius:13px;background:rgba(91,134,255,.16);color:#f1f4ff;font:700 .92rem var(--display);text-decoration:none;transition:transform .3s var(--ease),background .3s}
+.roblox-contact-link:hover{transform:translateY(-2px);background:rgba(91,134,255,.28)}
+@media(max-width:680px){.about{min-height:520px}.about-copy{width:100%;padding-top:190px}.about-subline{max-width:30ch}.contact-overlay{padding:0}.contact-dialog{width:100%;height:100%;max-height:100%;padding:82px 20px 26px;border-radius:0;border:0}.contact-close{top:18px;right:18px}.contact-heading{margin-bottom:25px}.contact-heading h2{font-size:clamp(3rem,17vw,5rem)}.contact-grid{grid-template-columns:1fr;gap:14px}.roblox-contact{min-height:220px;padding:22px}.roblox-contact-copy{margin-top:16px}}
+@media(prefers-reduced-motion:reduce){.about-stars i,.about::after{animation:none}.contact-overlay,.contact-dialog{animation:none}.contact-close,.roblox-contact-link{transition:none}}
+
 /* About banner and expandable Discord contact card. */
 .about{width:min(940px,calc(100vw - 48px));min-height:clamp(390px,42vw,440px);margin-left:calc((100% - min(940px,calc(100vw - 48px)))/2);padding:clamp(34px,5vw,58px);border-color:rgba(160,175,220,.2);background:radial-gradient(ellipse at 86% 42%,rgba(45,79,224,.16),transparent 42%),linear-gradient(145deg,rgba(17,19,29,.96),rgba(12,14,22,.92))}
 .about::after{width:84%;background-image:radial-gradient(circle at 68% 18%,rgba(255,255,255,.78) 0 1px,transparent 1.8px),radial-gradient(circle at 79% 66%,rgba(206,220,255,.68) 0 1px,transparent 1.8px),radial-gradient(circle at 94% 36%,rgba(255,255,255,.55) 0 1px,transparent 1.6px),radial-gradient(circle at 59% 82%,rgba(230,232,255,.48) 0 1px,transparent 1.6px);animation:aboutStarDrift 9s ease-in-out infinite alternate}
@@ -606,13 +653,15 @@ a.rerun[hidden]{display:none}
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
     <!-- About me -->
-    <article class="about reveal" aria-label="A little about Zaynox">
+    <article class="about reveal" aria-label="A little about Zaynox"><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
         <span class="about-eyebrow">A little about me</span>
+        <h2 class="about-headline">Let’s <span>work.</span></h2>
+        <p class="about-subline">Community leadership, QA, and better player experiences.</p>
         <div class="about-tags" aria-label="Roblox player, community manager, and QA tester">
-          <span>Roblox</span><span>Community</span><span>QA</span>
+          <span>Roblox player</span><span>Community</span><span>QA tester</span>
         </div>
-        <button class="about-contact-trigger" id="about-contact-toggle" type="button" aria-expanded="false" aria-controls="about-discord-card">
+        <button class="about-contact-trigger" id="about-contact-toggle" type="button" aria-expanded="false" aria-haspopup="dialog" aria-controls="contact-overlay">
           <span class="about-contact-spark" aria-hidden="true">✦</span>
           <span class="about-contact-label">Let’s get in contact</span>
           <span class="about-contact-arrow" aria-hidden="true">↗</span>
@@ -621,7 +670,19 @@ a.rerun[hidden]{display:none}
       <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
     </article>
 
-    <div id="about-discord-card" class="dsc" hidden data-status="online">
+  </section>
+</main>
+
+<div class="contact-overlay" id="contact-overlay" hidden>
+  <section class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-title" tabindex="-1">
+    <button class="contact-close" id="contact-close" type="button" aria-label="Close contact details">×</button>
+    <div class="contact-heading">
+      <span class="about-eyebrow">CONTACT</span>
+      <h2 id="contact-title">Let’s <span>work.</span></h2>
+      <p>Find me on Discord or Roblox.</p>
+    </div>
+    <div class="contact-grid">
+      <div id="about-discord-card" class="dsc" hidden data-status="online">
       <div class="dsc-banner" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
       </div>
@@ -649,8 +710,14 @@ a.rerun[hidden]{display:none}
         <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile <span aria-hidden="true">↗</span></a>
       </div>
     </div>
+      <article class="roblox-contact">
+        <div class="roblox-contact-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 4 36 12 28 36 4 28 8 4Zm8 11-2 7 7 2 2-7-7-2Z" fill="currentColor" fill-rule="evenodd"/></svg></div>
+        <div class="roblox-contact-copy"><span>ROBLOX</span><h3>Zaynox</h3><p>Player profile</p></div>
+        <a class="roblox-contact-link" href="https://www.roblox.com/users/1098092708/profile" target="_blank" rel="noopener">View profile <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
   </section>
-</main>
+</div>
 
 <footer class="foot">
   <div class="foot-in">
@@ -728,19 +795,29 @@ experienceToggle.addEventListener("click", function () {
   experiencePanel.hidden = open;
 });
 
-// Expand the Discord profile inside the About banner; no overlay obscures the cursor.
+// Open contact details as a full-screen view, with focus returned to the banner trigger.
 var contactToggle = document.getElementById("about-contact-toggle");
-var contactCard = document.getElementById("about-discord-card");
-if (contactToggle && contactCard) {
-  var contactLabel = contactToggle.querySelector(".about-contact-label");
+var contactOverlay = document.getElementById("contact-overlay");
+var contactClose = document.getElementById("contact-close");
+var contactBodyOverflow = "";
+function closeContactView() {
+  if (!contactOverlay || contactOverlay.hidden) return;
+  contactOverlay.hidden = true;
+  document.body.style.overflow = contactBodyOverflow;
+  if (contactToggle) { contactToggle.setAttribute("aria-expanded", "false"); contactToggle.focus(); }
+}
+if (contactToggle && contactOverlay) {
   contactToggle.addEventListener("click", function () {
-    var expanded = contactToggle.getAttribute("aria-expanded") === "true";
-    contactToggle.setAttribute("aria-expanded", String(!expanded));
-    if (contactLabel) contactLabel.textContent = expanded ? "Let’s get in contact" : "Hide contact details";
-    contactCard.hidden = expanded;
-    contactCard.classList.toggle("contact-card-open", !expanded);
-    if (!expanded) contactCard.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+    contactBodyOverflow = document.body.style.overflow;
+    contactOverlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    contactToggle.setAttribute("aria-expanded", "true");
+    if (contactClose) contactClose.focus();
   });
+  if (contactClose) contactClose.addEventListener("click", closeContactView);
+  contactOverlay.addEventListener("click", function (event) { if (event.target === contactOverlay) closeContactView(); });
+  document.addEventListener("keydown", function (event) { if (event.key === "Escape" && !contactOverlay.hidden) closeContactView(); });
+  contactOverlay.addEventListener("wheel", function (event) { event.stopPropagation(); }, { passive: true });
 }
 
 // Stats count up once.
