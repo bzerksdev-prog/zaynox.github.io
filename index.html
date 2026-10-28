@@ -550,6 +550,23 @@ a.rerun[hidden]{display:none}
 @media(max-width:640px){.about{display:flex;flex-direction:column;width:calc(100vw - 32px);margin-left:0;padding:0 22px 24px}.about-art-wrap{position:relative;order:0;top:auto;right:auto;bottom:auto;width:calc(100% + 44px);height:210px;margin:0 -22px 20px;border-radius:22px 22px 0 0;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent)}.about-art{width:100%;height:100%;object-fit:cover;object-position:100% 40%}.about-copy{order:1;width:100%;padding:0}.about-headline{font-size:2.1rem}}
 @media(max-width:520px){.dsc-profile .dsc-info,.dsc-profile .dsc-btns{padding-left:20px;padding-right:20px}.dsc-profile .dsc-av{margin-left:20px}.dsc-banner-logo{left:50%}.dsc-badge-pill img{height:23px}}
 @media(prefers-reduced-motion:reduce){.dsc-banner-logo,.about-points li{transition:none}}
+
+/* About banner polish: full character framing, breathing room, and concise hierarchy. */
+.about{min-height:clamp(420px,43vw,470px);background:radial-gradient(ellipse at 72% 72%,rgba(75,108,215,.2),transparent 36%),radial-gradient(ellipse at 18% 20%,rgba(47,68,137,.16),transparent 48%),linear-gradient(145deg,rgba(12,15,28,.97),rgba(10,12,21,.94))}
+.about-copy{width:58%;max-width:570px}
+.about .about-lead{max-width:42ch;margin:0;color:#dce3f7;font-size:clamp(.96rem,1.15vw,1.04rem);line-height:1.58}
+.about-points{gap:9px;margin-top:22px}
+.about-points li{padding:13px 12px 14px;border-color:rgba(170,190,255,.2);background:linear-gradient(155deg,rgba(255,255,255,.075),rgba(91,134,255,.035));box-shadow:inset 0 1px rgba(255,255,255,.04)}
+.about-points b{font-size:.9rem}
+.about-points span{font-size:.76rem;line-height:1.4}
+.about-art-wrap{top:0;right:0;bottom:0;width:86%;height:100%;transform:none;overflow:visible;border-radius:0;-webkit-mask-image:none;mask-image:none}
+.about-art-wrap::before{content:"";position:absolute;z-index:0;inset:10% 0 0 25%;pointer-events:none;background:radial-gradient(ellipse at 74% 72%,rgba(91,134,255,.25),rgba(73,93,172,.1) 36%,transparent 70%);filter:blur(20px)}
+.about-art{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:right bottom;filter:drop-shadow(0 20px 32px rgba(0,0,0,.45)) drop-shadow(0 0 24px rgba(104,139,255,.1))}
+.about-art-wrap::after{z-index:2;top:-10%;bottom:-10%;left:-24%;width:15%;background:linear-gradient(90deg,transparent,rgba(221,234,255,.18) 34%,rgba(255,255,255,.82) 50%,rgba(175,201,255,.2) 68%,transparent);filter:blur(1px)}
+.about:hover .about-hover-shine{animation-duration:1.25s}
+@media(max-width:860px){.about-copy{width:62%}.about-art-wrap{width:88%}.about-points{grid-template-columns:1fr}.about-points li{display:grid;grid-template-columns:24px 1fr;column-gap:12px;align-items:center;padding:12px 14px}.about-points svg{grid-row:1/3}.about-points b{margin-top:0}.about-points span{margin-top:1px}}
+@media(max-width:640px){.about{min-height:0}.about-copy{width:100%}.about-art-wrap{width:calc(100% + 44px);height:230px;margin:0 -22px 20px;overflow:hidden;border-radius:22px 22px 0 0;-webkit-mask-image:none;mask-image:none}.about-art-wrap::before{inset:4% 0 0 18%;filter:blur(16px)}.about-art{width:100%;height:100%;object-fit:contain;object-position:right center}.about-points{margin-top:18px}.about-contact-trigger{margin-top:22px}}
+@media(prefers-reduced-motion:reduce){.about{animation:none}.about-art-wrap:hover::after{animation:none}.about:hover .about-hover-shine{animation:none}}
 </style>
 </head>
 <body>
@@ -739,7 +756,7 @@ a.rerun[hidden]{display:none}
       <div class="about-copy">
         <span class="about-eyebrow">About me</span>
         <h2 class="about-headline" id="about-title">I enjoy <span>leading</span> communities.</h2>
-        <p class="about-lead">Management is the part of staffing I enjoy most: guiding Helper teams, keeping communities welcoming, and turning feedback into a better experience for players. I’m a hard worker who takes responsibility seriously, communicates clearly, and follows through on what I commit to.</p>
+        <p class="about-lead">I focus on a few communities, value quality over quantity, and enjoy helping their teams create a better player experience.</p>
         <ul class="about-points" aria-label="What I do">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.5-3.8 3-5.8 6.2-5.8s5.7 2 6.2 5.8M16 5.2a3.4 3.4 0 0 1 0 6.4M18.4 14.6c1.8.7 2.9 2.6 3.2 5.4"/></svg>
