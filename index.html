@@ -52,7 +52,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Manrope:wght@500;600;700&family=Orbitron:wght@800&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#05070f; --panel:rgba(16,17,22,.8); --text:#f2f5ff; --muted:#9a9fb2; --line:rgba(160,175,220,.18);
@@ -474,6 +474,82 @@ a.rerun[hidden]{display:none}
 .zx-keys kbd{flex:none;min-width:30px;padding:4px 8px;text-align:center;font:600 .82rem var(--display);color:#fff;border-radius:8px;border:1px solid rgba(160,175,220,.3);background:rgba(255,255,255,.07);box-shadow:0 2px 0 rgba(0,0,0,.4)}
 @keyframes zxFade{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.dsc-banner::after{animation:none;display:none}.zx-overlay{animation:none}.dock-btn,.shots img{transition:none}}
+
+/* ===== Discord profile card (modelled on the real profile), compact Roblox card, About banner ===== */
+.dsc-profile{--card:#07080c;max-width:none;margin:0;padding:0;border-radius:26px;border:1px solid rgba(80,160,255,.4);background:linear-gradient(180deg,#05070c,#07090f 40%,#06070b);box-shadow:0 0 0 1px rgba(60,140,255,.1),0 0 70px -22px rgba(40,120,255,.7),0 36px 70px -34px #000}
+.dsc-profile:hover{transform:translateY(-4px);border-color:rgba(110,180,255,.62)}
+.dsc-profile .dsc-banner{display:block;height:clamp(128px,15vw,172px);background:radial-gradient(55% 130% at 54% 45%,rgba(30,100,255,.3),transparent 70%),radial-gradient(40% 90% at 100% 100%,rgba(40,140,170,.22),transparent 70%),linear-gradient(180deg,#010811,#030a16 70%,#050912)}
+.dsc-profile .dsc-banner::before{opacity:.45;background-size:38px 38px}
+.dsc-profile .dsc-banner::after{animation:none;display:none}
+.dsc-banner-logo{position:absolute;left:54%;top:50%;height:74%;width:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 0 22px rgba(40,120,255,.55));transition:transform .9s var(--ease),filter .9s var(--ease)}
+.dsc-profile:hover .dsc-banner-logo{transform:translate(-50%,-52%) scale(1.04);filter:drop-shadow(0 0 30px rgba(60,150,255,.8))}
+.dsc-tools{position:absolute;top:14px;right:14px;z-index:4;display:flex;gap:10px}
+.dsc-tool{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(7,9,13,.78);color:#e8ebf5;cursor:pointer;text-decoration:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.dsc-tool svg{width:20px;height:20px}
+.dsc-tool[hidden]{display:none}
+.dsc-tool:hover{background:rgba(40,100,255,.35);border-color:rgba(130,180,255,.6);color:#fff}
+.dsc-profile .dsc-av{width:clamp(108px,12vw,136px);height:clamp(108px,12vw,136px);margin:calc(clamp(108px,12vw,136px)/-2) 0 0 26px}
+.dsc-profile .dsc-av .dsc-avatar{box-shadow:0 0 0 7px var(--card)}
+.dsc-profile .dsc-av .dsc-decoration{inset:-9% ;width:118%;height:118%;left:-9%;top:-9%}
+.dsc-profile .dsc-av .dsc-status-dot{right:2%;bottom:2%;width:28px;height:28px;border-width:6px}
+.dsc-profile .dsc-info{padding:16px 26px 0;min-width:0}
+.dsc-name-row{display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
+.dsc-info b.dsc-display{display:block;font:800 clamp(1.7rem,3.2vw,2.35rem)/1.1 "Orbitron",var(--display);letter-spacing:.03em;text-transform:lowercase;background:linear-gradient(180deg,#fff 0%,#a9d3ff 38%,#2f86ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(50,130,255,.55))}
+.dsc-tag{display:inline-grid;place-items:center;flex:none;width:32px;height:30px;border-radius:9px;background:rgba(255,255,255,.07);color:#c7cbd8}
+.dsc-tag svg{width:19px;height:19px}
+.dsc-user-row{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:6px;color:#dcdfe9;font:500 1.05rem/1.3 var(--body);overflow-wrap:anywhere}
+.dsc-user-row i{font-style:normal;color:#8d92a3}
+.dsc-status-text{font-weight:700;font-size:.86rem;color:#8dd9a4}
+.dsc[data-status="idle"] .dsc-status-text{color:#f5cf7a}
+.dsc[data-status="dnd"] .dsc-status-text{color:#ff9a9d}
+.dsc[data-status="offline"] .dsc-status-text{color:#a3a7b3}
+.dsc-profile .dsc-activity{margin-top:6px;font-size:.88rem;color:#b7bccd}
+.dsc-custom{display:flex;align-items:center;gap:10px;margin:18px 0 0;color:#eceff7}
+.dsc-custom img{display:block;flex:none;width:26px;height:28px;object-fit:contain}
+.dsc-fraktur{font:700 clamp(1.45rem,2.6vw,1.85rem)/1.1 "UnifrakturCook","Old English Text MT","Blackadder ITC",Georgia,serif;letter-spacing:.01em}
+.dsc-badge-pill{display:inline-flex;align-items:center;gap:12px;margin-top:20px;padding:9px 16px 9px 14px;border-radius:15px;background:#121318;border:1px solid rgba(255,255,255,.06)}
+.dsc-badge-pill img{display:block;width:auto;height:26px}
+.dsc-badge-pill span{color:#d6d9e3;font:600 1.05rem var(--body)}
+.dsc-profile .dsc-btns{padding:24px 26px 26px}
+.dsc-profile #dsc-copy{background-image:linear-gradient(135deg,#2f86ff,#1d5bd6);border-color:rgba(140,190,255,.5);box-shadow:0 14px 30px -16px rgba(40,120,255,.95)}
+
+.contact-dialog{width:min(1120px,100%);height:auto;max-height:100%;padding:clamp(24px,3.6vw,44px) clamp(22px,4.4vw,58px)}
+.contact-heading{margin:2px 0 22px}
+.contact-heading h2{font-size:clamp(2.7rem,6vw,4.6rem)}
+.contact-heading p{max-width:54ch;margin-top:12px}
+.contact-grid{grid-template-columns:minmax(0,1.9fr) minmax(0,.78fr);align-items:start;gap:22px;max-width:none}
+.rbx-compact{padding:18px;border-radius:22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.rbx-compact:hover{transform:none}
+.rbx-pic{width:min(100%,148px);aspect-ratio:1;border-radius:50%;overflow:hidden;padding:4px;background:linear-gradient(145deg,rgba(160,190,255,.55),rgba(60,90,220,.25));box-shadow:0 0 0 1px rgba(255,255,255,.06),0 18px 36px -20px rgba(45,79,224,.9)}
+.rbx-pic img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 24%;background:#000}
+.rbx-id{display:flex;align-items:center;gap:10px;text-align:left}
+.rbx-id .rbx{width:34px;height:34px}
+.rbx-id .rbx svg{width:15px;height:15px}
+.rbx-id b{display:block;font:700 1.05rem/1.1 var(--display)}
+.rbx-id small{display:block;margin-top:2px;color:#9aa3bf;font-size:.78rem}
+.rbx-compact .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+#contact-overlay .rbx-compact .roblox-contact-link{align-self:center;margin-top:0;font-size:.86rem}
+
+.about{width:min(1000px,calc(100vw - 48px));margin-left:calc((100% - min(1000px,calc(100vw - 48px)))/2);min-height:0;align-items:stretch;padding:clamp(30px,4.4vw,56px) 0 clamp(30px,4.4vw,56px) clamp(30px,4.6vw,58px);border-color:rgba(160,180,255,.24);background:radial-gradient(ellipse at 90% 45%,rgba(60,100,255,.28),transparent 46%),radial-gradient(ellipse at 4% 0%,rgba(110,140,255,.16),transparent 42%),linear-gradient(145deg,rgba(15,18,32,.97),rgba(9,11,19,.95))}
+.about::before{height:1px;background:linear-gradient(90deg,transparent,rgba(160,190,255,.55),transparent);opacity:1}
+.about::after{width:100%}
+.about-copy{width:56%;max-width:none;padding:0}
+.about-headline{margin:6px 0 16px;font:800 clamp(2rem,3.7vw,3.05rem)/1.04 var(--display);letter-spacing:-.045em}
+.about .about-lead{max-width:52ch;margin:0;color:#d3d9ec;font-size:clamp(.95rem,1.2vw,1.04rem);line-height:1.68}
+.about-points{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:26px 0 0;padding:0}
+.about-points li{padding:14px 14px 15px;border:1px solid rgba(170,190,255,.18);border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.015));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .5s var(--ease),border-color .5s var(--ease),background .5s var(--ease)}
+.about-points li:hover{transform:translateY(-3px);border-color:rgba(160,190,255,.45);background:linear-gradient(160deg,rgba(91,134,255,.18),rgba(255,255,255,.02))}
+.about-points svg{display:block;width:24px;height:24px;color:#9db6ff}
+.about-points b{display:block;margin-top:10px;font:700 .96rem/1.2 var(--display);color:#f3f6ff}
+.about-points span{display:block;margin-top:4px;color:#a9b3d0;font-size:.8rem;line-height:1.45}
+.about-contact-trigger{margin-top:26px}
+.about-art-wrap{position:absolute;z-index:1;top:auto;right:0;bottom:0;width:auto;height:64%;min-height:0;transform:none;border-radius:0 0 22px 0;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24%);mask-image:linear-gradient(180deg,transparent 0,#000 24%)}
+.about-art{display:block;width:auto;height:100%;max-width:none;object-fit:contain;object-position:right bottom;filter:drop-shadow(0 18px 26px rgba(0,0,0,.4))}
+@media(max-width:860px){.about-points{grid-template-columns:1fr}.about-points li{display:grid;grid-template-columns:24px 1fr;column-gap:12px;align-items:center;padding:12px 14px}.about-points svg{grid-row:1/3}.about-points b{margin-top:0}.about-points span{margin-top:1px}}
+@media(max-width:760px){.contact-dialog{height:100%}.contact-grid{grid-template-columns:1fr}.rbx-compact{flex-direction:row;flex-wrap:wrap;justify-content:center;text-align:left}.rbx-pic{width:84px}}
+@media(max-width:640px){.about{display:flex;flex-direction:column;width:calc(100vw - 32px);margin-left:0;padding:0 22px 24px}.about-art-wrap{position:relative;order:0;top:auto;right:auto;bottom:auto;width:calc(100% + 44px);height:210px;margin:0 -22px 20px;border-radius:22px 22px 0 0;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent)}.about-art{width:100%;height:100%;object-fit:cover;object-position:100% 40%}.about-copy{order:1;width:100%;padding:0}.about-headline{font-size:2.1rem}}
+@media(max-width:520px){.dsc-profile .dsc-info,.dsc-profile .dsc-btns{padding-left:20px;padding-right:20px}.dsc-profile .dsc-av{margin-left:20px}.dsc-banner-logo{left:50%}.dsc-badge-pill img{height:23px}}
+@media(prefers-reduced-motion:reduce){.dsc-banner-logo,.about-points li{transition:none}}
 </style>
 </head>
 <body>
@@ -497,8 +573,8 @@ a.rerun[hidden]{display:none}
       <a href="#top" class="on">Home</a><a href="#games">Games</a><a href="#qa">QA</a><a href="#timeline">Timeline</a><a href="#me">Me</a>
     </nav>
     <div class="dc">
-      <span class="dc-hint" id="dc-hint">Click the icon to add me</span>
-      <button class="dc-btn" id="dc-btn" type="button" aria-label="Copy my Discord username" title="Copy my Discord">
+      <span class="dc-hint" id="dc-hint">Click the icon to contact me</span>
+      <button class="dc-btn" id="dc-btn" type="button" aria-label="Contact me on Discord or Roblox" aria-haspopup="dialog" aria-controls="contact-overlay" title="Contact me">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
       </button>
     </div>
@@ -541,7 +617,7 @@ a.rerun[hidden]{display:none}
     <div class="stats reveal" style="--r:2">
       <div class="stat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-4 3-6 6.5-6s6 2 6.5 6M16 5a3.5 3.5 0 0 1 0 6.5M18 14c2 .6 3.200 2.600 3.500 6"/></svg>
-        <div><b data-to="900" data-suf="K+">900K+</b><span>Discord members</span></div>
+        <div><b data-to="890" data-suf="K+">890K+</b><span>Discord members</span></div>
       </div>
       <div class="sep"></div>
       <div class="stat">
@@ -577,7 +653,7 @@ a.rerun[hidden]{display:none}
     <div class="stats reveal" style="--r:2">
       <div class="stat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-4 3-6 6.5-6s6 2 6.5 6M16 5a3.5 3.5 0 0 1 0 6.5M18 14c2 .6 3.200 2.600 3.500 6"/></svg>
-        <div><b data-to="560" data-suf="K+">560K+</b><span>Discord members</span></div>
+        <div><b data-to="596" data-suf="K+">596K+</b><span>Discord members</span></div>
       </div>
       <div class="sep"></div>
       <div class="stat">
@@ -593,7 +669,7 @@ a.rerun[hidden]{display:none}
     <div class="roles reveal" style="--r:3">
       <div class="roles-label">My roles</div>
       <div class="chips">
-        <button class="chip trial" aria-expanded="false" aria-controls="e1">Trial Moderator <span class="tag">Trial</span> <i aria-hidden="true">+</i></button>
+        <button class="chip" aria-expanded="false" aria-controls="e1">Moderator <i aria-hidden="true">+</i></button>
       </div>
       <p class="note" id="e1" hidden>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p>
     </div>
@@ -650,22 +726,34 @@ a.rerun[hidden]{display:none}
       <li style="--i:1"><article class="timeline-item"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></article></li>
       <li style="--i:2"><article class="timeline-item"><h3>Became a Helper</h3><p>Became involved in the Gakuran community.</p></article></li>
       <li style="--i:3"><article class="timeline-item"><h3>Promoted to Staff &amp; Helper Management</h3></article></li>
-      <li style="--i:4"><article class="timeline-item"><h3>SAE Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></article></li>
-      <li class="now" style="--i:5"><article class="timeline-item"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></article></li>
+      <li style="--i:4"><article class="timeline-item"><h3>Steal an Egg Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></article></li>
+      <li style="--i:5"><article class="timeline-item"><h3>Promoted to Moderator</h3><p>Moved up to full Moderator in the Steal an Egg community.</p></article></li>
+      <li class="now" style="--i:6"><article class="timeline-item"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></article></li>
     </ol>
   </section>
 
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
     <!-- About me -->
-    <article class="about reveal" aria-label="A little about Zaynox"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
+    <article class="about reveal" aria-labelledby="about-title"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
-        <span class="about-eyebrow">A little about me</span>
-        <h2 class="about-headline">Let’s <span>work.</span></h2>
-        <p class="about-subline">Community leadership, QA, and better player experiences.</p>
-        <div class="about-tags" aria-label="Roblox player, community manager, and QA tester">
-          <span>Roblox player</span><span>Community</span><span>QA tester</span>
-        </div>
+        <span class="about-eyebrow">About me</span>
+        <h2 class="about-headline" id="about-title">I enjoy <span>leading</span> communities.</h2>
+        <p class="about-lead">Management is the part of staffing I enjoy most: guiding Helper teams, keeping communities welcoming, and turning feedback into a better experience for players. I’m a hard worker who takes responsibility seriously, communicates clearly, and follows through on what I commit to.</p>
+        <ul class="about-points" aria-label="What I do">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.5-3.8 3-5.8 6.2-5.8s5.7 2 6.2 5.8M16 5.2a3.4 3.4 0 0 1 0 6.4M18.4 14.6c1.8.7 2.9 2.6 3.2 5.4"/></svg>
+            <b>Leadership</b><span>Helper team management at Gakuran</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.6c0 4.4 3 7.9 7.5 9.4 4.5-1.5 7.5-5 7.5-9.4V6L12 3Z"/><path d="m8.8 12.2 2.3 2.3 4.2-4.6"/></svg>
+            <b>Moderation</b><span>Moderator in the Steal an Egg community</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5h6M10 3.5v5.2L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 8.7V3.5"/><path d="M7.4 14.5h9.2"/></svg>
+            <b>Quality assurance</b><span>Testing The Forge, Gakuran &amp; QA-Central</span>
+          </li>
+        </ul>
         <button class="about-contact-trigger" id="about-contact-toggle" type="button" aria-expanded="false" aria-haspopup="dialog" aria-controls="contact-overlay">
           <span class="about-contact-spark" aria-hidden="true">✦</span>
           <span class="about-contact-label">Let’s get in contact</span>
@@ -684,49 +772,44 @@ a.rerun[hidden]{display:none}
     <div class="contact-heading">
       <span class="about-eyebrow">CONTACT</span>
       <h2 id="contact-title">Let’s <span>work.</span></h2>
-      <p>Find me on Discord or Roblox.</p>
+      <p>Open to staff, management and QA work. Message me on Discord, or find me on Roblox.</p>
     </div>
     <div class="contact-grid">
-      <div id="about-discord-card" class="dsc" hidden data-status="online">
-      <div class="dsc-banner" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
-      </div>
-      <div class="dsc-body">
+      <div id="about-discord-card" class="dsc dsc-profile" data-status="online">
+        <div class="dsc-banner" aria-hidden="true"><img class="dsc-banner-logo" src="discord-banner-logo.png" alt="" onerror="this.hidden=true"></div>
+        <div class="dsc-tools">
+          <button class="dsc-tool" id="dsc-copy-top" type="button" aria-label="Copy my Discord username" title="Add me: copy username"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="3.6"/><path d="M3.5 20c.5-3.9 3-6 6.5-6 1.6 0 3 .4 4.1 1.2M19 14v6M16 17h6"/></svg></button>
+          <a class="dsc-tool" id="dsc-open-top" href="#" target="_blank" rel="noopener" aria-label="Open my Discord profile" title="Open Discord profile" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="19" cy="12" r="1.9"/></svg></a>
+        </div>
         <div class="dsc-av">
-          <img class="dsc-avatar" src="discord-pfp.jpg" alt="Zaynox’s Discord avatar" onerror="this.onerror=null;this.src='pfp.png'">
+          <img class="dsc-avatar" src="discord-pfp.jpg" alt="Zaynox’s Discord profile picture" onerror="this.onerror=null;this.src='pfp.png'">
           <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
           <span class="dsc-status-dot" id="dsc-dot" aria-label="Online" title="Online"></span>
         </div>
         <div class="dsc-info">
           <div class="dsc-name-row">
-            <b id="dsc-name">Zaynox</b>
-            <div class="dsc-badges" aria-label="Profile badges">
-              <span class="dsc-badge"><img src="discord-badge-1.png" alt="" aria-label="Badge 1" onerror="this.hidden=true"></span>
-              <span class="dsc-badge"><img src="discord-badge-2.png" alt="" aria-label="Badge 2" onerror="this.hidden=true"></span>
-            </div>
+            <b class="dsc-display" id="dsc-name">zaynox</b>
+            <span class="dsc-tag" title="Server tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h10a3 3 0 0 1 3 3v6.2a6 6 0 0 0-1.4-.2H15v3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 4v1.8h6V7H7Zm0 3.6v1.8h4v-1.8H7Z"/><path d="M19 14v2.2h2.2v1.6H19V20h-1.6v-2.2h-2.2v-1.6h2.2V14H19Z"/></svg></span>
           </div>
-          <span class="dsc-username" id="dsc-username">@justcalculatewastaken</span>
-          <span class="dsc-status-line"><i class="dsc-status-dot" aria-hidden="true"></i><span id="dsc-status-text">Online</span></span>
+          <div class="dsc-user-row"><span id="dsc-username">justcalculatewastaken</span><i aria-hidden="true">•</i><span class="dsc-status-text" id="dsc-status-text">Online</span></div>
           <span class="dsc-activity" id="dsc-activity" hidden></span>
+          <p class="dsc-custom"><img src="discord-wing.png" alt="" width="26" height="28" onerror="this.hidden=true"><span class="dsc-fraktur" aria-label="Grand slash Champion">Grand / Champion</span></p>
+          <div class="dsc-badge-pill" aria-label="Profile badges"><img src="discord-badges.png" alt="" width="164" height="26" onerror="this.hidden=true"><span>+4</span></div>
+        </div>
+        <div class="dsc-btns">
+          <button class="rerun" id="dsc-copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>Copy username</button>
+          <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="dsc-btns">
-        <button class="rerun" id="dsc-copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>Copy username</button>
-        <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-      <article class="me roblox-profile-card" aria-label="Roblox profile">
-        <div class="me-top">
-          <span class="rbx" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 4 36 12 28 36 4 28 8 4Zm8 11-2 7 7 2 2-7-7-2Z" fill-rule="evenodd"/></svg></span>
-          <b class="me-name">Zaynox</b>
-          <div class="pills" aria-label="Roblox profile statistics">
-            <span class="pill"><b data-live="followers">—</b> Followers</span>
-            <span class="pill"><b data-live="friends">—</b> Friends</span>
-          </div>
+      <article class="me roblox-profile-card rbx-compact" aria-label="Roblox profile">
+        <div class="rbx-pic"><img src="pfp.png" alt="Zaynox’s profile picture" loading="lazy"></div>
+        <div class="rbx-id">
+          <span class="rbx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/></svg></span>
+          <div><b class="me-name">Zaynox</b><small>on Roblox</small></div>
         </div>
-        <div class="me-stage">
-          <img src="pfp.png" alt="Zaynox’s Roblox avatar" loading="lazy">
-          <span class="me-hint">Drag to rotate</span>
+        <div class="pills" aria-label="Roblox profile statistics">
+          <span class="pill"><b data-live="followers">—</b> Followers</span>
+          <span class="pill"><b data-live="friends">—</b> Friends</span>
         </div>
         <a class="roblox-contact-link" data-link="roblox" href="https://www.roblox.com/users/1098092708/profile">View Roblox profile <span aria-hidden="true">↗</span></a>
       </article>
@@ -810,25 +893,31 @@ experienceToggle.addEventListener("click", function () {
   experiencePanel.hidden = open;
 });
 
-// Open contact details as a full-screen view, with focus returned to the banner trigger.
+// Open contact details as a full-screen view. The banner button and the header Discord icon both open it,
+// and focus returns to whichever one was used.
 var contactToggle = document.getElementById("about-contact-toggle");
 var contactOverlay = document.getElementById("contact-overlay");
 var contactClose = document.getElementById("contact-close");
+var contactOpener = null;
 var contactBodyOverflow = "";
 function closeContactView() {
   if (!contactOverlay || contactOverlay.hidden) return;
   contactOverlay.hidden = true;
   document.body.style.overflow = contactBodyOverflow;
-  if (contactToggle) { contactToggle.setAttribute("aria-expanded", "false"); contactToggle.focus(); }
+  if (contactToggle) contactToggle.setAttribute("aria-expanded", "false");
+  if (contactOpener) { contactOpener.focus(); contactOpener = null; }
+}
+function openContactView(opener) {
+  if (!contactOverlay || !contactOverlay.hidden) return;
+  contactOpener = opener || contactToggle;
+  contactBodyOverflow = document.body.style.overflow;
+  contactOverlay.hidden = false;
+  document.body.style.overflow = "hidden";
+  if (contactToggle) contactToggle.setAttribute("aria-expanded", "true");
+  if (contactClose) contactClose.focus();
 }
 if (contactToggle && contactOverlay) {
-  contactToggle.addEventListener("click", function () {
-    contactBodyOverflow = document.body.style.overflow;
-    contactOverlay.hidden = false;
-    document.body.style.overflow = "hidden";
-    contactToggle.setAttribute("aria-expanded", "true");
-    if (contactClose) contactClose.focus();
-  });
+  contactToggle.addEventListener("click", function () { openContactView(contactToggle); });
   if (contactClose) contactClose.addEventListener("click", closeContactView);
   contactOverlay.addEventListener("click", function (event) { if (event.target === contactOverlay) closeContactView(); });
   document.addEventListener("keydown", function (event) { if (event.key === "Escape" && !contactOverlay.hidden) closeContactView(); });
@@ -947,10 +1036,10 @@ window.addEventListener("resize", function () { cur = -1; onScroll(); });
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { cur = -1; onScroll(); });
 onScroll();
 
-// Discord: click the icon to copy your username.
+// Discord: the header icon opens the contact view (the card inside has the copy button).
 var DISCORD = "justcalculatewastaken";
 var DISCORD_ID = "649787182348894261";
-var dcBtn = document.getElementById("dc-btn"), dcHint = document.getElementById("dc-hint"), toast = document.getElementById("toast"), dcTimer, toastTimer;
+var dcBtn = document.getElementById("dc-btn"), toast = document.getElementById("toast"), toastTimer;
 function copyText(t) {
   if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
   return new Promise(function (ok, no) {
@@ -962,22 +1051,22 @@ function copyText(t) {
 }
 function say(msg) { toast.textContent = msg; toast.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2400); }
 dcBtn.addEventListener("click", function () {
-  copyText(DISCORD).then(function () {
-    dcBtn.classList.add("copied"); dcHint.textContent = "Copied! Paste it in Discord"; say("Copied " + DISCORD);
-  }, function () { say("Couldn’t copy. My Discord: " + DISCORD); });
-  clearTimeout(dcTimer);
-  dcTimer = setTimeout(function () { dcBtn.classList.remove("copied"); dcHint.textContent = "Click the icon to add me"; }, 2800);
+  if (contactOverlay && !contactOverlay.hidden) closeContactView(); else openContactView(dcBtn);
 });
 
 // Discord profile card: shows the username, copies it, and links to your profile.
-document.getElementById("dsc-name").textContent = "Zaynox";
-document.getElementById("dsc-username").textContent = "@" + DISCORD;
-document.getElementById("dsc-copy").addEventListener("click", function () {
+document.getElementById("dsc-username").textContent = DISCORD;
+function copyDiscord() {
   copyText(DISCORD).then(function () { say("Copied " + DISCORD); }, function () { say("Couldn’t copy. My Discord: " + DISCORD); });
+}
+["dsc-copy", "dsc-copy-top"].forEach(function (id) {
+  var b = document.getElementById(id); if (b) b.addEventListener("click", copyDiscord);
 });
 if (/^\d{15,25}$/.test(DISCORD_ID)) {
-  var open = document.getElementById("dsc-open");
-  open.href = "https://discord.com/users/" + DISCORD_ID; open.hidden = false;
+  ["dsc-open", "dsc-open-top"].forEach(function (id) {
+    var a = document.getElementById(id); if (!a) return;
+    a.href = "https://discord.com/users/" + DISCORD_ID; a.hidden = false;
+  });
 }
 
 // Background: stars drift upward and twinkle; an occasional streak crosses diagonally.
@@ -1265,7 +1354,7 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
       <li><kbd>?</kbd><span>Open or close this panel</span></li>
       <li><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><kbd>5</kbd><span>Jump to Home, Games, QA, Timeline, Me</span></li>
       <li><kbd>M</kbd><span>Sound on or off</span></li>
-      <li><kbd>D</kbd><span>Copy my Discord username</span></li>
+      <li><kbd>D</kbd><span>Open my contact card (Discord &amp; Roblox)</span></li>
       <li><kbd>Esc</kbd><span>Close this panel</span></li>
     </ul>
   </div>
