@@ -567,6 +567,12 @@ a.rerun[hidden]{display:none}
 @media(max-width:860px){.about-copy{width:62%}.about-art-wrap{width:88%}.about-points{grid-template-columns:1fr}.about-points li{display:grid;grid-template-columns:24px 1fr;column-gap:12px;align-items:center;padding:12px 14px}.about-points svg{grid-row:1/3}.about-points b{margin-top:0}.about-points span{margin-top:1px}}
 @media(max-width:640px){.about{min-height:0}.about-copy{width:100%}.about-art-wrap{width:calc(100% + 44px);height:230px;margin:0 -22px 20px;overflow:hidden;border-radius:22px 22px 0 0;-webkit-mask-image:none;mask-image:none}.about-art-wrap::before{inset:4% 0 0 18%;filter:blur(16px)}.about-art{width:100%;height:100%;object-fit:contain;object-position:right center}.about-points{margin-top:18px}.about-contact-trigger{margin-top:22px}}
 @media(prefers-reduced-motion:reduce){.about{animation:none}.about-art-wrap:hover::after{animation:none}.about:hover .about-hover-shine{animation:none}}
+/* Roblox card: the draggable 3D avatar, kept compact */
+.rbx-compact{align-items:stretch}
+.rbx-compact .rbx-stage{width:100%;aspect-ratio:1/1.02;border-radius:16px;border:1px solid rgba(195,210,255,.12);background:radial-gradient(ellipse at 50% 26%,rgba(91,116,200,.34),rgba(12,15,25,.84) 76%)}
+.rbx-compact .rbx-stage img{object-fit:contain;transform:scale(1.04)}
+.rbx-compact .rbx-id{justify-content:center}
+@media(max-width:760px){.rbx-compact{flex-direction:column}.rbx-compact .rbx-stage{max-width:340px;margin:0 auto}}
 </style>
 </head>
 <body>
@@ -819,7 +825,7 @@ a.rerun[hidden]{display:none}
         </div>
       </div>
       <article class="me roblox-profile-card rbx-compact" aria-label="Roblox profile">
-        <div class="rbx-pic"><img src="pfp.png" alt="Zaynox’s profile picture" loading="lazy"></div>
+        <div class="me-stage rbx-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar" loading="lazy" onerror="this.onerror=null;this.src='pfp.png'"><span class="me-hint">Drag to rotate</span></div>
         <div class="rbx-id">
           <span class="rbx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/></svg></span>
           <div><b class="me-name">Zaynox</b><small>on Roblox</small></div>
