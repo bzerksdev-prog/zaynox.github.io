@@ -350,6 +350,28 @@ a.rerun[hidden]{display:none}
 @media (max-width:640px){.about{width:calc(100vw - 32px);min-height:560px;margin-left:0;align-items:flex-end;padding:26px}.about-copy{width:100%;padding-top:190px}.about-art-wrap{top:0;right:0;width:100%;height:58%;transform:none;border-radius:22px 22px 0 0}.about-art{object-position:85% center}.about p{font-size:1.08rem}.about p+p{font-size:.98rem}}
 @media (prefers-reduced-motion:reduce){.about-art-wrap:hover::after{animation:none}.about-profile{transition:none}}
 
+
+/* Compact About Me launcher and accessible modal. */
+.about-launch{display:flex;align-items:center;gap:15px;width:100%;max-width:460px;min-height:88px;margin:0 auto 18px;padding:17px 20px;border:1px solid rgba(160,175,220,.2);border-radius:22px;background:linear-gradient(135deg,rgba(21,24,36,.9),rgba(14,16,24,.82));color:var(--text);text-align:left;cursor:pointer;box-shadow:0 20px 48px -34px #000;transition:transform .55s var(--ease),border-color .45s var(--ease),background .45s var(--ease),box-shadow .55s var(--ease)}
+.about-launch:hover{transform:translateY(-4px);border-color:rgba(120,157,255,.52);background:linear-gradient(135deg,rgba(34,42,68,.92),rgba(16,18,28,.9));box-shadow:0 24px 54px -34px rgba(45,79,224,.55)}
+.about-launch-icon{display:grid;place-items:center;width:46px;height:46px;flex:none;border:1px solid rgba(145,173,255,.28);border-radius:15px;background:rgba(91,134,255,.12);color:#c8d7ff;font-size:1.3rem}
+.about-launch-copy{display:grid;gap:3px;flex:1;min-width:0}
+.about-launch-copy strong{font:700 1.12rem var(--display)}
+.about-launch-copy span{color:var(--muted);font-size:.86rem}
+.about-launch-arrow{color:#a9bdff;font-size:1.2rem;transition:transform .35s var(--ease)}
+.about-launch:hover .about-launch-arrow{transform:translate(2px,-2px)}
+.about-dialog{position:fixed;inset:0;width:min(860px,calc(100% - 32px));max-width:none;max-height:min(88vh,760px);margin:auto;padding:28px;border:1px solid rgba(160,175,220,.25);border-radius:26px;overflow:auto;background:linear-gradient(145deg,rgba(20,23,36,.98),rgba(9,11,18,.98));color:var(--text);box-shadow:0 35px 100px -28px #000}
+.about-dialog::backdrop{background:rgba(3,4,10,.76);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
+.about-dialog[open]{animation:zxFade .24s var(--ease) both}
+.about-dialog h2{font:700 1.65rem/1.2 var(--display);letter-spacing:-.02em;margin:0 46px 18px 2px}
+.about-close{position:absolute;top:20px;right:20px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.06);color:var(--text);font-size:1.45rem;line-height:1;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.about-close:hover{transform:rotate(90deg);background:rgba(91,134,255,.18);border-color:rgba(120,157,255,.5)}
+.about-dialog .about{width:100%;min-height:390px;margin:0;padding:clamp(24px,4vw,42px)}
+.about-dialog .about-copy{width:min(58%,560px)}
+.about-dialog .about-art-wrap{width:68%}
+@media (max-width:640px){.about-dialog{padding:22px 16px 16px;border-radius:22px}.about-dialog h2{font-size:1.45rem;margin-bottom:14px}.about-dialog .about{width:100%;min-height:500px;padding:22px}.about-dialog .about-copy{width:100%;padding-top:185px}.about-dialog .about-art-wrap{top:0;right:0;width:100%;height:58%;transform:none;border-radius:20px 20px 0 0}}
+@media (prefers-reduced-motion:reduce){.about-launch,.about-close,.about-launch-arrow{transition:none}.about-dialog[open]{animation:none}}
+
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
 .brand-mark{display:block;flex:none;width:40px;height:40px;overflow:visible;transition:filter .5s var(--ease),transform .6s var(--ease)}
@@ -579,20 +601,29 @@ a.rerun[hidden]{display:none}
 
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
-    <!-- Set the Roblox link in ROBLOX_URL (see the script). -->
-    <article class="about reveal" aria-label="About Zaynox">
-      <div class="about-copy">
-        <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
-        <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
-        <div class="about-links" aria-label="Roblox profile details">
-          <a class="about-profile" href="#" data-link="roblox">View my Roblox profile <span aria-hidden="true">↗</span></a>
-          <span class="about-pill"><b data-live="followers">5.5k</b> followers</span>
-          <span class="about-pill"><b data-live="friends">43</b> friends</span>
-          <span class="about-pill" data-live-group hidden><b>0</b> group members</span>
+    <button class="about-launch reveal" id="about-open" type="button" aria-haspopup="dialog" aria-controls="about-dialog">
+      <span class="about-launch-icon" aria-hidden="true">✦</span>
+      <span class="about-launch-copy"><strong>About Me</strong><span>A little about who I am and what I value</span></span>
+      <span class="about-launch-arrow" aria-hidden="true">↗</span>
+    </button>
+
+    <dialog class="about-dialog" id="about-dialog" aria-labelledby="about-title">
+      <button class="about-close" id="about-close" type="button" aria-label="Close About Me">×</button>
+      <h2 id="about-title">About Me</h2>
+      <article class="about" aria-label="About Zaynox">
+        <div class="about-copy">
+          <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
+          <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
+          <div class="about-links" aria-label="Roblox profile details">
+            <a class="about-profile" href="#" data-link="roblox">View my Roblox profile <span aria-hidden="true">↗</span></a>
+            <span class="about-pill"><b data-live="followers">5.5k</b> followers</span>
+            <span class="about-pill"><b data-live="friends">43</b> friends</span>
+            <span class="about-pill" data-live-group hidden><b>0</b> group members</span>
+          </div>
         </div>
-      </div>
-      <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
-    </article>
+        <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
+      </article>
+    </dialog>
 
     <div class="dsc reveal" style="--r:1" data-status="online">
       <div class="dsc-banner" aria-hidden="true">
@@ -701,7 +732,17 @@ experienceToggle.addEventListener("click", function () {
   experiencePanel.hidden = open;
 });
 
-// The About section lives alongside the profile links in the Me section.
+// About Me dialog: native dialog behavior handles Escape and focus restoration.
+var aboutDialog = document.getElementById("about-dialog");
+var aboutOpen = document.getElementById("about-open");
+var aboutClose = document.getElementById("about-close");
+if (aboutDialog && aboutOpen && aboutClose) {
+  aboutOpen.addEventListener("click", function () { aboutDialog.showModal(); });
+  aboutClose.addEventListener("click", function () { aboutDialog.close(); });
+  aboutDialog.addEventListener("click", function (event) {
+    if (event.target === aboutDialog) aboutDialog.close();
+  });
+}
 
 // Stats count up once.
 function countUp(el) {
