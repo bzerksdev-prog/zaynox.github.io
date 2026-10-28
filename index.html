@@ -121,8 +121,8 @@ a{color:inherit}
 .links a:hover{color:#fff;border-color:var(--blue);background:rgba(91,134,255,.16);transform:translateY(-3px)}
 .links svg{width:20px;height:20px;fill:currentColor}
 .pfp-wrap{position:relative;flex:none;animation:rise 1.6s .3s var(--ease) both}
-.pfp-frame{width:clamp(145px,28vw,205px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--blue);box-shadow:0 0 0 9px rgba(91,134,255,.1);background:#2b2c30;animation:float 9s ease-in-out infinite}
-.pfp{display:block;width:100%;height:100%;object-fit:contain;transform:scale(.92)}
+.pfp-frame{width:clamp(145px,28vw,205px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--blue);box-shadow:0 0 0 9px rgba(91,134,255,.1);background:radial-gradient(circle at 40% 28%,rgba(74,88,170,.72),rgba(25,28,48,.96) 68%,#10121b);animation:float 9s ease-in-out infinite}
+.pfp{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
 .pfp-wrap::before,.pfp-wrap::after{content:"✦";position:absolute;color:#fff;text-shadow:0 0 12px #fff;animation:twinkle 4.5s ease-in-out infinite}
 .pfp-wrap::before{top:2px;left:-8px;font-size:1.6rem}
 .pfp-wrap::after{bottom:14px;right:-14px;font-size:1.1rem;animation-delay:1.4s}
@@ -341,21 +341,13 @@ a.rerun[hidden]{display:none}
 .ab-ico svg{width:16px;height:16px}
 .ab-chev{width:15px;height:15px;margin-left:2px;color:#b9c9f3;transition:transform .45s var(--ease)}
 .about-btn[aria-expanded="true"] .ab-chev{transform:rotate(180deg)}
-.about{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);align-items:center;gap:clamp(20px,4vw,42px);padding:clamp(24px,4.5vw,36px);border:1px solid rgba(255,255,255,.13);border-radius:22px;overflow:hidden;background:linear-gradient(145deg,rgba(25,27,33,.94),rgba(16,17,22,.94));box-shadow:0 24px 50px -30px #000;animation:experienceReveal .6s var(--ease) both}
+.about{position:relative;display:flex;align-items:center;min-height:clamp(350px,40vw,460px);width:min(1020px,calc(100vw - 48px));margin-left:calc((100% - min(1020px,calc(100vw - 48px)))/2);padding:clamp(30px,5vw,54px);border:1px solid rgba(255,255,255,.15);border-radius:24px;overflow:hidden;background:radial-gradient(circle at 68% 17%,rgba(255,255,255,.7) 0 1px,transparent 1.7px),radial-gradient(circle at 79% 68%,rgba(206,220,255,.62) 0 1px,transparent 1.7px),radial-gradient(circle at 91% 34%,rgba(255,255,255,.54) 0 1px,transparent 1.6px),radial-gradient(circle at 57% 82%,rgba(230,232,255,.48) 0 1px,transparent 1.6px),radial-gradient(ellipse at 77% 38%,rgba(62,78,178,.52),transparent 40%),radial-gradient(ellipse at 89% 70%,rgba(104,47,151,.36),transparent 42%),linear-gradient(115deg,#10121b 0%,#151522 58%,#0c101d 100%);box-shadow:0 24px 50px -30px #000;animation:experienceReveal .6s var(--ease) both}
 .about[hidden]{display:none}
-.about::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);opacity:.75}
-.about-copy{position:relative;z-index:1}
-.about-kicker{margin-bottom:10px;color:#aab0c4;font:700 .74rem var(--display);letter-spacing:.16em;text-transform:uppercase}
-.about h2{margin-bottom:14px;font:800 clamp(1.45rem,4.6vw,1.95rem)/1.15 var(--display);letter-spacing:-.02em}
-.about p{max-width:62ch;color:#c9cbd1}
-.about p+p{margin-top:10px}
-.about-art{display:block;width:100%;max-height:235px;object-fit:contain;object-position:right center;filter:drop-shadow(0 18px 22px rgba(0,0,0,.16))}
-.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
-.about-tags li{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.055);color:#e2e3e7;font:600 .88rem var(--display)}
-.about-tags li::before{content:"";width:6px;height:6px;border-radius:50%;background:#d8dbe3}
-.about-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#e4e5e9;font:700 .95rem var(--display);text-decoration:none;transition:color .3s,gap .4s var(--ease)}
-.about-link:hover{color:#fff;gap:12px}
-@media (max-width:640px){.about{grid-template-columns:minmax(0,1fr)}.about-art{grid-row:1;width:min(100%,390px);height:150px;justify-self:end;object-position:right center;margin-bottom:-12px}}
+.about-copy{position:relative;z-index:2;width:min(54%,560px);text-shadow:0 2px 14px rgba(0,0,0,.62)}
+.about p{max-width:54ch;color:#eef0f6;font-size:clamp(1.02rem,1.45vw,1.15rem);line-height:1.65}
+.about p+p{margin-top:18px;color:#cdd2e3;font-size:clamp(.96rem,1.3vw,1.05rem)}
+.about-art{position:absolute;z-index:1;right:0;top:50%;display:block;width:73%;height:100%;max-height:none;object-fit:cover;object-position:right center;transform:translateY(-50%);filter:drop-shadow(0 18px 22px rgba(0,0,0,.24))}
+@media (max-width:640px){.about{width:calc(100vw - 32px);min-height:560px;margin-left:0;align-items:flex-end;padding:26px}.about-copy{width:100%;padding-top:190px}.about-art{top:0;right:0;width:100%;height:58%;transform:none;object-fit:cover;object-position:right center}.about p{font-size:1.08rem}.about p+p{font-size:.98rem}}
 
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
@@ -458,18 +450,12 @@ a.rerun[hidden]{display:none}
   </header>
 
   <!-- About me: opens from the button under the profile picture. Edit the wording here. -->
-  <section class="about" id="about-panel" aria-labelledby="about-title" hidden>
+  <section class="about" id="about-panel" aria-label="About Zaynox" hidden>
     <div class="about-copy">
-      <p class="about-kicker">About me</p>
-      <h2 id="about-title">Good work comes from focus.</h2>
-      <p>I’m Zaynox, a Roblox community staff member and QA tester. I’ve been on Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
-      <p>I value quality over quantity. I’d rather give a few communities and projects my full attention than jump between lots of games. I take feedback seriously, follow through, and care about getting the details right.</p>
-      <ul class="about-tags" aria-label="Strengths">
-        <li>Quality focused</li><li>Reliable</li><li>Community minded</li><li>Detail oriented</li>
-      </ul>
-      <a class="about-link" href="#games">See my experience <span aria-hidden="true">↓</span></a>
+      <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
+      <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
     </div>
-    <img class="about-art" src="about-banner.png" alt="Transparent illustration of Zaynox’s Roblox avatar">
+    <img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap">
   </section>
 
   <div class="stack" id="games">
