@@ -808,6 +808,17 @@ a.rerun[hidden]{display:none}
 }
 </style>
 
+
+<style id="about-edge-and-bottom-trim">
+/* Let the portrait panel bleed to the card edge and keep the footer row snug. */
+#me .about{padding-bottom:14px}
+#me .about-art-wrap{width:calc(100% + clamp(22px,3vw,36px));margin-right:calc(-1 * clamp(22px,3vw,36px))}
+@media(max-width:640px){
+ #me .about{padding-bottom:12px}
+ #me .about-art-wrap{width:calc(100% + 20px);margin-right:-20px}
+}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
