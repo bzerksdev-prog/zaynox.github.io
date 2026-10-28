@@ -372,12 +372,20 @@ a.rerun[hidden]{display:none}
 .about-tags span{background:rgba(10,14,30,.62);border-color:rgba(181,201,255,.24);color:#e7edff}
 .about-contact-trigger{margin-top:20px;box-shadow:0 0 28px -13px rgba(105,144,255,.8),inset 0 1px rgba(255,255,255,.08)}
 .about-contact-trigger:focus-visible{outline:2px solid #dce6ff;outline-offset:4px}
+.about{transition:translate .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease);animation:experienceReveal .6s var(--ease) both,aboutLevitate 7.5s ease-in-out .7s infinite}
+.about:hover{translate:0 -5px;border-color:rgba(180,202,255,.4);box-shadow:0 34px 70px -34px rgba(23,38,92,.7),0 24px 50px -30px #000}
+.about-hover-shine{position:absolute;z-index:3;top:-35%;bottom:-35%;left:-30%;width:18%;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent,rgba(228,238,255,.28) 35%,rgba(255,255,255,.72) 50%,rgba(190,211,255,.22) 68%,transparent);filter:blur(2px);transform:skewX(-23deg)}
+.about:hover .about-hover-shine{animation:aboutSweep 1.05s ease-out}
+@keyframes aboutLevitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes aboutSweep{0%{left:-30%;opacity:0}15%{opacity:.9}100%{left:120%;opacity:0}}
+@media(prefers-reduced-motion:reduce){.about{animation:experienceReveal .6s var(--ease) both;transition:none}.about:hover{translate:none}.about:hover .about-hover-shine{animation:none}}
+
 @keyframes aboutStarDrift{to{opacity:.5;transform:translate3d(-4px,3px,0)}}
 
 /* Full screen contact view */
-.contact-overlay{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:clamp(14px,3vw,38px);background:rgba(3,5,14,.88);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);animation:zxFade .32s var(--ease) both}
+.contact-overlay{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:clamp(14px,3vw,38px);background:rgba(3,5,14,.48);-webkit-backdrop-filter:blur(9px) saturate(1.2);backdrop-filter:blur(9px) saturate(1.2);animation:zxFade .32s var(--ease) both}
 .contact-overlay[hidden]{display:none}
-.contact-dialog{position:relative;isolation:isolate;width:min(1040px,100%);height:min(760px,100%);max-height:100%;overflow:auto;padding:clamp(28px,5vw,64px);border:1px solid rgba(170,193,255,.25);border-radius:30px;background:radial-gradient(ellipse at 12% 10%,rgba(56,83,194,.2),transparent 45%),radial-gradient(ellipse at 90% 95%,rgba(96,65,194,.14),transparent 42%),linear-gradient(145deg,#101321,#0a0c14 78%);box-shadow:0 40px 120px -40px #000,inset 0 1px rgba(255,255,255,.1);animation:experienceReveal .5s var(--ease) both;outline:none}
+.contact-dialog{position:relative;isolation:isolate;width:min(1040px,100%);height:min(760px,100%);max-height:100%;overflow:auto;padding:clamp(28px,5vw,64px);border:1px solid rgba(170,193,255,.25);border-radius:30px;background:radial-gradient(ellipse at 12% 10%,rgba(56,83,194,.18),transparent 45%),radial-gradient(ellipse at 90% 95%,rgba(96,65,194,.12),transparent 42%),linear-gradient(145deg,rgba(16,19,33,.8),rgba(10,12,20,.76) 78%);-webkit-backdrop-filter:blur(14px) saturate(1.15);backdrop-filter:blur(14px) saturate(1.15);box-shadow:0 40px 120px -40px #000,inset 0 1px rgba(255,255,255,.1);animation:experienceReveal .5s var(--ease) both;outline:none}
 .contact-dialog::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background-image:radial-gradient(circle at 12% 19%,rgba(255,255,255,.55) 0 1px,transparent 1.7px),radial-gradient(circle at 88% 13%,rgba(190,207,255,.58) 0 1px,transparent 1.7px),radial-gradient(circle at 76% 78%,rgba(255,255,255,.42) 0 1px,transparent 1.7px)}
 .contact-close{position:absolute;top:20px;right:22px;z-index:3;width:44px;height:44px;border:1px solid rgba(220,230,255,.2);border-radius:50%;background:rgba(255,255,255,.06);color:#f5f7ff;font:400 1.8rem/1 var(--display);cursor:pointer;transition:background .25s,transform .25s}
 .contact-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
@@ -389,18 +397,15 @@ a.rerun[hidden]{display:none}
 #contact-overlay #about-discord-card{width:100%;max-width:none;height:100%;margin:0;display:flex;flex-direction:column}
 #contact-overlay #about-discord-card .dsc-body{flex:1}
 #contact-overlay .dsc-btns{margin-top:auto}
-.roblox-contact{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:280px;padding:26px;border:1px solid rgba(160,175,220,.22);border-radius:26px;overflow:hidden;background:radial-gradient(circle at 88% 5%,rgba(91,134,255,.22),transparent 42%),linear-gradient(150deg,rgba(22,27,46,.96),rgba(14,16,25,.98));box-shadow:0 28px 60px -38px #000}
-.roblox-contact::after{content:"";position:absolute;width:170px;height:170px;right:-36px;top:-45px;border:1px solid rgba(174,195,255,.16);border-radius:32px;transform:rotate(24deg);box-shadow:0 0 0 18px rgba(255,255,255,.018),0 0 0 36px rgba(255,255,255,.012)}
-.roblox-contact-mark{display:grid;place-items:center;width:56px;height:56px;border:1px solid rgba(181,201,255,.3);border-radius:17px;background:rgba(91,134,255,.16);color:#dbe5ff}
-.roblox-contact-mark svg{width:30px;height:30px}
-.roblox-contact-copy{margin-top:24px}
-.roblox-contact-copy>span{color:#aebfff;font:700 .7rem var(--display);letter-spacing:.18em}
-.roblox-contact-copy h3{margin-top:5px;font:800 1.6rem var(--display)}
-.roblox-contact-copy p{margin-top:3px;color:var(--muted);font-size:.9rem}
-.roblox-contact-link{position:relative;z-index:1;display:inline-flex;align-items:center;gap:12px;margin-top:auto;padding:11px 16px;border:1px solid rgba(160,185,255,.32);border-radius:13px;background:rgba(91,134,255,.16);color:#f1f4ff;font:700 .92rem var(--display);text-decoration:none;transition:transform .3s var(--ease),background .3s}
-.roblox-contact-link:hover{transform:translateY(-2px);background:rgba(91,134,255,.28)}
+.roblox-profile-card{width:100%;max-width:none;margin:0;padding:14px;border-color:rgba(170,193,255,.24);background:rgba(12,15,26,.68);backdrop-filter:blur(9px);box-shadow:0 28px 65px -38px #000}
+#contact-overlay .me-stage{aspect-ratio:4/3;border:1px solid rgba(195,210,255,.12);background:radial-gradient(ellipse at 50% 26%,rgba(91,116,200,.34),rgba(12,15,25,.84) 76%)}
+#contact-overlay .me-stage img{object-fit:contain;transform:scale(1.06)}
+#contact-overlay .roblox-contact-link{align-self:flex-start;margin-top:13px}
+#contact-overlay .pills{gap:6px}
+#contact-overlay .pill{padding:5px 9px;font-size:.75rem}
+
 @media(max-width:680px){.about{min-height:520px}.about-copy{width:100%;padding-top:190px}.about-subline{max-width:30ch}.contact-overlay{padding:0}.contact-dialog{width:100%;height:100%;max-height:100%;padding:82px 20px 26px;border-radius:0;border:0}.contact-close{top:18px;right:18px}.contact-heading{margin-bottom:25px}.contact-heading h2{font-size:clamp(3rem,17vw,5rem)}.contact-grid{grid-template-columns:1fr;gap:14px}.roblox-contact{min-height:220px;padding:22px}.roblox-contact-copy{margin-top:16px}}
-@media(prefers-reduced-motion:reduce){.about-stars i,.about::after{animation:none}.contact-overlay,.contact-dialog{animation:none}.contact-close,.roblox-contact-link{transition:none}}
+@media(prefers-reduced-motion:reduce){.about-stars i,.about::after,.about-hover-shine{animation:none}.about,.contact-overlay,.contact-dialog{animation:none}.about:hover{translate:none}.contact-close,.roblox-contact-link{transition:none}}
 
 /* About banner and expandable Discord contact card. */
 .about{width:min(940px,calc(100vw - 48px));min-height:clamp(390px,42vw,440px);margin-left:calc((100% - min(940px,calc(100vw - 48px)))/2);padding:clamp(34px,5vw,58px);border-color:rgba(160,175,220,.2);background:radial-gradient(ellipse at 86% 42%,rgba(45,79,224,.16),transparent 42%),linear-gradient(145deg,rgba(17,19,29,.96),rgba(12,14,22,.92))}
@@ -653,7 +658,7 @@ a.rerun[hidden]{display:none}
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
     <!-- About me -->
-    <article class="about reveal" aria-label="A little about Zaynox"><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
+    <article class="about reveal" aria-label="A little about Zaynox"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
         <span class="about-eyebrow">A little about me</span>
         <h2 class="about-headline">Let’s <span>work.</span></h2>
@@ -710,10 +715,20 @@ a.rerun[hidden]{display:none}
         <a class="rerun" id="dsc-open" href="#" target="_blank" rel="noopener" hidden>Open profile <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-      <article class="roblox-contact">
-        <div class="roblox-contact-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 4 36 12 28 36 4 28 8 4Zm8 11-2 7 7 2 2-7-7-2Z" fill="currentColor" fill-rule="evenodd"/></svg></div>
-        <div class="roblox-contact-copy"><span>ROBLOX</span><h3>Zaynox</h3><p>Player profile</p></div>
-        <a class="roblox-contact-link" href="https://www.roblox.com/users/1098092708/profile" target="_blank" rel="noopener">View profile <span aria-hidden="true">↗</span></a>
+      <article class="me roblox-profile-card" aria-label="Roblox profile">
+        <div class="me-top">
+          <span class="rbx" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 4 36 12 28 36 4 28 8 4Zm8 11-2 7 7 2 2-7-7-2Z" fill-rule="evenodd"/></svg></span>
+          <b class="me-name">Zaynox</b>
+          <div class="pills" aria-label="Roblox profile statistics">
+            <span class="pill"><b data-live="followers">—</b> Followers</span>
+            <span class="pill"><b data-live="friends">—</b> Friends</span>
+          </div>
+        </div>
+        <div class="me-stage">
+          <img src="pfp.png" alt="Zaynox’s Roblox avatar" loading="lazy">
+          <span class="me-hint">Drag to rotate</span>
+        </div>
+        <a class="roblox-contact-link" data-link="roblox" href="https://www.roblox.com/users/1098092708/profile">View Roblox profile <span aria-hidden="true">↗</span></a>
       </article>
     </div>
   </section>
