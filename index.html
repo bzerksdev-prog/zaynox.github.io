@@ -198,28 +198,25 @@ section[id],#games{scroll-margin-top:96px}
 .qa-label i{width:6px;height:6px;border-radius:50%;background:#91adff;box-shadow:0 0 8px rgba(145,173,255,.7)}
 @media (max-width:480px){.qa-grid{gap:9px}.qa-card{padding:8px;border-radius:15px}.qa-icon-wrap{border-radius:10px}.qa-label{font-size:.61rem;padding:4px 6px}}
 
-/* Timeline (horizontal) */
+/* Timeline (vertical) */
 .tl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
-.arrows{display:flex;gap:8px;margin-bottom:18px}
-.arrows button{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer;font-size:1.1rem;transition:background .2s,border-color .2s,transform .2s var(--ease)}
-.arrows button:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
-.track{display:flex;list-style:none;padding:12px 6px 14px;margin:0 -6px;overflow-x:auto;scroll-snap-type:x proximity;cursor:grab;scrollbar-width:thin;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 56px),transparent)}
-.track.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.track li{flex:0 0 210px;position:relative;padding:36px 20px 0 0;scroll-snap-align:start}
-.track li::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid #aeb4c8;z-index:1;transition:transform .55s var(--ease),background .55s var(--ease),border-color .55s var(--ease)}
-.track li:hover::before{transform:scale(1.25);background:#fff}
-.track li::after{content:"";position:absolute;left:20px;right:0;top:9px;height:2px;background:linear-gradient(90deg,#8a90a6,#4a4e5e);transform-origin:left}
-.js .track li::after{transform:scaleX(0);transition:transform 1.3s var(--ease);transition-delay:calc(var(--i)*.25s + .3s)}
-.js .track li.in::after{transform:scaleX(1)}
-.js .track li{opacity:0;translate:0 8px;transition:opacity .55s var(--ease),translate .55s var(--ease);transition-delay:calc(var(--i)*.08s)}
-.js .track li.in{opacity:1;translate:0 0}
-@media (prefers-reduced-motion:reduce){.js .track li{opacity:1;translate:none;transition:none}.js .track li::after{transform:scaleX(1);transition:none}}
-.track li:last-child::after{background:linear-gradient(90deg,#8a90a6,transparent)}
-.track li.now::before{background:#fff;border-color:#fff;animation:pulse 2s infinite}
-.track time{font:700 1.15rem var(--display);color:#d5d9e8}
-.track h3{font:600 1.15rem/1.2 var(--display);margin:2px 0 4px}
-.track p{color:var(--muted);font-size:.93rem}
+.timeline-list{position:relative;display:grid;gap:0;list-style:none;margin:24px 0 0;padding:0 0 0 38px}
+.timeline-list::before{content:"";position:absolute;left:8px;top:9px;bottom:20px;width:2px;background:linear-gradient(180deg,rgba(91,134,255,.35),rgba(91,134,255,.85),rgba(91,134,255,.3));transform-origin:top}
+.js .timeline-list::before{transform:scaleY(0);transition:transform 1.3s var(--ease)}
+.js .timeline-list.in::before{transform:scaleY(1)}
+.timeline-list li{position:relative;padding:0 0 14px}
+.timeline-list li:last-child{padding-bottom:0}
+.timeline-list li::before{content:"";position:absolute;left:-38px;top:19px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2px solid #7889c2;z-index:1;transition:transform .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease)}
+.timeline-list li:hover::before{transform:scale(1.16);background:#fff;border-color:#fff}
+.timeline-item{padding:16px 18px;border:1px solid rgba(160,175,220,.15);border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.018));transition:transform .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease)}
+.timeline-list li:hover .timeline-item{transform:translateX(4px);border-color:rgba(130,158,255,.38);background:rgba(91,134,255,.06)}
+.timeline-list time{display:block;margin-bottom:3px;font:700 .78rem var(--display);letter-spacing:.12em;text-transform:uppercase;color:#9fb6ff}
+.timeline-list h3{font:700 1.08rem/1.3 var(--display);margin:0 0 4px}
+.timeline-list p{color:var(--muted);font-size:.93rem}
+.js .timeline-list li{opacity:0;translate:0 10px;transition:opacity .55s var(--ease),translate .55s var(--ease);transition-delay:calc(var(--i)*.1s + .2s)}
+.js .timeline-list.in li{opacity:1;translate:0 0}
+.timeline-list li.now::before{background:#fff;border-color:#fff;animation:pulse 2s infinite}
+@media (prefers-reduced-motion:reduce){.js .timeline-list::before{transform:scaleY(1);transition:none}.js .timeline-list li{opacity:1;translate:none;transition:none}.timeline-item{transition:none}}
 
 /* Header */
 .hdr{position:fixed;top:20px;left:0;right:0;z-index:30;width:min(1100px,calc(100% - 40px));height:68px;margin:0 auto;border-radius:999px;
@@ -341,13 +338,20 @@ a.rerun[hidden]{display:none}
 .ab-ico svg{width:16px;height:16px}
 .ab-chev{width:15px;height:15px;margin-left:2px;color:#b9c9f3;transition:transform .45s var(--ease)}
 .about-btn[aria-expanded="true"] .ab-chev{transform:rotate(180deg)}
-.about{position:relative;display:flex;align-items:center;min-height:clamp(350px,40vw,460px);width:min(1020px,calc(100vw - 48px));margin-left:calc((100% - min(1020px,calc(100vw - 48px)))/2);padding:clamp(30px,5vw,54px);border:1px solid rgba(255,255,255,.15);border-radius:24px;overflow:hidden;background:radial-gradient(circle at 68% 17%,rgba(255,255,255,.7) 0 1px,transparent 1.7px),radial-gradient(circle at 79% 68%,rgba(206,220,255,.62) 0 1px,transparent 1.7px),radial-gradient(circle at 91% 34%,rgba(255,255,255,.54) 0 1px,transparent 1.6px),radial-gradient(circle at 57% 82%,rgba(230,232,255,.48) 0 1px,transparent 1.6px),radial-gradient(ellipse at 77% 38%,rgba(62,78,178,.52),transparent 40%),radial-gradient(ellipse at 89% 70%,rgba(104,47,151,.36),transparent 42%),linear-gradient(115deg,#10121b 0%,#151522 58%,#0c101d 100%);box-shadow:0 24px 50px -30px #000;animation:experienceReveal .6s var(--ease) both}
+.about{position:relative;display:flex;align-items:center;min-height:clamp(350px,40vw,460px);width:min(1020px,calc(100vw - 48px));margin-left:calc((100% - min(1020px,calc(100vw - 48px)))/2);padding:clamp(30px,5vw,54px);border:1px solid rgba(255,255,255,.13);border-radius:22px;overflow:hidden;background:radial-gradient(ellipse at 82% 54%,rgba(45,79,224,.13),transparent 43%),linear-gradient(145deg,rgba(16,17,22,.94),rgba(16,17,22,.84));box-shadow:0 24px 50px -30px #000;animation:experienceReveal .6s var(--ease) both}
 .about[hidden]{display:none}
+.about::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);opacity:.75}
+.about::after{content:"";position:absolute;z-index:0;inset:0 0 0 auto;width:74%;pointer-events:none;background:radial-gradient(circle at 70% 19%,rgba(255,255,255,.7) 0 1px,transparent 1.7px),radial-gradient(circle at 84% 66%,rgba(206,220,255,.55) 0 1px,transparent 1.7px),radial-gradient(circle at 94% 36%,rgba(255,255,255,.5) 0 1px,transparent 1.6px),radial-gradient(circle at 59% 82%,rgba(230,232,255,.4) 0 1px,transparent 1.6px)}
 .about-copy{position:relative;z-index:2;width:min(54%,560px);text-shadow:0 2px 14px rgba(0,0,0,.62)}
 .about p{max-width:54ch;color:#eef0f6;font-size:clamp(1.02rem,1.45vw,1.15rem);line-height:1.65}
 .about p+p{margin-top:18px;color:#cdd2e3;font-size:clamp(.96rem,1.3vw,1.05rem)}
-.about-art{position:absolute;z-index:1;right:0;top:50%;display:block;width:73%;height:100%;max-height:none;object-fit:cover;object-position:right center;transform:translateY(-50%);filter:drop-shadow(0 18px 22px rgba(0,0,0,.24))}
-@media (max-width:640px){.about{width:calc(100vw - 32px);min-height:560px;margin-left:0;align-items:flex-end;padding:26px}.about-copy{width:100%;padding-top:190px}.about-art{top:0;right:0;width:100%;height:58%;transform:none;object-fit:cover;object-position:right center}.about p{font-size:1.08rem}.about p+p{font-size:.98rem}}
+.about-art-wrap{position:absolute;z-index:1;right:0;top:50%;width:73%;height:100%;transform:translateY(-50%);overflow:hidden}
+.about-art-wrap::after{content:"";position:absolute;top:-18%;bottom:-18%;left:-35%;width:22%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);transform:skewX(-24deg);opacity:0}
+.about-art-wrap:hover::after{animation:aboutPhotoShine .95s ease-out}
+.about-art{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:right center;filter:drop-shadow(0 18px 22px rgba(0,0,0,.24))}
+@keyframes aboutPhotoShine{0%{left:-35%;opacity:0}15%{opacity:.92}100%{left:125%;opacity:0}}
+@media (max-width:640px){.about{width:calc(100vw - 32px);min-height:560px;margin-left:0;align-items:flex-end;padding:26px}.about-copy{width:100%;padding-top:190px}.about-art-wrap{top:0;right:0;width:100%;height:58%;transform:none;border-radius:22px 22px 0 0}.about p{font-size:1.08rem}.about p+p{font-size:.98rem}}
+@media (prefers-reduced-motion:reduce){.about-art-wrap:hover::after{animation:none}}
 
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
@@ -455,7 +459,7 @@ a.rerun[hidden]{display:none}
       <p>I’m Zaynox, a Roblox player, community manager, and QA tester. I’ve been playing Roblox since 2017, and I enjoy helping communities grow and making games better for the people who play them.</p>
       <p>I value quality over quantity, so I focus on the communities and projects I join instead of jumping between lots of games.</p>
     </div>
-    <img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap">
+    <div class="about-art-wrap"><img class="about-art" src="about-banner.png" alt="Zaynox’s Roblox character in a white sweater and blue cap"></div>
   </section>
 
   <div class="stack" id="games">
@@ -574,20 +578,16 @@ a.rerun[hidden]{display:none}
     <div class="tl-head reveal">
       <div>
         <h2 id="tl-title">Timeline</h2>
-        <p class="sub">My journey so far. Drag or scroll sideways.</p>
-      </div>
-      <div class="arrows">
-        <button type="button" id="tl-prev" aria-label="Earlier">←</button>
-        <button type="button" id="tl-next" aria-label="Later">→</button>
+        <p class="sub">A few milestones in my journey so far.</p>
       </div>
     </div>
-    <ol class="track" id="track" tabindex="0" aria-label="Timeline">
-      <li class="reveal" style="--i:0;--r:0"><time>2017</time><h3>Joined Roblox</h3><p>Started out as a player.</p></li>
-      <li class="reveal" style="--i:1;--r:1"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></li>
-      <li class="reveal" style="--i:2;--r:2"><h3>Became a Helper</h3><p>Became involved in the Gakuran community.</p></li>
-      <li class="reveal" style="--i:3;--r:3"><h3>Promoted to Staff &amp; Helper Management</h3></li>
-      <li class="reveal" style="--i:4;--r:4"><h3>SAE Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></li>
-      <li class="reveal now" style="--i:5;--r:5"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></li>
+    <ol class="timeline-list reveal" aria-label="Timeline">
+      <li style="--i:0"><article class="timeline-item"><time>2017</time><h3>Joined Roblox</h3><p>Started out as a player.</p></article></li>
+      <li style="--i:1"><article class="timeline-item"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></article></li>
+      <li style="--i:2"><article class="timeline-item"><h3>Became a Helper</h3><p>Became involved in the Gakuran community.</p></article></li>
+      <li style="--i:3"><article class="timeline-item"><h3>Promoted to Staff &amp; Helper Management</h3></article></li>
+      <li style="--i:4"><article class="timeline-item"><h3>SAE Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></article></li>
+      <li class="now" style="--i:5"><article class="timeline-item"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></article></li>
     </ol>
   </section>
 
@@ -921,18 +921,7 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
   requestAnimationFrame(frame);
 })();
 
-// Timeline: arrow buttons and mouse drag.
-var track = document.getElementById("track");
-function step(dir) { track.scrollBy({ left: dir * 230, behavior: "smooth" }); }
-document.getElementById("tl-prev").onclick = function () { step(-1); };
-document.getElementById("tl-next").onclick = function () { step(1); };
-var down = false, sx = 0, sl = 0;
-track.addEventListener("pointerdown", function (e) {
-  if (e.pointerType !== "mouse") return;
-  down = true; sx = e.clientX; sl = track.scrollLeft; track.classList.add("drag");
-});
-window.addEventListener("pointermove", function (e) { if (down) track.scrollLeft = sl - (e.clientX - sx); });
-window.addEventListener("pointerup", function () { down = false; track.classList.remove("drag"); });
+// The vertical timeline reveals its milestones as it enters the viewport.
 
 // 3D avatar: loads your Roblox avatar model and lets visitors drag (or swipe sideways) to rotate it.
 // If anything fails (network, blocked requests, no WebGL) the static avatar.png simply stays in place.
