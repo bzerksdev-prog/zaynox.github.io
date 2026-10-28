@@ -369,7 +369,7 @@ a.rerun[hidden]{display:none}
 .about-dialog .about{width:100%;min-height:390px;margin:0;padding:clamp(24px,4vw,42px)}
 .about-dialog .about-copy{width:min(58%,560px)}
 .about-dialog .about-art-wrap{width:68%}
-@media (max-width:640px){.about-dialog{padding:22px 16px 16px;border-radius:22px}.about-dialog h2{font-size:1.45rem;margin-bottom:14px}.about-dialog .about{width:100%;min-height:500px;padding:22px}.about-dialog .about-copy{width:100%;padding-top:185px}.about-dialog .about-art-wrap{top:0;right:0;width:100%;height:58%;transform:none;border-radius:20px 20px 0 0}}
+@media (max-width:640px){.about-dialog{padding:22px 16px 16px;border-radius:22px}.about-dialog h2{font-size:1.45rem;margin-bottom:14px}.about-dialog .about{display:flex;flex-direction:column;align-items:stretch;width:100%;min-height:0;padding:22px}.about-dialog .about-copy{order:2;width:100%;padding:0}.about-dialog .about-art-wrap{position:relative;order:1;top:auto;right:auto;width:calc(100% + 44px);height:210px;margin:-22px -22px 18px;transform:none;border-radius:20px 20px 0 0}.about-dialog .about-art{object-fit:contain;object-position:center}}
 @media (prefers-reduced-motion:reduce){.about-launch,.about-close,.about-launch-arrow{transition:none}.about-dialog[open]{animation:none}}
 
 /* Brand: a hairline ring with an angular Z, and a letter-spaced wordmark (drawn in the page, no image) */
