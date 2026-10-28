@@ -772,6 +772,13 @@ a.rerun[hidden]{display:none}
 }
 </style>
 
+
+<style id="about-viewport-centering">
+/* Center the wide About card on the viewport even though the surrounding main column is narrower. */
+#me.sec{position:relative;left:50%;transform:translateX(-50%);margin-left:0!important;margin-right:0!important}
+@media(max-width:640px){#me.sec{left:50%;transform:translateX(-50%);margin-left:0!important;margin-right:0!important}}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
