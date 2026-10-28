@@ -335,6 +335,10 @@ a.rerun[hidden]{display:none}
 .about::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);opacity:.75}
 .about::after{content:"";position:absolute;z-index:0;inset:0 0 0 auto;width:74%;pointer-events:none;background:radial-gradient(circle at 70% 19%,rgba(255,255,255,.7) 0 1px,transparent 1.7px),radial-gradient(circle at 84% 66%,rgba(206,220,255,.55) 0 1px,transparent 1.7px),radial-gradient(circle at 94% 36%,rgba(255,255,255,.5) 0 1px,transparent 1.6px),radial-gradient(circle at 59% 82%,rgba(230,232,255,.4) 0 1px,transparent 1.6px)}
 .about-copy{position:relative;z-index:2;width:min(54%,560px);text-shadow:0 2px 14px rgba(0,0,0,.62)}
+.about-eyebrow{display:block;margin-bottom:20px;color:#c4d2ff;font:700 .76rem/1 var(--display);letter-spacing:.2em;text-transform:uppercase}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 2px}
+.about-tags span{padding:6px 11px;border:1px solid rgba(190,205,255,.2);border-radius:999px;background:rgba(9,13,29,.52);color:#e3e9ff;font:600 .78rem/1.1 var(--display);backdrop-filter:blur(8px)}
+
 .about p{max-width:54ch;color:#eef0f6;font-size:clamp(1.02rem,1.45vw,1.15rem);line-height:1.65}
 .about p+p{margin-top:18px;color:#cdd2e3;font-size:clamp(.96rem,1.3vw,1.05rem)}
 .about-links{position:relative;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px}
@@ -359,7 +363,7 @@ a.rerun[hidden]{display:none}
 .about-eyebrow{display:inline-block;margin-bottom:7px;color:#adc1ff;font:700 .72rem var(--display);letter-spacing:.16em;text-transform:uppercase}
 .about h2{margin:0 0 14px;font:800 clamp(1.7rem,3.2vw,2.2rem)/1.05 var(--display);letter-spacing:-.03em;color:#f2f5ff}
 .about p{max-width:38ch;color:#eef0f6;font-size:clamp(1rem,1.35vw,1.12rem);line-height:1.6}
-.about-contact-trigger{display:inline-flex;align-items:center;gap:13px;margin-top:24px;min-height:56px;padding:0 20px;border:1px solid rgba(135,169,255,.52);border-radius:16px;background:linear-gradient(120deg,rgba(91,134,255,.26),rgba(45,79,224,.12) 60%,rgba(255,255,255,.05));color:#f4f6ff;font:750 1rem var(--display);cursor:pointer;box-shadow:0 16px 36px -26px rgba(91,134,255,.9);transition:transform .4s var(--ease),border-color .4s,background .4s,box-shadow .4s}
+.about-contact-trigger{display:inline-flex;align-items:center;gap:13px;margin-top:22px;min-height:56px;padding:0 20px;border:1px solid rgba(135,169,255,.52);border-radius:16px;background:linear-gradient(120deg,rgba(91,134,255,.26),rgba(45,79,224,.12) 60%,rgba(255,255,255,.05));color:#f4f6ff;font:750 1rem var(--display);cursor:pointer;box-shadow:0 16px 36px -26px rgba(91,134,255,.9);transition:transform .4s var(--ease),border-color .4s,background .4s,box-shadow .4s}
 .about-contact-trigger:hover{transform:translateY(-3px);border-color:rgba(185,205,255,.8);background:linear-gradient(120deg,rgba(91,134,255,.38),rgba(45,79,224,.2) 60%,rgba(255,255,255,.08));box-shadow:0 19px 38px -24px rgba(91,134,255,.88)}
 .about-contact-spark{color:#c8d7ff;text-shadow:0 0 12px rgba(180,204,255,.9);animation:contactPulse 2.8s ease-in-out infinite}
 .about-contact-arrow{color:#c5d5ff;transition:transform .3s var(--ease)}
@@ -605,8 +609,9 @@ a.rerun[hidden]{display:none}
     <article class="about reveal" aria-label="A little about Zaynox">
       <div class="about-copy">
         <span class="about-eyebrow">A little about me</span>
-        <h2>About Me</h2>
-        <p>I’m Zaynox — a Roblox player, community manager, and QA tester since 2017. I care about quality and the communities I choose to be part of.</p>
+        <div class="about-tags" aria-label="Roblox player, community manager, and QA tester">
+          <span>Roblox</span><span>Community</span><span>QA</span>
+        </div>
         <button class="about-contact-trigger" id="about-contact-toggle" type="button" aria-expanded="false" aria-controls="about-discord-card">
           <span class="about-contact-spark" aria-hidden="true">✦</span>
           <span class="about-contact-label">Let’s get in contact</span>
