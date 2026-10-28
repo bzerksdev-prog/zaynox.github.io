@@ -611,7 +611,10 @@ a.rerun[hidden]{display:none}
 @keyframes introWordIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
 @keyframes introHalo{0%{opacity:0;transform:scale(.7)}35%{opacity:1}100%{opacity:.45;transform:scale(1.2)}}
 @keyframes introVeilOut{to{opacity:0;visibility:hidden}}
-@media(prefers-reduced-motion:reduce){.brand-intro{display:none;animation:none}.brand-intro *{animation:none}}
+@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .26s linear .56s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
+@keyframes introDotReduced{0%,100%{opacity:0}35%{opacity:1}}
+@keyframes introMarkReduced{from{opacity:0}to{opacity:1}}
+@keyframes introWordReduced{from{opacity:0}to{opacity:1}}
 </style>
 </head>
 <body>
@@ -637,7 +640,6 @@ a.rerun[hidden]{display:none}
 (function(){
   var intro=document.getElementById("brand-intro");
   if(!intro)return;
-  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){intro.remove();return;}
   intro.addEventListener("animationend",function(event){
     if(event.target===intro&&event.animationName==="introVeilOut")intro.remove();
   });
