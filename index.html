@@ -255,6 +255,7 @@ section[id],#games{scroll-margin-top:96px}
 .me-stage img{transition:transform 1s var(--ease),opacity .6s var(--ease)}
 .me-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .6s var(--ease)}
 .me-stage.is3d{cursor:grab}
+.me-stage:not(.is3d){display:block;color:inherit;text-decoration:none;cursor:grab;touch-action:pan-y}\n.me-stage.fallback-drag{cursor:grabbing}\n.me-stage img{user-select:none;-webkit-user-drag:none}
 .me-stage.is3d.dragging{cursor:grabbing}
 .me-stage.is3d canvas{opacity:1}
 .me-stage.is3d img{opacity:0}
@@ -476,9 +477,9 @@ a.rerun[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){.dsc-banner::after{animation:none;display:none}.zx-overlay{animation:none}.dock-btn,.shots img{transition:none}}
 
 /* ===== Discord profile card (modelled on the real profile), compact Roblox card, About banner ===== */
-.dsc-profile{--card:#07080c;max-width:none;margin:0;padding:0;border-radius:26px;border:1px solid rgba(80,160,255,.4);background:linear-gradient(180deg,#05070c,#07090f 40%,#06070b);box-shadow:0 0 0 1px rgba(60,140,255,.1),0 0 70px -22px rgba(40,120,255,.7),0 36px 70px -34px #000}
+.dsc-profile{--card:#000;max-width:none;margin:0;padding:0;border-radius:26px;border:1px solid rgba(80,160,255,.4);background:#000;box-shadow:0 0 0 1px rgba(60,140,255,.1),0 0 70px -22px rgba(40,120,255,.7),0 36px 70px -34px #000}
 .dsc-profile:hover{transform:translateY(-4px);border-color:rgba(110,180,255,.62)}
-.dsc-profile .dsc-banner{display:block;height:clamp(128px,15vw,172px);background:radial-gradient(55% 130% at 54% 45%,rgba(30,100,255,.3),transparent 70%),radial-gradient(40% 90% at 100% 100%,rgba(40,140,170,.22),transparent 70%),linear-gradient(180deg,#010811,#030a16 70%,#050912)}
+.dsc-profile .dsc-banner{display:block;height:clamp(128px,15vw,172px);background:#000}
 .dsc-profile .dsc-banner::before{opacity:.45;background-size:38px 38px}
 .dsc-profile .dsc-banner::after{animation:none;display:none}
 .dsc-banner-logo{position:absolute;left:54%;top:50%;height:74%;width:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 0 22px rgba(40,120,255,.55));transition:transform .9s var(--ease),filter .9s var(--ease)}
@@ -491,8 +492,8 @@ a.rerun[hidden]{display:none}
 .dsc-profile .dsc-av{width:clamp(108px,12vw,136px);height:clamp(108px,12vw,136px);margin:calc(clamp(108px,12vw,136px)/-2) 0 0 26px}
 .dsc-profile .dsc-av .dsc-avatar{box-shadow:0 0 0 7px var(--card)}
 .dsc-profile .dsc-av .dsc-decoration{inset:-9% ;width:118%;height:118%;left:-9%;top:-9%}
-.dsc-profile .dsc-av .dsc-status-dot{right:2%;bottom:2%;width:28px;height:28px;border-width:6px}
-.dsc-profile .dsc-info{padding:16px 26px 0;min-width:0}
+.dsc-profile .dsc-av .dsc-status-dot{display:none}
+.dsc-profile .dsc-info{padding:16px 26px 0;min-width:0}\n.dsc-profile .dsc-user-row{gap:9px;flex-wrap:wrap}\n.dsc-profile .dsc-user-row .dsc-rank{display:inline-flex;align-items:center;gap:7px;color:#eceff7}\n.dsc-profile .dsc-user-row .dsc-rank img{display:block;width:23px;height:24px;object-fit:contain}\n.dsc-profile .dsc-user-row .dsc-fraktur{font-size:clamp(1.2rem,2vw,1.55rem)}
 .dsc-name-row{display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
 .dsc-info b.dsc-display{display:block;font:800 clamp(1.7rem,3.2vw,2.35rem)/1.1 "Orbitron",var(--display);letter-spacing:.03em;text-transform:lowercase;background:linear-gradient(180deg,#fff 0%,#a9d3ff 38%,#2f86ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(50,130,255,.55))}
 .dsc-tag{display:inline-grid;place-items:center;flex:none;width:32px;height:30px;border-radius:9px;background:rgba(255,255,255,.07);color:#c7cbd8}
@@ -598,7 +599,7 @@ a.rerun[hidden]{display:none}
 .about-art{position:absolute;z-index:1;top:50%;right:0;left:auto;width:120%;height:auto;max-width:none;object-position:right center;transform:translateY(-50%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%)}
 @media(max-width:640px){.about-art-wrap{top:0;right:0;width:100%;height:64%;transform:none}.about-art-wrap::before{inset:8% 4% 0 18%;filter:blur(20px)}.about-art{top:44%;right:-4%;width:118%;height:auto;transform:translateY(-50%);object-position:right center}}
 
-.brand-intro{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;overflow:hidden;pointer-events:none;background:rgba(4,6,14,.94);-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);animation:introVeilOut .58s cubic-bezier(.65,0,.35,1) 2.8s both}
+.brand-intro{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;overflow:hidden;pointer-events:none;background:rgba(4,6,14,.94);-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);animation:introVeilOut .58s cubic-bezier(.65,0,.35,1) 1.55s both}
 .brand-intro::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 48%,rgba(80,112,255,.18),transparent 22%);animation:introHalo .95s ease-out .05s both}
 .brand-intro-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px}
 .brand-intro-core{position:relative;display:grid;place-items:center;width:68px;height:68px}
@@ -611,7 +612,7 @@ a.rerun[hidden]{display:none}
 @keyframes introWordIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
 @keyframes introHalo{0%{opacity:0;transform:scale(.7)}35%{opacity:1}100%{opacity:.45;transform:scale(1.2)}}
 @keyframes introVeilOut{to{opacity:0;visibility:hidden}}
-@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .34s linear 2.2s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
+@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .34s linear 1.2s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
 @keyframes introDotReduced{0%,100%{opacity:0}35%{opacity:1}}
 @keyframes introMarkReduced{from{opacity:0}to{opacity:1}}
 @keyframes introWordReduced{from{opacity:0}to{opacity:1}}
@@ -854,8 +855,7 @@ a.rerun[hidden]{display:none}
         <span class="brand-intro-dot"></span>
         <svg class="brand-intro-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg>
       </div>
-      <span class="brand-intro-word">Zaynox</span>
-      <span class="brand-intro-note">I aspire to build great communities.</span>
+
     </div>
   </div>
 </template>
@@ -871,7 +871,7 @@ a.rerun[hidden]{display:none}
     intro.addEventListener("animationend",function(event){
       if(event.target===intro&&event.animationName==="introVeilOut")intro.remove();
     });
-    window.setTimeout(function(){if(intro.isConnected)intro.remove();},3900);
+    window.setTimeout(function(){if(intro.isConnected)intro.remove();},2400);
   }
   playIntro();
   window.addEventListener("pageshow",function(event){if(event.persisted)playIntro();});
@@ -1079,16 +1079,14 @@ a.rerun[hidden]{display:none}
         <div class="dsc-av">
           <img class="dsc-avatar" src="discord-pfp.jpg" alt="Zaynox’s Discord profile picture" onerror="this.onerror=null;this.src='pfp.png'">
           <img class="dsc-decoration" src="discord-decoration.png" alt="" aria-hidden="true" onerror="this.hidden=true">
-          <span class="dsc-status-dot" id="dsc-dot" aria-label="Online" title="Online"></span>
+          
         </div>
         <div class="dsc-info">
           <div class="dsc-name-row">
             <b class="dsc-display" id="dsc-name">zaynox</b>
             <span class="dsc-tag" title="Server tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h10a3 3 0 0 1 3 3v6.2a6 6 0 0 0-1.4-.2H15v3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 4v1.8h6V7H7Zm0 3.6v1.8h4v-1.8H7Z"/><path d="M19 14v2.2h2.2v1.6H19V20h-1.6v-2.2h-2.2v-1.6h2.2V14H19Z"/></svg></span>
           </div>
-          <div class="dsc-user-row"><span id="dsc-username">justcalculatewastaken</span><i aria-hidden="true">•</i><span class="dsc-status-text" id="dsc-status-text">Online</span></div>
-          <span class="dsc-activity" id="dsc-activity" hidden></span>
-          <p class="dsc-custom"><img src="discord-wing.png" alt="" width="26" height="28" onerror="this.hidden=true"><span class="dsc-fraktur" aria-label="Grand slash Champion">Grand / Champion</span></p>
+          <div class="dsc-user-row"><span id="dsc-username">justcalculatewastaken</span><i aria-hidden="true">•</i><span class="dsc-rank"><img src="discord-wing.png" alt="" width="23" height="24" onerror="this.hidden=true"><span class="dsc-fraktur" aria-label="Grand Champion">Grand / Champion</span></span></div>
           <div class="dsc-badge-pill" aria-label="Profile badges"><img src="discord-badges.png" alt="" width="164" height="26" onerror="this.hidden=true"><span>+4</span></div>
         </div>
         <div class="dsc-btns">
@@ -1097,10 +1095,10 @@ a.rerun[hidden]{display:none}
         </div>
       </div>
       <article class="me roblox-profile-card rbx-compact" aria-label="Roblox profile">
-        <div class="me-stage rbx-stage"><img src="avatar.png" alt="Zaynox’s Roblox avatar" loading="lazy" onerror="this.onerror=null;this.src='pfp.png'"><span class="me-hint">Drag to rotate</span></div>
+        <a class="me-stage rbx-stage" href="https://www.roblox.com/users/1098092708/profile" target="_blank" rel="noopener" aria-label="Open za_ynox’s Roblox profile"><img src="avatar.png" alt="za_ynox’s Roblox avatar" loading="lazy" draggable="false" onerror="this.onerror=null;this.src='pfp.png'"><span class="me-hint">Drag to rotate</span></a>
         <div class="rbx-id">
           <span class="rbx" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.926 23.998 0 18.892 5.075.002 24 5.108ZM15.348 10.09l-5.282-1.453-1.414 5.273 5.282 1.453z"/></svg></span>
-          <div><b class="me-name">Zaynox</b><small>on Roblox</small></div>
+          <div><b class="me-name">za_ynox</b><small>on Roblox</small></div>
         </div>
         <div class="pills" aria-label="Roblox profile statistics">
           <span class="pill"><b>4.5K</b> Followers</span>
@@ -1208,6 +1206,7 @@ function openContactView(opener) {
   contactBodyOverflow = document.body.style.overflow;
   contactOverlay.hidden = false;
   document.body.style.overflow = "hidden";
+  if (window.startRobloxAvatar3d) window.startRobloxAvatar3d();
   if (contactToggle) contactToggle.setAttribute("aria-expanded", "true");
   if (contactClose) contactClose.focus();
 }
@@ -1506,10 +1505,10 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
   }
 
   function bindPointer() {
-    var pid = null, lastX = 0, lastT = 0;
+    var pid = null, lastX = 0, lastT = 0, startX = 0, moved = false;
     stage.addEventListener("pointerdown", function (e) {
       if (!ready || (e.pointerType === "mouse" && e.button !== 0)) return;
-      dragging = true; pid = e.pointerId; lastX = e.clientX; lastT = performance.now(); vel = 0;
+      dragging = true; pid = e.pointerId; lastX = e.clientX; startX = e.clientX; moved = false; lastT = performance.now(); vel = 0;
       try { stage.setPointerCapture(pid); } catch (err) { /* not critical */ }
       stage.classList.add("dragging", "touched");
       kick();
@@ -1518,6 +1517,7 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
       if (!dragging || e.pointerId !== pid) return;
       var now = performance.now(), dt = Math.max((now - lastT) / 1000, 0.008);
       var rot = (e.clientX - lastX) * 0.012;
+       if (Math.abs(e.clientX - startX) > 4) moved = true;
       pivot.rotation.y += rot;
       vel = Math.max(-14, Math.min(14, rot / dt)) * 0.6 + vel * 0.4;
       lastX = e.clientX; lastT = now; lastTouch = now;
@@ -1535,7 +1535,7 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
     stage.addEventListener("pointerup", release);
     stage.addEventListener("pointercancel", release);
     // The whole card is a link: don't open it from the avatar area, and don't start a native link drag.
-    stage.addEventListener("click", function (e) { if (ready) e.preventDefault(); });
+    stage.addEventListener("click", function (e) { if (ready && moved) { e.preventDefault(); e.stopPropagation(); } moved = false; });
     card.addEventListener("dragstart", function (e) { if (ready && dragging) e.preventDefault(); });
   }
 
@@ -1628,7 +1628,41 @@ if (/^\d{15,25}$/.test(DISCORD_ID)) {
   } else {
     visible = true; start();
   }
+  window.startRobloxAvatar3d = start;
   document.addEventListener("visibilitychange", kick);
+})();
+</script>
+<script>
+(function(){
+  var stage=document.querySelector(".me-stage");
+  var img=stage&&stage.querySelector("img");
+  if(!stage||!img)return;
+  var pointer=null,startX=0,startY=0,moved=false,yaw=0;
+  stage.addEventListener("pointerdown",function(e){
+    if(stage.classList.contains("is3d")||e.button!==0)return;
+    pointer=e.pointerId;startX=e.clientX;startY=e.clientY;moved=false;
+    try{stage.setPointerCapture(pointer)}catch(_e){}
+  });
+  stage.addEventListener("pointermove",function(e){
+    if(pointer!==e.pointerId||stage.classList.contains("is3d"))return;
+    var dx=e.clientX-startX,dy=e.clientY-startY;
+    if(Math.abs(dx)+Math.abs(dy)>4)moved=true;
+    if(!moved)return;
+    var bounds=stage.getBoundingClientRect();
+    yaw=Math.max(-18,Math.min(18,dx/Math.max(1,bounds.width)*42));
+    var pitch=Math.max(-9,Math.min(9,-dy/Math.max(1,bounds.height)*18));
+    stage.classList.add("fallback-drag");
+    img.style.transform="perspective(700px) rotateY("+yaw+"deg) rotateX("+pitch+"deg) scale(1.08)";
+  });
+  function release(e){
+    if(pointer!==e.pointerId)return;
+    if(moved){e.preventDefault();img.style.transform="";stage.classList.add("touched")}
+    pointer=null;
+    window.setTimeout(function(){stage.classList.remove("fallback-drag")},220);
+  }
+  stage.addEventListener("pointerup",release);
+  stage.addEventListener("pointercancel",release);
+  stage.addEventListener("click",function(e){if(moved){e.preventDefault();e.stopPropagation()}moved=false});
 })();
 </script>
 
