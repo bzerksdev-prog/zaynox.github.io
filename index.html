@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zaynox | Portfolio</title>
-<meta name="description" content="Experience Staff • Leadership &amp; Community Management">
+<meta name="description" content="Staff • Helper Management • QA Tester">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zaynox">
 <meta property="og:title" content="Zaynox's Portfolio">
@@ -24,7 +24,7 @@
         "components": [
           {
             "type": 10,
-            "content": "# Zaynox's Portfolio\nExperience Staff • Leadership & Community Management"
+            "content": "# Zaynox's Portfolio\nStaff • Helper Management • QA Tester"
           }
         ],
         "accessory": {
@@ -598,19 +598,20 @@ a.rerun[hidden]{display:none}
 .about-art{position:absolute;z-index:1;top:50%;right:0;left:auto;width:120%;height:auto;max-width:none;object-position:right center;transform:translateY(-50%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%)}
 @media(max-width:640px){.about-art-wrap{top:0;right:0;width:100%;height:64%;transform:none}.about-art-wrap::before{inset:8% 4% 0 18%;filter:blur(20px)}.about-art{top:44%;right:-4%;width:118%;height:auto;transform:translateY(-50%);object-position:right center}}
 
-.brand-intro{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;overflow:hidden;pointer-events:none;background:rgba(4,6,14,.94);-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);animation:introVeilOut .48s cubic-bezier(.65,0,.35,1) .98s both}
+.brand-intro{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;overflow:hidden;pointer-events:none;background:rgba(4,6,14,.94);-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);animation:introVeilOut .58s cubic-bezier(.65,0,.35,1) 2.8s both}
 .brand-intro::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 48%,rgba(80,112,255,.18),transparent 22%);animation:introHalo .95s ease-out .05s both}
 .brand-intro-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px}
 .brand-intro-core{position:relative;display:grid;place-items:center;width:68px;height:68px}
 .brand-intro-mark{display:block;width:58px;height:58px;opacity:0;filter:drop-shadow(0 0 22px rgba(91,134,255,.48));animation:introMarkIn .62s cubic-bezier(.18,.78,.25,1) .25s both}
 .brand-intro-dot{position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px rgba(160,190,255,.88),0 0 34px 8px rgba(74,111,255,.55);opacity:0;transform:translate(-50%,-50%);animation:introDotBloom .82s cubic-bezier(.2,.7,.25,1) both}
 .brand-intro-word{color:#f4f6ff;font:700 .94rem/1 var(--display);letter-spacing:.18em;text-indent:.18em;opacity:0;filter:blur(5px);transform:translateY(7px);animation:introWordIn .42s ease-out .52s both}
+.brand-intro-note{margin-top:3px;color:#c7d2f0;font:500 .9rem/1.35 var(--body);letter-spacing:.025em;text-align:center;opacity:0;filter:blur(4px);transform:translateY(6px);animation:introWordIn .5s ease-out .92s both}
 @keyframes introDotBloom{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}16%{opacity:1}62%{opacity:.7;transform:translate(-50%,-50%) scale(1.6)}100%{opacity:0;transform:translate(-50%,-50%) scale(10)}}
 @keyframes introMarkIn{0%{opacity:0;transform:scale(.62) rotate(-12deg);filter:blur(8px) drop-shadow(0 0 0 transparent)}100%{opacity:1;transform:scale(1) rotate(0);filter:drop-shadow(0 0 22px rgba(91,134,255,.48))}}
 @keyframes introWordIn{to{opacity:1;filter:blur(0);transform:translateY(0)}}
 @keyframes introHalo{0%{opacity:0;transform:scale(.7)}35%{opacity:1}100%{opacity:.45;transform:scale(1.2)}}
 @keyframes introVeilOut{to{opacity:0;visibility:hidden}}
-@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .34s linear .98s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
+@media(prefers-reduced-motion:reduce){.brand-intro{animation:introVeilOut .34s linear 2.2s both}.brand-intro::before{animation:none;opacity:0}.brand-intro-dot{animation:introDotReduced .24s linear both}.brand-intro-mark{animation:introMarkReduced .22s linear .2s both}.brand-intro-word{animation:introWordReduced .18s linear .36s both}}
 @keyframes introDotReduced{0%,100%{opacity:0}35%{opacity:1}}
 @keyframes introMarkReduced{from{opacity:0}to{opacity:1}}
 @keyframes introWordReduced{from{opacity:0}to{opacity:1}}
@@ -854,6 +855,7 @@ a.rerun[hidden]{display:none}
         <svg class="brand-intro-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#zmark"/></svg>
       </div>
       <span class="brand-intro-word">Zaynox</span>
+      <span class="brand-intro-note">I aspire to build great communities.</span>
     </div>
   </div>
 </template>
@@ -869,7 +871,7 @@ a.rerun[hidden]{display:none}
     intro.addEventListener("animationend",function(event){
       if(event.target===intro&&event.animationName==="introVeilOut")intro.remove();
     });
-    window.setTimeout(function(){if(intro.isConnected)intro.remove();},1900);
+    window.setTimeout(function(){if(intro.isConnected)intro.remove();},3900);
   }
   playIntro();
   window.addEventListener("pageshow",function(event){if(event.persisted)playIntro();});
@@ -1029,8 +1031,7 @@ a.rerun[hidden]{display:none}
       <li style="--i:1"><article class="timeline-item"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></article></li>
       <li style="--i:2"><article class="timeline-item"><h3>Became a Helper</h3><p>Became involved in the Gakuran community.</p></article></li>
       <li style="--i:3"><article class="timeline-item"><h3>Promoted to Staff &amp; Helper Management</h3></article></li>
-      <li style="--i:4"><article class="timeline-item"><h3>Steal an Egg Trial Moderator</h3><p>Discord server moderation, rule enforcement, ticket handling &amp; community involvement.</p></article></li>
-      <li style="--i:5"><article class="timeline-item"><h3>Promoted to Moderator</h3><p>Moved up to full Moderator in the Steal an Egg community.</p></article></li>
+      <li style="--i:4"><article class="timeline-item"><h3>Steal an Egg: Trial Moderator to Moderator</h3><p>Started as a Trial Moderator, then earned promotion to full Moderator.</p></article></li>
       <li class="now" style="--i:6"><article class="timeline-item"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></article></li>
     </ol>
   </section>
@@ -1039,13 +1040,13 @@ a.rerun[hidden]{display:none}
   <section class="sec" id="me" aria-label="About me and my profiles">
     <header class="section-heading about-section-head reveal">
       <h2>About me</h2>
-      <p>Roblox player · Community manager · QA tester</p>
+      <p>Staff · Helper Management · QA Tester</p>
     </header>
     <article class="about reveal" aria-labelledby="about-title"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
         <span class="about-eyebrow">What matters to me</span>
         <h3 class="about-headline" id="about-title">Good communities are <span>built together.</span></h3>
-        <p class="about-lead">I’m a hard worker who coordinates teams, upholds clear standards, and keeps large Roblox communities running smoothly.</p>
+        <p class="about-lead">I’m a highly active, hard-working staff member who coordinates teams, keeps standards on track, and focuses on one project at a time. I’ve supported large-scale Roblox communities and take pride in seeing work through.</p>
 
 <button class="about-contact-trigger" id="about-contact-toggle" type="button" aria-expanded="false" aria-haspopup="dialog" aria-controls="contact-overlay">
           <span class="about-contact-spark" aria-hidden="true">✦</span>
