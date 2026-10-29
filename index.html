@@ -842,10 +842,12 @@ a.rerun[hidden]{display:none}
  #me .about-copy .about-contact-trigger{grid-column:auto!important;grid-row:auto!important;width:fit-content!important;min-height:54px;margin-top:14px!important}
 }
 
-/* Small category labels under the About text */
-.about-cats{list-style:none;display:flex;flex-wrap:wrap;gap:7px 8px;margin:16px 0 0;padding:0}
-.about-cats li{display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 9px;border:1px solid rgba(160,185,255,.22);border-radius:999px;background:rgba(91,134,255,.07);color:#b9c9f5;font:700 .66rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
-.about-cats li::before{content:"✦";color:#7fa0ff;font-size:.62rem;text-shadow:0 0 8px rgba(120,160,255,.8)}
+
+/* Small section headings for QA and Timeline */
+.mini-head{margin:0 0 18px;text-align:left}
+.mini-head span{display:inline-flex;align-items:center;gap:8px;color:#9fb4ee;font:700 .66rem/1 var(--display);letter-spacing:.18em;text-transform:uppercase}
+.mini-head span::before{content:"";width:18px;height:1px;background:linear-gradient(90deg,transparent,#7fa0ff)}
+.mini-head h2{margin:9px 0 0;color:#f2f5ff;font:700 clamp(1.4rem,2.4vw,1.8rem)/1.15 var(--display);letter-spacing:-.02em}
 </style>
 
 </head>
@@ -1018,7 +1020,8 @@ a.rerun[hidden]{display:none}
   </div>
 
   <!-- Quality Assurance -->
-  <section class="sec" id="qa" aria-label="Quality Assurance">
+  <section class="sec" id="qa" aria-labelledby="qa-title">
+    <header class="mini-head reveal"><span>Testing &amp; quality</span><h2 id="qa-title">QA experience</h2></header>
     <div class="qa-grid reveal" style="--r:2" aria-label="Games I support through QA and testing">
       <article class="qa-card">
         <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">TF</span><img class="qa-icon" data-universe="7671049560" src="the-forge.png" alt="The Forge game icon" onerror="this.hidden=true"></div>
@@ -1036,7 +1039,8 @@ a.rerun[hidden]{display:none}
   </section>
 
   <!-- Timeline -->
-  <section class="sec tl" id="timeline" aria-label="Timeline">
+  <section class="sec tl" id="timeline" aria-labelledby="tl-title">
+    <header class="mini-head reveal"><span>Timeline</span><h2 id="tl-title">How it’s been so far</h2></header>
     <ol class="timeline-list reveal" aria-label="Timeline">
       <li style="--i:0"><article class="timeline-item"><time>2017</time><h3>Joined Roblox</h3><p>Started out as a player.</p></article></li>
       <li style="--i:1"><article class="timeline-item"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></article></li>
@@ -1049,16 +1053,11 @@ a.rerun[hidden]{display:none}
 
   <!-- Profile -->
   <section class="sec" id="me" aria-label="About me and my profiles">
-    <header class="section-heading about-section-head reveal">
-      <h2>More about me</h2>
-      <p>Staff · Helper Management · QA Tester</p>
-    </header>
     <article class="about reveal" aria-labelledby="about-title"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
-        <span class="about-eyebrow">What matters to me</span>
+        <span class="about-eyebrow">More about me</span>
         <h3 class="about-headline" id="about-title">Good communities are <span>built together.</span></h3>
         <p class="about-lead">I’ve been on the Roblox platform for years, and I’m a hard-working person who can coordinate teams, keep standards on track, and focus on one project at a time. I’ve supported large-scale Roblox communities and take pride in seeing work through.</p>
-        <ul class="about-cats" aria-label="Areas of experience"><li>Staff experience</li><li>Team coordination</li><li>QA experience</li><li>Community management</li></ul>
 
 <button class="about-contact-trigger" id="about-contact-toggle" type="button" aria-expanded="false" aria-haspopup="dialog" aria-controls="contact-overlay">
           <span class="about-contact-spark" aria-hidden="true">✦</span>
