@@ -864,6 +864,19 @@ a.rerun[hidden]{display:none}
   #me article.about .about-art-wrap{grid-column:1;grid-row:2;min-height:0;height:210px;margin-top:14px}
   #me article.about .about-art{max-height:230px;margin:0 -14px -26px 0}
 }
+
+/* Taller (not wider) About banner */
+#me article.about{min-height:410px;padding:46px 0 0 38px;align-items:stretch}
+#me article.about .about-copy{align-self:center;padding-bottom:46px}
+#me article.about .about-headline{font-size:clamp(2rem,3.9vw,2.7rem)}
+#me article.about .about-art-wrap{min-height:0;align-self:end;height:auto}
+#me article.about .about-art{max-height:350px;margin:0 -4px 0 0}
+@media(max-width:640px){
+  #me article.about{min-height:0;padding:28px 22px 0}
+  #me article.about .about-copy{padding-bottom:0}
+  #me article.about .about-art-wrap{height:240px;margin-top:10px}
+  #me article.about .about-art{max-height:250px;margin:0 -14px 0 0}
+}
 </style>
 
 </head>
@@ -1037,7 +1050,7 @@ a.rerun[hidden]{display:none}
 
   <!-- Quality Assurance -->
   <section class="sec" id="qa" aria-labelledby="qa-title">
-    <header class="mini-head reveal"><span>Testing &amp; quality</span><h2 id="qa-title">QA experience</h2></header>
+    <header class="mini-head reveal"><span>Testing &amp; quality</span><h2 id="qa-title">Some of my biggest testing work</h2></header>
     <div class="qa-grid reveal" style="--r:2" aria-label="Games I support through QA and testing">
       <article class="qa-card">
         <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">TF</span><img class="qa-icon" data-universe="7671049560" src="the-forge.png" alt="The Forge game icon" onerror="this.hidden=true"></div>
