@@ -877,6 +877,20 @@ a.rerun[hidden]{display:none}
   #me article.about .about-art-wrap{height:240px;margin-top:10px}
   #me article.about .about-art{max-height:250px;margin:0 -14px 0 0}
 }
+
+/* Longer banner: text on the left, character anchored bottom right with softened edges */
+#me article.about{min-height:500px!important;padding:56px 0 0 40px}
+@media(max-width:640px){#me article.about{min-height:0!important}}
+#me article.about .about-copy{padding-bottom:56px}
+#me article.about .about-headline{font-size:clamp(1.9rem,3.5vw,2.45rem);margin-bottom:14px;white-space:nowrap}
+#me article.about .about-lead{max-width:33ch;font-size:1rem;line-height:1.6}
+#me article.about .about-art{max-height:365px;margin:0;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%),linear-gradient(180deg,transparent 0,#000 12%);mask-image:linear-gradient(90deg,transparent 0,#000 16%),linear-gradient(180deg,transparent 0,#000 12%);-webkit-mask-composite:source-in;mask-composite:intersect}
+@media(max-width:640px){
+  #me article.about{padding:30px 22px 0}
+  #me article.about .about-art-wrap{height:270px}
+  #me article.about .about-art{max-height:280px;margin:0 -14px 0 0}
+  #me article.about .about-headline{white-space:normal}
+}
 </style>
 
 </head>
@@ -1081,10 +1095,10 @@ a.rerun[hidden]{display:none}
   </section>
 
   <!-- Profile -->
-  <section class="sec" id="me" aria-label="About me and my profiles">
+  <section class="sec" id="me" aria-labelledby="me-title">
+    <header class="mini-head reveal"><span>Get to know me</span><h2 id="me-title">More about me</h2></header>
     <article class="about reveal" aria-labelledby="about-title"><span class="about-hover-shine" aria-hidden="true"></span><div class="about-stars" aria-hidden="true"><i>✦</i><i>✧</i><i>·</i><i>✦</i><i>✧</i></div>
       <div class="about-copy">
-        <span class="about-eyebrow">More about me</span>
         <h3 class="about-headline" id="about-title">Built on <span>teamwork.</span></h3>
         <p class="about-lead">I’ve been on Roblox for years. I’m hard-working, I coordinate teams well, and I’ve supported large-scale Roblox communities.</p>
 
