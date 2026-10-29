@@ -255,7 +255,8 @@ section[id],#games{scroll-margin-top:96px}
 .me-stage img{transition:transform 1s var(--ease),opacity .6s var(--ease)}
 .me-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .6s var(--ease)}
 .me-stage.is3d{cursor:grab}
-.me-stage:not(.is3d){display:block;color:inherit;text-decoration:none;cursor:grab;touch-action:pan-y}\n.me-stage.fallback-drag{cursor:grabbing}\n.me-stage img{user-select:none;-webkit-user-drag:none}
+.me-stage:not(.is3d){display:block;color:inherit;text-decoration:none;cursor:grab;touch-action:pan-y}
+.me-stage.fallback-drag{cursor:grabbing}\n.me-stage img{user-select:none;-webkit-user-drag:none}
 .me-stage.is3d.dragging{cursor:grabbing}
 .me-stage.is3d canvas{opacity:1}
 .me-stage.is3d img{opacity:0}
@@ -493,7 +494,8 @@ a.rerun[hidden]{display:none}
 .dsc-profile .dsc-av .dsc-avatar{box-shadow:0 0 0 7px var(--card)}
 .dsc-profile .dsc-av .dsc-decoration{inset:-9% ;width:118%;height:118%;left:-9%;top:-9%}
 .dsc-profile .dsc-av .dsc-status-dot{display:none}
-.dsc-profile .dsc-info{padding:16px 26px 0;min-width:0}\n.dsc-profile .dsc-user-row{gap:9px;flex-wrap:wrap}\n.dsc-profile .dsc-user-row .dsc-rank{display:inline-flex;align-items:center;gap:7px;color:#eceff7}\n.dsc-profile .dsc-user-row .dsc-rank img{display:block;width:23px;height:24px;object-fit:contain}\n.dsc-profile .dsc-user-row .dsc-fraktur{font-size:clamp(1.2rem,2vw,1.55rem)}
+.dsc-profile .dsc-info{padding:16px 26px 0;min-width:0}
+.dsc-profile .dsc-user-row{gap:9px;flex-wrap:wrap}\n.dsc-profile .dsc-user-row .dsc-rank{display:inline-flex;align-items:center;gap:7px;color:#eceff7}\n.dsc-profile .dsc-user-row .dsc-rank img{display:block;width:23px;height:24px;object-fit:contain}\n.dsc-profile .dsc-user-row .dsc-fraktur{font-size:clamp(1.2rem,2vw,1.55rem)}
 .dsc-name-row{display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
 .dsc-info b.dsc-display{display:block;font:800 clamp(1.7rem,3.2vw,2.35rem)/1.1 "Orbitron",var(--display);letter-spacing:.03em;text-transform:lowercase;background:linear-gradient(180deg,#fff 0%,#a9d3ff 38%,#2f86ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(50,130,255,.55))}
 .dsc-tag{display:inline-grid;place-items:center;flex:none;width:32px;height:30px;border-radius:9px;background:rgba(255,255,255,.07);color:#c7cbd8}
