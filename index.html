@@ -906,6 +906,11 @@ a.rerun[hidden]{display:none}
   #me article.about{grid-template-columns:minmax(0,1fr);min-height:0!important;padding:30px 22px 0}
   #me article.about .about-copy{padding-bottom:0}
 }
+
+/* Four QA cards in a row; two per row on small screens */
+.qa-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:640px){.qa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.qa-card h3{font-size:.92rem;white-space:nowrap}
 </style>
 
 </head>
@@ -1092,6 +1097,10 @@ a.rerun[hidden]{display:none}
       <article class="qa-card">
         <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">QA</span><img class="qa-icon" src="qa-central.png" alt="QA-Central icon" onerror="this.hidden=true"></div>
         <h3>QA-Central</h3><span class="qa-label"><i aria-hidden="true"></i>QA / Testing</span>
+      </article>
+      <article class="qa-card">
+        <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">AV</span><img class="qa-icon" src="anime-vanguards.png" alt="Anime Vanguards game art" onerror="this.hidden=true"></div>
+        <h3>Anime Vanguards</h3><span class="qa-label"><i aria-hidden="true"></i>Bug Hunter</span>
       </article>
     </div>
   </section>
