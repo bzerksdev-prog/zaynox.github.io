@@ -97,20 +97,19 @@ a{color:inherit}
 .pfp-wrap::before{top:2px;left:-8px;font-size:1.6rem}
 .pfp-wrap::after{bottom:14px;right:-14px;font-size:1.1rem;animation-delay:1.4s}
 
-/* Compact position banner under the hero */
-.role-ribbon{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;padding:20px 22px;border:1px solid rgba(125,155,255,.26);border-radius:19px;overflow:hidden;background:radial-gradient(ellipse at 0% 0%,rgba(69,104,255,.18),transparent 52%),linear-gradient(110deg,rgba(18,24,45,.86),rgba(9,12,23,.78));box-shadow:inset 0 1px rgba(255,255,255,.055),0 18px 42px -32px #000}
-.role-ribbon::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.46;background-image:radial-gradient(rgba(189,205,255,.42) .7px,transparent .9px);background-size:18px 18px;-webkit-mask-image:linear-gradient(90deg,transparent 12%,#000 100%);mask-image:linear-gradient(90deg,transparent 12%,#000 100%)}
-.role-ribbon-main,.role-ribbon-scale{position:relative;z-index:1}
-.role-ribbon-label{display:block;margin-bottom:6px;color:#9fb7ff;font:700 .65rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase}
-.role-ribbon h2{font:800 clamp(1.45rem,3.2vw,1.9rem)/1.05 var(--display);letter-spacing:-.035em;color:#f4f6ff}
-.role-ribbon-roles{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:8px;color:#d7def2;font:600 .86rem/1.35 var(--display)}
-.role-ribbon-roles i{color:#7295ff;font-style:normal;font-size:.75rem}
-.role-ribbon-note{margin-top:7px;color:#9fa9c4;font-size:.76rem;line-height:1.4}
-.role-ribbon-scale{min-width:142px;padding:5px 0 5px 21px;border-left:1px solid rgba(160,180,230,.19)}
-.role-ribbon-scale strong{display:block;color:#dce6ff;font:800 1.65rem/1 var(--display);letter-spacing:-.035em;text-shadow:0 0 22px rgba(91,134,255,.26)}
-.role-ribbon-scale span{display:block;margin-top:7px;color:#9fa9c4;font-size:.68rem;line-height:1.4}
-@media(max-width:520px){.role-ribbon{grid-template-columns:1fr;gap:14px;padding:18px}.role-ribbon-scale{min-width:0;padding:12px 0 0;border-left:0;border-top:1px solid rgba(160,180,230,.19)}.role-ribbon-scale strong{font-size:1.45rem}.role-ribbon-scale span{margin-top:4px}}
-@media(prefers-reduced-motion:reduce){.role-ribbon{transition:none}}
+/* Seamless role ticker beneath the hero */
+.role-ribbon{position:relative;width:calc(100% + 32px);margin:0 -16px;overflow:hidden;padding:16px 0;border-block:1px solid rgba(160,175,220,.16);background:linear-gradient(90deg,rgba(17,20,34,.14),rgba(48,62,111,.12),rgba(17,20,34,.14))}
+.role-ribbon::before,.role-ribbon::after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:44px;pointer-events:none}
+.role-ribbon::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.role-ribbon::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.role-ribbon-track{display:flex;width:max-content;animation:roleRibbonScroll 34s linear infinite;will-change:transform}
+.role-ribbon:hover .role-ribbon-track{animation-play-state:paused}
+.role-ribbon-group{display:flex;flex:none;align-items:center;gap:28px;padding:0 28px;white-space:nowrap}
+.role-ribbon-group span{color:#c8cde0;font:800 .9rem/1 var(--display);letter-spacing:.045em;text-transform:uppercase}
+.role-ribbon-group .role-ribbon-star{color:#8c78ff;font-size:.85rem;text-shadow:0 0 12px rgba(140,120,255,.45)}
+@keyframes roleRibbonScroll{to{transform:translateX(-50%)}}
+@media(max-width:520px){.role-ribbon{width:calc(100% + 32px);padding:14px 0}.role-ribbon-group{gap:21px;padding:0 21px}.role-ribbon-group span{font-size:.78rem}}
+@media(prefers-reduced-motion:reduce){.role-ribbon-track{width:100%;animation:none}.role-ribbon-group[aria-hidden="true"]{display:none}.role-ribbon-group{justify-content:center;flex-wrap:wrap;gap:10px 18px;padding:0 22px;white-space:normal}.role-ribbon::before,.role-ribbon::after{display:none}}
 
 /* Community cards */
 .card{--a:#aab0c4;border-radius:22px;border:1px solid rgba(255,255,255,.13);background:var(--panel);overflow:hidden;
@@ -978,20 +977,26 @@ a.rerun[hidden]{display:none}
     </div>
   </header>
 
-  <section class="role-ribbon reveal" aria-label="Management and staff experience">
-    <div class="role-ribbon-main">
-      <span class="role-ribbon-label">Positions &amp; experience</span>
-      <h2>Management</h2>
-      <div class="role-ribbon-roles">
-        <span>Server &amp; in-game staff operations</span><i aria-hidden="true">✦</i><span>QA testing</span>
-      </div>
-      <p class="role-ribbon-note">Coordinating teams and supporting communities at scale.</p>
+  <div class="role-ribbon" aria-label="Management, QA tester, server staff, game staff, team coordination, and experience supporting communities with 1.4 million combined members">
+    <div class="role-ribbon-track" aria-hidden="true">
+    <div class="role-ribbon-group">
+      <span>Management</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>QA Tester</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>Server Staff</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>Game Staff</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>Team Coordination</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>1.4M+ Combined Community Members</span>
     </div>
-    <div class="role-ribbon-scale">
-      <strong>1.4M+</strong>
-      <span>combined members across<br>Gakuran &amp; Steal an Egg</span>
+    <div class="role-ribbon-group" aria-hidden="true">
+      <span>Management</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>QA Tester</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>Server Staff</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>Game Staff</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>Team Coordination</span><i class="role-ribbon-star" aria-hidden="true">✦</i>
+      <span>1.4M+ Combined Community Members</span>
     </div>
-  </section>
+    </div>
+  </div>
 
   <div class="stack" id="games" aria-label="Communities">
     <!-- Gakuran -->
