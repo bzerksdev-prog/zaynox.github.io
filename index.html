@@ -896,6 +896,19 @@ a.rerun[hidden]{display:none}
 .qa-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:640px){.qa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .qa-card h3{font-size:.92rem;white-space:nowrap}
+
+
+/* Five QA cards: three on top, two centered below */
+.qa-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.qa-grid .qa-card{grid-column:span 2}
+.qa-grid .qa-card:nth-child(4){grid-column:2/4}
+.qa-grid .qa-card:nth-child(5){grid-column:4/6}
+.qa-card h3{white-space:normal}
+@media(max-width:640px){
+  .qa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .qa-grid .qa-card,.qa-grid .qa-card:nth-child(4){grid-column:auto}
+  .qa-grid .qa-card:nth-child(5){grid-column:1/-1;justify-self:center;width:calc(50% - 5px)}
+}
 </style>
 
 </head>
@@ -1110,6 +1123,10 @@ a.rerun[hidden]{display:none}
       <article class="qa-card">
         <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">AV</span><img class="qa-icon" src="anime-vanguards.png" alt="Anime Vanguards game art" onerror="this.hidden=true"></div>
         <h3>Anime Vanguards</h3><span class="qa-label"><i aria-hidden="true"></i>Bug Hunter</span>
+      </article>
+      <article class="qa-card">
+        <div class="qa-icon-wrap"><span class="qa-icon-placeholder" aria-hidden="true">TF</span><img class="qa-icon" src="throw-food-for-animals.png" alt="Throw Food for Animals game art" onerror="this.hidden=true"></div>
+        <h3>Throw Food for Animals</h3><span class="qa-label"><i aria-hidden="true"></i>Tester</span>
       </article>
     </div>
   </section>
