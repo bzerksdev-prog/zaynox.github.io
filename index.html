@@ -154,8 +154,9 @@ a{color:inherit}
 .roles{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 26px;border-top:1px solid var(--line);background:rgba(2,4,14,.55)}
 .roles-label{font:600 .95rem var(--display);color:var(--muted);padding-right:14px;border-right:1px solid var(--line)}
 .chips{display:flex;gap:10px;flex-wrap:wrap}
-.chip{font:600 .95rem var(--display);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--a) 70%,transparent);background:color-mix(in srgb,var(--a) 12%,transparent);transition:background .2s,transform .2s var(--ease)}
-.chip:hover{background:color-mix(in srgb,var(--a) 28%,transparent);transform:translateY(-2px)}
+.proof-link{text-decoration:none}
+.chip,.proof-link{font:600 .95rem var(--display);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--a) 70%,transparent);background:color-mix(in srgb,var(--a) 12%,transparent);transition:background .2s,transform .2s var(--ease)}
+.chip:hover,.proof-link:hover{background:color-mix(in srgb,var(--a) 28%,transparent);transform:translateY(-2px)}
 .chip i{font-style:normal;font-size:1.15rem;line-height:1;transition:transform .5s var(--ease)}
 .chip[aria-expanded="true"] i{transform:rotate(45deg)}
 .chip.trial{border-style:dashed}
@@ -1044,8 +1045,8 @@ a.rerun[hidden]{display:none}
     <div class="roles reveal" style="--r:3">
       <div class="roles-label">My roles</div>
       <div class="chips">
+        <button class="chip" aria-expanded="false" aria-controls="g2">Senior Staff <i aria-hidden="true">+</i></button>
         <button class="chip" aria-expanded="false" aria-controls="g1">Helper Manager <i aria-hidden="true">+</i></button>
-        <button class="chip" aria-expanded="false" aria-controls="g2">Staff <i aria-hidden="true">+</i></button>
       </div>
       <p class="note" id="g1" hidden>Overseeing the Helper Team, maintaining standards, monitoring performance and ensuring consistent quality across Helpers.</p>
       <p class="note" id="g2" hidden>Supporting the Gakuran community as needed.</p>
@@ -1081,6 +1082,7 @@ a.rerun[hidden]{display:none}
       <div class="roles-label">My roles</div>
       <div class="chips">
         <button class="chip" aria-expanded="false" aria-controls="e1">Former Moderator <i aria-hidden="true">+</i></button>
+        <a class="proof-link" href="steal-an-egg-moderator-proof.png" target="_blank" rel="noopener" aria-label="View Steal an Egg moderator screenshot (opens in a new tab)">View proof ↗</a>
       </div>
       <p class="note" id="e1" hidden>Previously moderated the Discord server, enforced rules, and handled tickets.</p>
     </div>
@@ -1138,7 +1140,7 @@ a.rerun[hidden]{display:none}
       <li style="--i:0"><article class="timeline-item"><time>2017</time><h3>Joined Roblox</h3><p>Started out as a player.</p></article></li>
       <li style="--i:1"><article class="timeline-item"><h3>QA involvement</h3><p>The Forge and QA-Central.</p></article></li>
       <li style="--i:2"><article class="timeline-item"><h3>Became a Helper</h3><p>Became involved in the Gakuran community.</p></article></li>
-      <li style="--i:3"><article class="timeline-item"><h3>Gakuran Staff &amp; Helper Manager</h3></article></li>
+      <li style="--i:3"><article class="timeline-item"><h3>Gakuran Senior Staff &amp; Helper Manager</h3></article></li>
       <li style="--i:4"><article class="timeline-item"><h3>Steal an Egg: Former Moderator</h3><p>Started as a Trial Moderator and later served as a full Moderator.</p></article></li>
       <li class="now" style="--i:6"><article class="timeline-item"><time>2026</time><h3>Still growing</h3><p>Looking into more management.</p></article></li>
     </ol>
